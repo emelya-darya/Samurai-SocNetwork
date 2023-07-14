@@ -1,0 +1,78 @@
+@import '../../profile.module.scss';
+
+.status {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 30px;
+
+    @media(max-width: 768px) {
+        max-width: none;
+        margin-bottom: 20px;
+    }
+
+
+
+    svg.iconCloud {
+        width: 22px;
+        height: 22px;
+        transform: scale(-1, 1);
+        color: $brown_light_clr
+    }
+
+    .iconContent {
+        flex-grow: 1;
+    }
+
+    .statusText {
+        display: block;
+        // margin-right: 20px;
+        margin-bottom: 3px;
+    }
+
+    .statusUpdateBtn {
+        background-color: transparent;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        margin-left: auto;
+        transition: $transition_val;
+        box-shadow: $boxshadow_val;
+        color: $brown_light_clr;
+    }
+
+    .statusUpdateBtn:hover {
+        background-color: rgba($color: $brown_light_clr, $alpha: 0.05);
+        // box-shadow: $boxshadow_val;
+    }
+
+    input.statusInput {
+        margin-bottom: 7px;
+        width: 100%;
+        border-bottom: 1px solid rgba($color: $brown_light_clr, $alpha: .6);
+        padding-right: 35px;
+    }
+
+    input.statusInput:focus-visible {
+        border-color: rgba($color: $brown_light_clr, $alpha: 1);
+        box-shadow: 0px 1px 0px 0px $brown_light_clr;
+    }
+
+    .inputStatusSendBtn {
+        color: $brown_light_clr;
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    .inputStatusSendBtn:hover {
+        background-color: transparent;
+    }
+}
+
+.updateStatusErr {
+    height: 19px;
+}

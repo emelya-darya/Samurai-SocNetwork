@@ -1,0 +1,74 @@
+@import '../../../assets//commonStyles//vars_mixins';
+
+.topPartPage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 40px;
+
+    h1,
+    p {
+        margin: 0px;
+        align-items: center;
+        line-height: 1;
+    }
+
+    p {
+        font-weight: 500;
+        opacity: .7;
+    }
+}
+
+// .usersContainer {}
+
+.errorBlock {
+    text-align: center;
+    padding: 50px 0px;
+}
+
+
+
+
+.paginationBlock {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0px;
+}
+
+.searchInputGroup {
+    border-color: rgba($color: $brown_light_clr, $alpha: .7);
+    transition: $transition_val;
+
+    .searchInputLeftEl {
+        svg {
+            width: 22px;
+            height: 22px;
+            fill: rgba($color: $brown_light_clr, $alpha: .5);
+            transition: $transition_val;
+        }
+    }
+
+    input.searchInput{
+        padding-left: 40px;
+    }
+
+    input.searchInput:focus-visible{
+        border-color: $brown_light_clr;
+        box-shadow: 0px 1px 0px 0px $brown_light_clr;
+    }
+}
+
+.searchInputGroup:hover{
+    border-color: rgba($color: $brown_light_clr, $alpha: 1);
+    svg{
+        fill: rgba($color: $brown_light_clr, $alpha: 1);
+    }
+}
+
+.serverErrMessage{
+    color: $err_clr;
+    text-align: center;
+    font-weight: 700;
+    margin: 40px 0px 30px 0px;
+}

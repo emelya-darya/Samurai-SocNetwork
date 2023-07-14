@@ -1,0 +1,122 @@
+@import '../../../assets//commonStyles//vars_mixins';
+
+.sidebar {
+    position: fixed;
+    top: 80px;
+    left: 0px;
+    z-index: 4;
+    width: 250px;
+    height: calc(100vh - 80px);
+    background-color: $orange_light_clr;
+    transition: $transition_val;
+    overflow-y: auto;
+
+    @media(max-width: 576px) {
+        top: 60px;
+        height: calc(100vh - 60px);
+    }
+}
+
+.sidebar.hide {
+    transform: translateX(-100%);
+}
+
+.linksContainer {
+    width: 100%;
+    padding: 40px 30px 40px 0px;
+    gap: 3px;
+    margin-bottom: 30px;
+
+    @media(max-width:576px) {
+        padding: 20px 15px 20px 0px;
+    }
+
+    a {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 5px 5px 5px 50px;
+        font-weight: 700;
+        font-size: 20px;
+        border-left: 5px solid transparent;
+        transition: $transition_val;
+    }
+
+    a:hover,
+    a.act {
+        border-left: 5px solid $brown_light_clr;
+        color: $brown_light_clr;
+    }
+}
+
+.subsBlock {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 40px;
+
+    .lett {
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .subsAvatars {
+        display: flex;
+        margin-bottom: 25px;
+        height: 53;
+    }
+
+    .subAvatarWPhoto,
+    .subAvatarWLett {
+        width: 53px;
+        height: 53px;
+        border: 1px solid $lgrey_clr;
+        border-radius: 50%;
+    }
+
+    .subAvatarWPhoto:not(:first-child),
+    .subAvatarWLett:not(:first-child) {
+        margin-left: -13px;
+
+    }
+
+    .subAvatarWPhoto {
+        @include img-absolute;
+
+        img {
+            border-radius: 50%;
+        }
+    }
+
+    .subAvatarWLett {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        background-color: $orange_clr;
+        // font-weight: 700;
+        color: $lgrey_clr;
+        font-size: 16px;
+
+    }
+
+    div.subAvatarWLett {
+        background-color: $lgrey_clr;
+        color: $brown_clr;
+    }
+
+    .watchAll {
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+.serverErrMessage{
+    color: $err_clr;
+    text-align: center;
+    font-weight: 700;
+    // margin: 40px 0px 30px 0px;
+}

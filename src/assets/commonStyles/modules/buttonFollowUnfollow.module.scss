@@ -1,0 +1,44 @@
+button.buttFollUnfoll {
+    width: 160px;
+    text-transform: uppercase;
+    padding: 15px 25px;
+    box-shadow: $boxshadow_val;
+    border: 2px solid $orange_clr;
+    transition: $transition_val;
+    gap: 5px;
+
+    svg {
+        width: 1.3rem;
+        height: 1.3rem;
+    }
+}
+
+button.unfollowBtn {
+    background-color: $orange_clr;
+    color: $lgrey_clr;
+}
+
+button.followBtn {
+    background-color: transparent;
+    color: $orange_clr;
+}
+
+button.unfollowBtn:hover {
+    background-color: rgba($color: $orange_clr, $alpha: .8);
+    border: 2px solid rgba($color: $orange_clr, $alpha: .8);
+}
+
+button.followBtn:hover {
+    background-color: rgba($color: $orange_clr, $alpha: .1);
+    // color: $lgrey_clr;
+}
+
+button.unfollowBtn:disabled:hover {
+    background-color: $orange_clr;
+    color: $lgrey_clr;
+}
+
+button.followBtn:disabled:hover {
+    background-color: transparent;
+    color: $orange_clr;
+}

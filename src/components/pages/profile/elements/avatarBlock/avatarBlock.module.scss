@@ -1,0 +1,91 @@
+@import '../../profile.module.scss';
+
+.avatarWr {
+    position: relative;
+    flex: 0 0 230px;
+
+    width: 230px;
+    height: 230px;
+    @include img-absolute;
+    border-radius: 50%;
+    border: 1px solid $lgrey_clr;
+    background-color: $orange_clr;
+    box-shadow: $boxshadow_val;
+
+    @media(max-width:768px) {
+        margin: 0px auto 15px auto;
+    }
+
+    @media(max-width: 576px) {
+        flex: 0 0 190px;
+        width: 190px;
+        height: 190px;
+    }
+
+    img {
+        border-radius: 50%;
+    }
+}
+
+button.uploadPhotoBtn {
+    position: absolute;
+    bottom: 34px;
+    right: 34px;
+    transform: translate(50%, 50%);
+    display: block;
+    border-radius: 50%;
+    background-color: $lgrey_clr;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $lgrey_clr;
+    color: rgba($color: $brown_light_clr, $alpha: 1);
+    box-shadow: $boxshadow_val;
+    font-size: 18px;
+    padding: 0px;
+
+    @media(max-width: 576px) {
+        bottom: 28px;
+        right: 28px;
+    }
+
+    &:hover {
+        background-color: $lgrey_clr;
+    }
+
+    &:disabled{
+        opacity: 1;
+        box-shadow: $boxshadow_val;
+
+        label{
+            cursor: not-allowed;
+        }
+    }
+
+    label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: $transition_val;
+    }
+
+    label:hover {
+        background-color: rgba($color: $brown_light_clr, $alpha: 0.05);
+    }
+}
+
+.errUploadPhoto {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    text-align: center;
+    height: 20px;
+}

@@ -1,0 +1,22 @@
+export const GET_PROFILE_DATA = 'forProfileData/GET_PROFILE_DATA'
+export const SET_MAIN_PORTION_PROFILE_DATA = 'forProfileData/SET_MAIN_PORTION_PROFILE_DATA'
+
+export const SET_IS_FOLLOWED = 'forProfileData/SET_IS_FOLLOWED'
+export const SET_IS_LOADING_PROFILE = 'forProfileData/SET_IS_LOADING_PROFILE'
+
+export const CHANGE_FOLLOW_STAT = 'forProfileData/CHANGE_FOLLOW_STAT'
+export const SET_NEW_FOLLOW_STAT = 'forProfileData/SET_NEW_FOLLOW_STAT'
+export const SET_IS_IN_PROGRESS_CHANGE_FOLLOW_STAT = 'forProfileData/SET_IS_IN_PROGRESS_CHANGE_FOLLOW_STAT'
+
+export const SET_STATUS = 'forProfileData/SET_STATUS'
+export const UPDATE_STATUS = 'forProfileData/UPDATE_STATUS'
+export const SET_IS_IN_PROGRESS_UPDATE_STATUS = 'forProfileData/SET_IS_IN_PROGRESS_UPDATE_STATUS'
+
+export const UPDATE_PHOTO = 'forProfileData/UPDATE_PHOTO'
+export const SET_NEW_PHOTOS = 'forProfileData/SET_NEW_PHOTOS'
+export const SET_IS_IN_PROGRESS_UPLOAD_NEW_PHOTO = 'forProfileData/SET_IS_IN_PROGRESS_UPLOAD_NEW_PHOTO'
+
+
+export const UPDATE_PROFILE_DATA = 'forProfileData/UPDATE_PROFILE_DATA'
+export const SET_NEW_PROFILE_DATA = 'forProfileData/SET_NEW_PROFILE_DATA'
+export const SET_IS_IN_PROGRESS_UPDATE_MAIN_INFO = 'forProfileData/SET_IS_IN_PROGRESS_UPDATE_MAIN_INFO'

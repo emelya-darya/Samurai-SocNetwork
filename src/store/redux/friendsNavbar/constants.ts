@@ -1,0 +1,3 @@
+export const GET_FRIENDS_FOR_NAVBAR = 'forFriendsData/GET_FRIENDS_FOR_NAVBAR'
+export const SET_TOTAL_FRIENDS_COUNT = 'forFriendsData/SET_TOTAL_FRIENDS_COUNT'
+export const SET_FRIENDS_FOR_NAVBAR = 'forFriendsData/SET_FRIENDS_FOR_NAVBAR'

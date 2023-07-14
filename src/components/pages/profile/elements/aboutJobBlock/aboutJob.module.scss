@@ -1,0 +1,59 @@
+@import '../../profile.module.scss';
+
+.jobBlock {
+    flex: 1 1 auto;
+
+    @media(max-width: 768px) {
+        padding-left: 0px;
+        margin-bottom: 0px;
+    }
+
+    p {
+        margin-bottom: 5px;
+    }
+
+    .looking,
+    .notLooking {
+        display: flex;
+        gap: 10px;
+
+        margin-bottom: 7px;
+
+        .clr {
+            font-size: 18px;
+            font-weight: 600;
+            white-space: nowrap;
+
+            @media(max-width: 450px) {
+                font-size: 15px;
+            }
+        }
+
+        svg {
+            width: 22px;
+            height: 22px;
+            margin-top: 4px;
+        }
+    }
+
+    .looking {
+
+        svg,
+        .clr {
+            color: #38A169;
+        }
+    }
+
+    .notLooking {
+
+        svg,
+        .clr {
+            color: #E53E3E;
+        }
+    }
+
+    .isLookingDesc {
+        padding-left: 32px;
+    }
+
+}

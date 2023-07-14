@@ -1,0 +1,144 @@
+@import '../../../assets//commonStyles//vars_mixins';
+
+
+.header {
+    position: fixed;
+    z-index: 5;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: $orange_light_clr;
+    border-bottom: 1px solid $orange_clr;
+    box-shadow: $boxshadow_val;
+    padding: 8px 50px;
+    height: 80px;
+
+    @media(max-width: 992px) {
+        padding: 8px 15px;
+    }
+
+    @media(max-width: 576px) {
+        height: 60px;
+    }
+}
+
+@keyframes rotate-logo {
+    0% {
+        transform: rotate(0deg);
+        transform-origin: center center;
+    }
+
+    100% {
+        transform: rotate(360deg);
+
+    }
+}
+
+.logoWr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    transform-origin: center center;
+
+    svg {
+        width: 60px;
+        height: 60px;
+        fill: $brown_light_clr;
+
+        animation-name: rotate-logo;
+        animation-duration: 13s;
+        // animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-delay: 0ms;
+
+        @media(max-width: 576px) {
+            width: 45px;
+            height: 45px;
+        }
+    }
+}
+
+.rightPartHeader {
+    position: relative;
+
+    .avatarWr {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .avatarHeader {
+        background-color: $brown_light_clr;
+        color: $orange_light_clr;
+    }
+
+    .nickName {
+        font-weight: 600;
+        font-size: 13px;
+
+        @media (max-width: 576px) {
+            display: none;
+        }
+    }
+
+    button.logoutBtn {
+        position: absolute;
+        z-index: 20;
+        top: 110%;
+        right: 0px;
+        opacity: 0;
+        visibility: hidden;
+        text-transform: uppercase;
+        // background-color: rgba($color: $orange_clr, $alpha: 0.9);
+        background-color: rgba($color: $yellow_clr, $alpha: 0.9);
+        border: 1px solid $brown_light_clr;
+        transition: $transition_val;
+        color: $brown_clr;
+        padding: 20px 30px;
+        font-weight: 700;
+    }
+
+    .logoutBtn:hover {
+        // background-color: $orange_clr
+        background-color: $yellow_clr;
+    }
+
+    // медиазапрос, проверяющий, что это не тачпад
+    @media (hover: hover) {
+
+        &:hover {
+            .logoutBtn {
+                top: 105%;
+                right: 0px;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+
+
+}
+
+.burgerIcon {
+    padding: 3px;
+    cursor: pointer;
+
+    svg {
+        fill: $brown_light_clr;
+        @media(max-width: 576px) {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    @media(max-width: 576px) {
+        width: 42px;
+        height: 42px;
+        padding: 0px;
+    }
+}
