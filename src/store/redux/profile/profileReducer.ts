@@ -111,7 +111,7 @@ export const ProfileAC = {
    updateStatus: (status: string) => ({ type: UPDATE_STATUS, status } as const),
    setIsInProgressUpdateStatus: (isInProgress: boolean) => ({ type: SET_IS_IN_PROGRESS_UPDATE_STATUS, isInProgress } as const),
 
-   updatePhoto: (photoFile: string | Blob) => ({ type: UPDATE_PHOTO, photoFile } as const),
+   updatePhoto: (photoFile: Blob) => ({ type: UPDATE_PHOTO, photoFile } as const),
    setNewPhotos: (photos: PhotosType) => ({ type: SET_NEW_PHOTOS, photos } as const),
    setIsInProgressUpdatePhotos: (isInProgress: boolean) => ({ type: SET_IS_IN_PROGRESS_UPLOAD_NEW_PHOTO, isInProgress } as const),
 

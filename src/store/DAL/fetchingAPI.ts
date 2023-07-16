@@ -7,7 +7,6 @@ import {
    UploadPhotoResponceDataType,
    UserFriendItemType,
 } from '../redux/storeTypes'
-// import { throttleDecorator } from '../other/throttleDecorator'
 
 // axios можно настроить с помощью create, чтобы не дублировать каждый раз объект с параметрами и базовый URL
 const instance = axios.create({
@@ -96,9 +95,9 @@ const profileFetchingAPI = {
       return instance.put<MostFrequentResponseType>(`/profile/status/`, { status: status }).then(response => response.data)
    },
 
-   async onUploadPhotoFile(photoFile: string | Blob) {
+   async onUploadPhotoFile(blobPhotoFile: Blob) {
       const formData = new FormData()
-      formData.append('image', photoFile)
+      formData.append("image", blobPhotoFile, "image.png");
 
       return instance
          .put<UploadPhotoResponceDataType>(`/profile/photo`, formData, {

@@ -83,9 +83,10 @@ button.uploadPhotoBtn {
 .errUploadPhoto {
     position: absolute;
     bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0px;
+    // left: 50%;
+    // transform: translateX(-50%);
     white-space: nowrap;
-    text-align: center;
+    // text-align: center;
     height: 20px;
 }

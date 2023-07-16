@@ -1,0 +1,172 @@
+@import '../../../../../../assets//commonStyles//vars_mixins';
+
+.avatarModal {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    background-color: rgba($color: $brown_clr, $alpha: .5);
+    transition: $transition_val;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    img {
+        position: static;
+        width: auto;
+        height: auto;
+        border-radius: 0px;
+    }
+}
+
+.avatarModal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.content {
+    position: relative;
+    width: 615px;
+    max-height: 100vh;
+    overflow-y: auto;
+    background-color: $lgrey_clr;
+    border-radius: $borderR_value;
+    border: 3px solid $brown_clr;
+    box-shadow: $boxshadow_val;
+    padding: 20px 30px;
+
+    @media(max-width: 630px) {
+        width: 100%;
+        border-radius: 0px;
+        border: 0px solid transparent;
+    }
+
+    @media(max-width: 576px) {
+        padding: 20px 15px 7px 15px;
+    }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 28px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.closeBtnMask {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+
+.content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.content::-webkit-scrollbar-track{
+    background-color: transparent;
+}
+
+.content::-webkit-scrollbar-thumb{
+    background-color: rgba($color: #000000, $alpha: .3);
+    border-radius: 3px;
+}
+
+.title {
+    margin-top: 0px;
+    padding-right: 40px;
+    margin-bottom: 25px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+.cropWr {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.cropBlock {
+    max-height: 210px;
+    max-width: 100%;
+    box-shadow: $boxshadow_val;
+}
+
+.thumbs {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.lett{
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    // text-align: center;
+}
+
+
+.canvasBig,
+.canvasSmall {
+    border-radius: 50%;
+    object-fit: contain;
+    box-shadow: $boxshadow_val;
+}
+
+.canvasBig {
+    width: 140px;
+    height: 140px;
+}
+
+.canvasSmall {
+    width: 65px;
+    height: 65px;
+}
+
+button.updateBtn {
+    // width: 160px;
+    width: 100%;
+    // margin-bottom: 25px;
+    text-transform: uppercase;
+    padding: 15px 25px;
+    background-color: $brown_light_clr;
+    box-shadow: $boxshadow_val;
+    border: 2px solid $brown_light_clr;
+    transition: $transition_val;
+    gap: 5px;
+    color: $lgrey_clr;
+    display: flex;
+    margin-left: auto;
+    margin-bottom: 12px;
+
+
+    svg {
+        font-size: 1.5rem;
+        ;
+    }
+
+    &:hover {
+        background-color: rgba($color: $brown_light_clr, $alpha: .9);
+        border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
+    }
+}
+
+button.updateBtn[disabled]:hover{
+    color: $lgrey_clr;
+    background-color: $brown_light_clr;
+    border: 2px solid $brown_light_clr;
+}
