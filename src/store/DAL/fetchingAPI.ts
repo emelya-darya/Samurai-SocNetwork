@@ -6,6 +6,7 @@ import {
    ProfileDataTypeOnSend,
    UploadPhotoResponceDataType,
    UserFriendItemType,
+   AuthMeResponseDataType,
 } from '../redux/storeTypes'
 
 // axios можно настроить с помощью create, чтобы не дублировать каждый раз объект с параметрами и базовый URL
@@ -50,32 +51,28 @@ const followUnfollowAPI = {
    },
 }
 
-// const authFetchingAPI = {
+const authFetchingAPI = {
+   async onCheckAuth() {
+      return instance.get<AuthMeResponseDataType>('auth/me').then(responce => responce.data)
+   },
 
-// 	onCheckAuth() {
-// 		return instance.get('auth/me')
-// 			.then(responce => responce.data)
-// 	},
+   async getAvatar(id: number) {
+      return instance.get<ProfileDataTypeOnGet>(`profile/${id}`).then(responce => responce.data)
+   },
 
-// 	getAvatar(id) {
-// 		return instance.get(`profile/${id}`)
-// 			.then(responce => responce.data)
-// 	},
+   // onAuth(authData) {
+   // 	return instance.post(`/auth/login/`, authData)
+   // },
 
-// 	onAuth(authData) {
-// 		return instance.post(`/auth/login/`, authData)
-// 	},
+   // getCaptcha() {
+   // 	return instance.get(`/security/get-captcha-url`)
+   // 		.then(responce => responce.data.url)
+   // },
 
-// 	getCaptcha() {
-// 		return instance.get(`/security/get-captcha-url`)
-// 			.then(responce => responce.data.url)
-// 	},
-
-// 	offAuth() {
-// 		return instance.delete(`/auth/login/`)
-// 	}
-
-// }
+   // offAuth() {
+   // 	return instance.delete(`/auth/login/`)
+   // }
+}
 
 const profileFetchingAPI = {
    // запрос за основными данными для profile
@@ -97,7 +94,7 @@ const profileFetchingAPI = {
 
    async onUploadPhotoFile(blobPhotoFile: Blob) {
       const formData = new FormData()
-      formData.append("image", blobPhotoFile, "image.png");
+      formData.append('image', blobPhotoFile, 'image.png')
 
       return instance
          .put<UploadPhotoResponceDataType>(`/profile/photo`, formData, {
@@ -113,7 +110,7 @@ const profileFetchingAPI = {
    },
 }
 
-export { usersFetchingAPI, friendsFetchingAPI, profileFetchingAPI, followUnfollowAPI }
+export { usersFetchingAPI, friendsFetchingAPI, profileFetchingAPI, followUnfollowAPI, authFetchingAPI }
 // export { authFetchingAPI }
 // export { profileFetchingAPI }
 // export { friendsFetchingAPI }

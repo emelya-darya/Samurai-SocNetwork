@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../store/redux/storeTypes'
 import { ProfileAC } from '../../../store/redux/profile/profileReducer'
 import c from './profile.module.scss'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { Preloader } from '../../reusableElements/preloader/Preloader'
 import { StatusBlock } from './elements/statusBlock/StatusBlock'
 import { FollowUnfollowBtn } from './elements/FollowUnfollowBtn'
@@ -14,19 +14,40 @@ import { AvatarBlock } from './elements/avatarBlock/AvatarBlock'
 import { LiaUserEditSolid } from 'react-icons/lia'
 import { Button, Icon } from '@chakra-ui/react'
 import { ModalWindowForm } from './elements/modalWindowForm/ModalWindowForm'
+// import { AiOutlineLogout } from 'react-icons/ai'
+import { LuLogOut } from 'react-icons/lu'
+import { AuthAC } from '../../../store/redux/auth/authReducer'
 
-const MY_ID = 24420
 
-const ProfilePage = () => {
+const withAuthRedirectHOC = (Component: React.FC<any>)=>{
+   // <Navigate to='/profile' replace={true} />
+   
+   // const Wrapper = ()=>{
+      // const isAuth = useSelector((state:GlobalStateType)=>state.forAuthData.isAuth)
+
+      return function(props:any){
+         // if(!isAuth )return <Navigate to='/login' replace={true} />
+         return <Component {...props}/>
+      }
+
+      // if (!isAuth) return <Navigate to='/login' replace={true} />
+      // else return <Component/>
+   // }
+
+   // return <Wrapper/>
+}
+
+let ProfilePage = () => {
+   const MY_ID = useSelector((state: GlobalStateType) => state.forAuthData.id)
    const userIdFromUrl = useParams().userId || MY_ID
 
    const dispatch = useDispatch()
 
    React.useEffect(() => {
-      dispatch(ProfileAC.getProfileData(+userIdFromUrl))
+      if (userIdFromUrl) dispatch(ProfileAC.getProfileData(+userIdFromUrl))
    }, [userIdFromUrl])
 
-   const isMyProfile = +userIdFromUrl === MY_ID
+   const isMyProfile = userIdFromUrl ? +userIdFromUrl === MY_ID : false
 
    const { userId, fullName, aboutMe, isLoadingProfile } = useSelector((state: GlobalStateType) => state.forProfileData)
    const { errOnGetProfile, errOnUpdateMainData } = useSelector((state: GlobalStateType) => state.forErrorsData.profileErrors)
@@ -40,6 +61,8 @@ const ProfilePage = () => {
       setIsOpenModal(false)
       document.body.classList.remove('lock')
    }
+
+   const logOutHandler = () => dispatch(AuthAC.logOut())
 
    return (
       <div className={c.profilePage}>
@@ -76,11 +99,23 @@ const ProfilePage = () => {
 
                <ContactsBlock />
                {isMyProfile && <ModalWindowForm isOpen={isOpenModal} handleCloseModal={handleCloseModal} />}
+
+               {isMyProfile && (
+                  <div className={c.logOutBtnWr}>
+                     <Button rightIcon={<LuLogOut fontSize='1.5rem' />} variant='solid' className={c.logoutBtn} onClick={logOutHandler}>
+                        Sign out
+                     </Button>
+                  </div>
+               )}
             </>
          )}
-         
       </div>
    )
 }
+
+//@ts-ignore
+ProfilePage = withAuthRedirectHOC(ProfilePage)
+
+
 
 export { ProfilePage }

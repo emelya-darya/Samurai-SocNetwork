@@ -21,7 +21,6 @@ export type GenericResponceType<DT = {}, RC = CommonResultCodesEnum> = {
    data: DT
 }
 
-
 export type MostFrequentResponseType = {
    resultCode: 0 | 1
    messages: Array<string>
@@ -67,8 +66,7 @@ export type ProfileDataTypeOnSend = {
    }
 }
 
-export type ProfileDataTypeOnGet = ProfileDataTypeOnSend & {photos: PhotosType}
-  
+export type ProfileDataTypeOnGet = ProfileDataTypeOnSend & { photos: PhotosType }
 
 export type PhotosType = {
    small: string | null
@@ -85,3 +83,31 @@ export type UploadPhotoResponceDataType = {
 
 // export type UploadPhotoResponceDataType = GenericResponceType<{ photos: PhotosType }>
 export type UpdateProfileResponceDataType = GenericResponceType
+
+// *--------------------------------------------------------------Auth Reducer-------------------------------------------------------*//
+
+export type AuthMeResponseDataType =
+   | {
+        resultCode: 0
+        messages: []
+        fieldsErrors: []
+        data: AuthDataFromRespType
+     }
+   | {
+        resultCode: 1
+        messages: Array<string>
+        fieldsErrors: Array<string>
+        data: {}
+     }
+
+export type AuthDataFromRespType = {
+   id: number
+   email: string
+   login: string
+}
+
+export type AuthDataToSetType = {
+   id: number | null
+   email: string | null
+   login: string | null
+}

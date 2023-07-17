@@ -19,7 +19,6 @@ const shuffle = function (array: Array<any>) {
    array.sort(() => Math.random() - 0.5)
 }
 
-
 const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }) => {
    const { searchRequestFromLC, activePageFromLC, searchRequest, currentPage } = useSelector((state: GlobalStateType) => state.forUsersData)
    const pathToUsersWithQueryParams = `/users?search=${searchRequest || searchRequestFromLC}&page=${currentPage || activePageFromLC}`
@@ -30,7 +29,7 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
       searchRequest: friendsSearchRequest,
       currentPage: friendsCurrentPage,
    } = useSelector((state: GlobalStateType) => state.forFriendsPageData)
-   const pathToFriendsWithQueryParams = `/subs?search=${friendsSearchRequest|| friendsSearchRequestFromLC}&page=${friendsCurrentPage ||friendsActivePageFromLC}`
+   const pathToFriendsWithQueryParams = `/subs?search=${friendsSearchRequest || friendsSearchRequestFromLC}&page=${friendsCurrentPage || friendsActivePageFromLC}`
 
    const currPathName = useLocation().pathname
 
@@ -41,15 +40,15 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
 
    const subsBlockItems = friendsNavbar.map((fr, i) => <FriendAvatarNavbar key={shortid.generate()} {...fr} closeSidebarHandler={sidebarHandler} bgColor={colors[i]} />)
 
+   const { isAuth } = useSelector((state: GlobalStateType) => state.forAuthData)
+
    if (totalFriendsCount > 5) {
       subsBlockItems[4] = (
          <div className={c.subAvatarWLett} key={shortid.generate()}>
             <span>+{totalFriendsCount - 4}</span>
          </div>
       )
-   } 
-
-  
+   }
 
    return (
       <aside className={`${c.sidebar} ${isSidebarHidden ? c.hide : ''}`}>
@@ -68,14 +67,20 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
             </NavLink>
          </VStack>
          <div className={c.subsBlock}>
-            <p className={c.lett}>Your subs ({totalFriendsCount})</p>
-            <div className={c.subsAvatars}>{navbarFriendsErr ? <p className={c.serverErrMessage}>{navbarFriendsErr}</p> : subsBlockItems}</div>
-            {totalFriendsCount ? (
-               <Link to={pathToFriendsWithQueryParams} className={c.watchAll} onClick={sidebarHandler}>
-                  <span>Watch all</span> <BsArrowRight />
-               </Link>
+            {isAuth ? (
+               <>
+                  <p className={c.lett}>Your subs ({totalFriendsCount})</p>
+                  <div className={c.subsAvatars}>{navbarFriendsErr ? <p className={c.serverErrMessage}>{navbarFriendsErr}</p> : subsBlockItems}</div>
+                  {totalFriendsCount ? (
+                     <Link to={pathToFriendsWithQueryParams} className={c.watchAll} onClick={sidebarHandler}>
+                        <span>Watch all</span> <BsArrowRight />
+                     </Link>
+                  ) : (
+                     <></>
+                  )}
+               </>
             ) : (
-               <></>
+               <p className={c.lett}>Login to see subs list</p>
             )}
          </div>
       </aside>

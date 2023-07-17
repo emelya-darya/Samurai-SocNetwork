@@ -1,5 +1,6 @@
 import type { GetActionWInferType } from '../storeTypes'
 import {
+   SET_ERR_ON_CHECK_AUTH,
    SET_ERR_ON_FETCHING_FOLLOW_UNFOLLOW_PROFILE_STAT,
    SET_ERR_ON_GET_PROFILE,
    SET_ERR_ON_GET_PROFILE_FOLLOW_STAT,
@@ -37,6 +38,10 @@ const initialState = {
       errOnUpdateProfileStatus: null as string | null,
       errOnUpdatePhoto: null as string | null,
       errOnUpdateMainData: null as string | null,
+   },
+
+   authErrors: {
+      errOnCheckAuth: null as string | null,
    },
 }
 
@@ -95,6 +100,9 @@ export const errorsReducer = function (state: InitialErrorsStateType = initialSt
       case SET_ERR_ON_UPDATE_PROFILE_MAIN_DATA:
          return { ...state, profileErrors: { ...state.profileErrors, errOnUpdateMainData: action.message } }
 
+      case SET_ERR_ON_CHECK_AUTH:
+         return { ...state, authErrors: { ...state.authErrors, errOnCheckAuth: action.message } }
+
       default:
          return state
    }
@@ -115,12 +123,13 @@ export const ErrorsAC = {
    setErrorOnGetProfileStatus: (message: string | null) => ({ type: SET_ERR_ON_GET_PROFILE_STATUS, message } as const),
    setErrorOnGetProfileFollowStat: (message: string | null) => ({ type: SET_ERR_ON_GET_PROFILE_FOLLOW_STAT, message } as const),
 
-   // вот эти 4 
    setErrOnProfileFetchingFollowUnfollow: (message: string | null) => ({ type: SET_ERR_ON_FETCHING_FOLLOW_UNFOLLOW_PROFILE_STAT, message } as const),
 
    setErrOnUpdateProfileStatus: (message: string | null) => ({ type: SET_ERR_ON_UPDATE_PROFILE_STATUS, message } as const),
    setErrOnUpdateProfilePhoto: (message: string | null) => ({ type: SET_ERR_ON_UPDATE_PROFILE_PHOTO, message } as const),
    setErrOnUpdateProfileMainData: (message: string | null) => ({ type: SET_ERR_ON_UPDATE_PROFILE_MAIN_DATA, message } as const),
+
+   setErrOnCheckAuth: (message: string | null) => ({ type: SET_ERR_ON_CHECK_AUTH, message } as const),
 }
 
 export type AllACErrorsTypes = ReturnType<GetActionWInferType<typeof ErrorsAC>>

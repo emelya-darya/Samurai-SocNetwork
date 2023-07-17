@@ -11,6 +11,11 @@ import { UsersAC } from './store/redux/users/usersReducer'
 import { FriendsPage } from './components/pages/friends/Friends'
 import { FriendsNavbarAC } from './store/redux/friendsNavbar/friendsNavbarReducer'
 import { FriendsAC } from './store/redux/friends/friendsReducer'
+import { AuthAC } from './store/redux/auth/authReducer'
+import { Preloader } from './components/reusableElements/preloader/Preloader'
+
+
+
 
 const App = function () {
    const { searchRequest: searchReqUsers, currentPage: usersActPage } = useSelector((state: GlobalStateType) => state.forUsersData)
@@ -47,24 +52,34 @@ const App = function () {
    }
 
    React.useEffect(() => {
-      dispatch(FriendsNavbarAC.getNavbarFriends())
+      dispatch(AuthAC.chechAuth())
    }, [])
 
-   return (
-      <>
-         <Routes>
-            <Route path='/' element={<Layout />}>
-               <Route index element={<ProfilePage />} />
-               <Route path='/profile/:userId?' element={<ProfilePage />} />
-               <Route path='/users' element={<UsersPage />} />
-               <Route path='/subs' element={<FriendsPage />} />
-               <Route path='/dialogs' element={<DialogsPage />} />
-               <Route path='/contacts' element={<ContactsPage />} />
-               <Route path='*' element={<Navigate to='/profile' replace={true} />} />
-            </Route>
-         </Routes>
-      </>
-   )
+   const { isAuth } = useSelector((state: GlobalStateType) => state.forAuthData)
+   React.useEffect(() => {
+      if (isAuth) dispatch(FriendsNavbarAC.getNavbarFriends())
+   }, [isAuth])
+
+   const isInProgressCheckAuth = useSelector((state: GlobalStateType) => state.forAuthData.isInProgressCheckAuth)
+
+   if (isInProgressCheckAuth) return <Preloader color='#EFEFEF' size={100} minHeight='100vh'/>
+   else
+      return (
+         <>
+            <Routes>
+               <Route path='/' element={<Layout />}>
+                  <Route index element={<ProfilePage />} />
+                  <Route path='/profile/:userId?' element={<ProfilePage />} />
+                  <Route path='/users' element={<UsersPage />} />
+                  <Route path='/subs' element={<FriendsPage />} />
+                  <Route path='/dialogs' element={<DialogsPage />} />
+                  <Route path='/contacts' element={<ContactsPage />} />
+                  <Route path='/login' element={<h1>Log in</h1>} />
+                  <Route path='*' element={<Navigate to='/profile' replace={true} />} />
+               </Route>
+            </Routes>
+         </>
+      )
 }
 
 export default App

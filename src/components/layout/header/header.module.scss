@@ -75,6 +75,8 @@
     .avatarHeader {
         background-color: $brown_light_clr;
         color: $orange_light_clr;
+        border: 1px solid $brown_light_clr;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     .nickName {
@@ -93,20 +95,48 @@
         right: 0px;
         opacity: 0;
         visibility: hidden;
-        text-transform: uppercase;
-        // background-color: rgba($color: $orange_clr, $alpha: 0.9);
-        background-color: rgba($color: $yellow_clr, $alpha: 0.9);
-        border: 1px solid $brown_light_clr;
         transition: $transition_val;
-        color: $brown_clr;
-        padding: 20px 30px;
-        font-weight: 700;
+
+        display: inline-flex;
+
+        justify-content: center;
+        align-items: center;
+
+
+        width: 130px;
+        text-transform: uppercase;
+        padding: 5px 25px;
+        font-weight: 500;
+        // background-color: $brown_light_clr;
+        // border: 2px solid $brown_light_clr;
+        background-color: $brown_clr;
+        border: 2px solid $brown_clr;
+
+        box-shadow: $boxshadow_val;
+        
+        gap: 5px;
+        color: $lgrey_clr;
+        border-radius: 5px;
+        white-space: nowrap;
+        transition: $transition_val;
+
+        svg {
+            font-size: 1.5rem;
+            margin: 0px;
+        }
+
+        &:hover {
+            // background-color: rgba($color: $brown_light_clr, $alpha: .9);
+            // border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
+            background-color: rgba($color: $brown_clr, $alpha: .9);
+            border: 2px solid rgba($color: $brown_clr, $alpha: .9);
+            color: $lgrey_clr;
+        }
     }
 
-    .logoutBtn:hover {
-        // background-color: $orange_clr
-        background-color: $yellow_clr;
-    }
+    // .logoutBtn:hover {
+    //     background-color: $yellow_clr;
+    // }
 
     // медиазапрос, проверяющий, что это не тачпад
     @media (hover: hover) {
@@ -130,6 +160,7 @@
 
     svg {
         fill: $brown_light_clr;
+
         @media(max-width: 576px) {
             width: 100%;
             height: 100%;
@@ -141,4 +172,55 @@
         height: 42px;
         padding: 0px;
     }
+}
+
+.loginBtnWr {
+    display: flex;
+    // gap: 5px;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.loginBtn {
+    // align-self: center;
+    display: inline-flex;
+    margin-left: auto;
+    justify-content: center;
+    align-items: center;
+
+
+    width: 130px;
+    text-transform: uppercase;
+    padding: 5px 25px;
+    font-weight: 500;
+    background-color: $brown_light_clr;
+    box-shadow: $boxshadow_val;
+    border: 2px solid $brown_light_clr;
+    transition: $transition_val;
+    gap: 10px;
+    color: $lgrey_clr;
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: $transition_val;
+
+    svg {
+        font-size: 1.5rem;
+        ;
+    }
+
+    &:hover {
+        background-color: rgba($color: $brown_light_clr, $alpha: .9);
+        border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
+        color: $lgrey_clr;
+    }
+}
+
+.errOnCheckAuth {
+    margin: 0px;
+    color: $err_clr;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-top: 5px;
 }

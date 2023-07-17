@@ -6,13 +6,15 @@ import { UsersReducerType, usersReducer } from './users/usersReducer'
 import { FriendsNavbarReducerType, friendsNavbarReducer } from './friendsNavbar/friendsNavbarReducer'
 import { FriendReducerType, friendsReducer } from './friends/friendsReducer'
 import { ProfileReducerType, profileReducer } from './profile/profileReducer'
+import { AuthReducerType, authReducer } from './auth/authReducer'
 
 const rootReducer = combineReducers({
    forUsersData: usersReducer as UsersReducerType,
    forErrorsData: errorsReducer as ErrorsReducerType,
    forFriendsNavbarData: friendsNavbarReducer as FriendsNavbarReducerType,
    forFriendsPageData: friendsReducer as FriendReducerType,
-   forProfileData: profileReducer as ProfileReducerType
+   forProfileData: profileReducer as ProfileReducerType,
+   forAuthData: authReducer as AuthReducerType
 })
 
 // type RootReducerType = typeof rootReducer
