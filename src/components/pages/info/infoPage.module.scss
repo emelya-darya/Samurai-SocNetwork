@@ -1,0 +1,47 @@
+@import '../../../assets//commonStyles//vars_mixins';
+
+.title {
+    margin-top: 0px;
+    margin-bottom: 3.0rem;
+}
+
+.authorLinks a div svg {
+    color: $brown_clr;
+
+}
+
+.subtitle {
+    font-size: 19px;
+    margin-bottom: 1rem;
+
+    @media(max-width: 450px) {
+        font-size: 17px;
+    }
+}
+
+.authorLinks {
+    margin-bottom: 40px;
+}
+
+.creactedWithItems {
+    display: flex;
+    gap: 35px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+    margin-top: 25px;
+}
+
+.createdWithItem {
+    height: 70px;
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}

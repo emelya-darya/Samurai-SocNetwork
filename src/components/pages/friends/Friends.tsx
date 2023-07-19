@@ -10,8 +10,9 @@ import { Preloader } from '../../reusableElements/preloader/Preloader'
 import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../store/redux/storeTypes'
 import { FriendsAC } from '../../../store/redux/friends/friendsReducer'
+import { withAuthRedirectHOC } from '../../reusableElements/HOC_withAuthRedirect/withAuthRedirectHOC'
 
-const FriendsPage = () => {
+const FriendsPage = withAuthRedirectHOC(() => {
    // получение из стора всего, что надо
    const {
       friendsData,
@@ -124,6 +125,6 @@ const FriendsPage = () => {
          )}
       </div>
    )
-}
+})
 
 export { FriendsPage }

@@ -36,8 +36,6 @@ const UsersPage = () => {
    const setCurrentPage = (currentPage: number) => dispatch(UsersAC.setCurrentPageAC(currentPage))
    const setCurrPageFromQueryParams = (pageNum: number) => dispatch(UsersAC.setActivePageFromQueryParamsAC(pageNum))
 
-
-
    const [searchParams, setSearchParams] = useSearchParams()
 
    // если в урле при первом запросе к компоненте есть параметры (страница и поисковый запрос)& то сетаем их в стор как параметры из урла
@@ -84,11 +82,13 @@ const UsersPage = () => {
       if (currentPage && totalPagesCount < currentPage) setCurrentPage(totalPagesCount)
    }, [totalUsersCount])
 
+   const isAuth = useSelector((state: GlobalStateType) => state.forAuthData.isAuth)
+
    return (
       <div>
          <div className={c.topPartPage}>
             <h1>Users</h1>
-            {!errOnLoadUsers&&<p>({totalUsersCount})</p>}
+            {!errOnLoadUsers && <p>({totalUsersCount})</p>}
          </div>
 
          <InputGroup className={c.searchInputGroup}>
@@ -110,7 +110,7 @@ const UsersPage = () => {
                ) : (
                   <div className={c.usersContainer}>
                      {currentPage && totalPagesCount >= currentPage ? (
-                        usersData.map(userData => <UserCardPreview userData={userData} key={shortid.generate()} />)
+                        usersData.map(userData => <UserCardPreview userData={userData} key={shortid.generate()} isAuth={isAuth}/>)
                      ) : (
                         <div className={c.errorBlock}>
                            <p>Ваш запрос не дал результатов</p>

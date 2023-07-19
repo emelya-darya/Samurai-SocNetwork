@@ -1,15 +1,9 @@
-import { all } from 'axios'
 import { checkAuthSagaWatcher } from './authMe'
-import { fork } from 'redux-saga/effects'
+import { all, fork } from 'redux-saga/effects'
+import { signOutSagaWatcher } from './signOut'
+import { signInSagaWatcher } from './sign_in'
+import { getCaptchaSagaWatcher } from './getCaptchaUrl'
 
 export const authSagaWatcher = function* () {
-   yield fork(checkAuthSagaWatcher)
-   //    yield all([
-   //     //   fork(checkAuthSagaWatcher),
-   //       //    fork(getProfileDataSagaWatcher),
-   //       //    fork(followUnfollowProfileSagaWatcher),
-   //       //    fork(updateProfileStatusSagaWatcher),
-   //       //    fork(updateProfilePhotoSagaWatcher),
-   //       //    fork(updateProfileMainDataSagaWatcher),
-   //    ])
+   yield all([fork(checkAuthSagaWatcher), fork(signOutSagaWatcher), fork(signInSagaWatcher), fork(getCaptchaSagaWatcher)])
 }

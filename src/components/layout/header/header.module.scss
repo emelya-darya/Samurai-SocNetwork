@@ -41,6 +41,15 @@
     gap: 10px;
     flex-direction: column;
     transform-origin: center center;
+    // transition: 0s;
+
+    // @media(max-width: 992px) {
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50%,-50%);
+    //     transition: 0s;
+    // }
 
     svg {
         width: 60px;
@@ -61,8 +70,52 @@
     }
 }
 
+
+
+
+.burgerIcon {
+    padding: 3px;
+    cursor: pointer;
+
+    @media(max-width: 992px) {
+        margin-right: 68px;
+    }
+
+    @media(max-width: 576px) {
+        margin-right: 58px;
+    }
+
+    svg {
+        fill: $brown_light_clr;
+
+        @media(max-width: 576px) {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    @media(max-width: 576px) {
+        width: 42px;
+        height: 42px;
+        padding: 0px;
+    }
+}
+
+
 .rightPartHeader {
     position: relative;
+    display: flex;
+    justify-content: end;
+
+    
+    // width: 130px;
+    @media(max-width: 992px) {
+        width: 130px;
+    }
+
+    @media(max-width: 576px) {
+        width: 100px;
+    }
 
     .avatarWr {
         display: flex;
@@ -80,8 +133,12 @@
     }
 
     .nickName {
+        max-width: 110px;
         font-weight: 600;
         font-size: 13px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
 
         @media (max-width: 576px) {
             display: none;
@@ -113,7 +170,7 @@
         border: 2px solid $brown_clr;
 
         box-shadow: $boxshadow_val;
-        
+
         gap: 5px;
         color: $lgrey_clr;
         border-radius: 5px;
@@ -134,10 +191,6 @@
         }
     }
 
-    // .logoutBtn:hover {
-    //     background-color: $yellow_clr;
-    // }
-
     // медиазапрос, проверяющий, что это не тачпад
     @media (hover: hover) {
 
@@ -154,26 +207,6 @@
 
 }
 
-.burgerIcon {
-    padding: 3px;
-    cursor: pointer;
-
-    svg {
-        fill: $brown_light_clr;
-
-        @media(max-width: 576px) {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    @media(max-width: 576px) {
-        width: 42px;
-        height: 42px;
-        padding: 0px;
-    }
-}
-
 .loginBtnWr {
     display: flex;
     // gap: 5px;
@@ -188,8 +221,6 @@
     margin-left: auto;
     justify-content: center;
     align-items: center;
-
-
     width: 130px;
     text-transform: uppercase;
     padding: 5px 25px;
@@ -203,6 +234,10 @@
     border-radius: 5px;
     white-space: nowrap;
     transition: $transition_val;
+
+    @media(max-width: 576px) {
+        width: 100px;
+    }
 
     svg {
         font-size: 1.5rem;

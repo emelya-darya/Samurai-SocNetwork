@@ -5,18 +5,17 @@ import { authFetchingAPI } from '../../DAL/fetchingAPI'
 import { AuthMeResponseDataType } from '../../redux/storeTypes'
 import { ErrorsAC } from '../../redux/errors/errorsReducer'
 import { cutText } from '../assets/cutText'
+import { nullingAuthErrors } from './assets/nullingAuthErrors'
 
 const checkAuthSagaWorker = function* () {
+   yield nullingAuthErrors()
+   yield put(AuthAC.setCaptchaUrl(null))
    yield put(AuthAC.setIsInProgressCheckAuth(true))
-   yield put(ErrorsAC.setErrOnCheckAuth(null))
 
    try {
-
-      
       const response: AuthMeResponseDataType = yield call(authFetchingAPI.onCheckAuth)
       const { resultCode, messages, data } = response
 
-      
       if (resultCode == 0) {
          yield put(AuthAC.setAuthData(data))
 
@@ -27,13 +26,13 @@ const checkAuthSagaWorker = function* () {
          yield put(AuthAC.setAvatar(smallPhoto))
          yield put(AuthAC.setIsAuth(true))
       }
-
    } catch (err: any) {
       yield put(AuthAC.setIsAuth(false))
       yield put(ErrorsAC.setErrOnCheckAuth(cutText(err.message, 25, 'Authorization check error')))
    }
 
    yield put(AuthAC.setIsInProgressCheckAuth(false))
+   yield put(AuthAC.setIsAuthChecked(true))
 }
 
 export const checkAuthSagaWatcher = function* () {

@@ -1,0 +1,46 @@
+@import '../../../assets//commonStyles//vars_mixins';
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 8px;
+    border-radius: 5px;
+    transition: $transition_val;
+
+    @media(max-width: 450px) {
+        gap: 15px;
+    }
+
+    .iconWr,
+    svg,
+    img {
+        flex: 0 0 35px;
+        width: 35px;
+        height: 35px;
+
+        @media(max-width: 450px) {
+            flex: 0 0 30px;
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    .nameLink {
+        font-weight: 600;
+        font-size: 17px;
+
+        @media(max-width: 450px) {
+            font-size: 15px;
+        }
+    }
+}
+
+.contactItem:not(:last-child) {
+    margin-bottom: 7px;
+}
+
+.contactItem:hover {
+    background-color: rgba($color: $brown_light_clr, $alpha: .15);
+}
+

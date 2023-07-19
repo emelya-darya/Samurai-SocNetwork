@@ -7,6 +7,7 @@ import {
    UploadPhotoResponceDataType,
    UserFriendItemType,
    AuthMeResponseDataType,
+   LogInDataToSend,
 } from '../redux/storeTypes'
 
 // axios можно настроить с помощью create, чтобы не дублировать каждый раз объект с параметрами и базовый URL
@@ -60,18 +61,17 @@ const authFetchingAPI = {
       return instance.get<ProfileDataTypeOnGet>(`profile/${id}`).then(responce => responce.data)
    },
 
-   // onAuth(authData) {
-   // 	return instance.post(`/auth/login/`, authData)
-   // },
+   async onAuth(authData: LogInDataToSend) {
+      return instance.post<MostFrequentResponseType>(`/auth/login/`, authData).then(response => response.data)
+   },
 
-   // getCaptcha() {
-   // 	return instance.get(`/security/get-captcha-url`)
-   // 		.then(responce => responce.data.url)
-   // },
+   async getCaptcha() {
+      return instance.get<{ url: string }>(`/security/get-captcha-url`).then(responce => responce.data)
+   },
 
-   // offAuth() {
-   // 	return instance.delete(`/auth/login/`)
-   // }
+   async offAuth() {
+      return instance.delete<MostFrequentResponseType>(`/auth/login/`).then(responce => responce.data)
+   },
 }
 
 const profileFetchingAPI = {

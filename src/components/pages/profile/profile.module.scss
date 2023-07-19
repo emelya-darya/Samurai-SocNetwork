@@ -13,7 +13,8 @@
         gap: 0px;
     }
 
-    .topBtnWr,button.editProfileBtn {
+    .topBtnWr,
+    button.editProfileBtn {
         @media(max-width: 768px) {
             margin-left: auto;
         }
@@ -74,7 +75,7 @@
     margin-top: 3px;
 }
 
-.profilePage button.editProfileBtn{
+.profilePage button.editProfileBtn {
     width: 160px;
     text-transform: uppercase;
     padding: 15px 25px;
@@ -86,62 +87,76 @@
     color: $lgrey_clr;
 
     svg {
-        font-size: 1.5rem;;
+        font-size: 1.5rem;
+        ;
     }
 
-    &:hover{
+    &:hover {
         background-color: rgba($color: $brown_light_clr, $alpha: .9);
         border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
     }
 }
 
 
-.logOutBtnWr{
+.logOutBtnWr {
     padding-top: 40px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+
+    .err {
+        white-space: nowrap;
+        font-size: 11px;
+        height: 16px;
+    }
 }
 
 
-button.logoutBtn{
+button.logoutBtn {
     transition: $transition_val;
 
-        display: inline-flex;
+    display: inline-flex;
 
-        justify-content: center;
-        align-items: center;
+    justify-content: center;
+    align-items: center;
 
 
-        width: 160px;
-        text-transform: uppercase;
-        padding: 5px 25px;
-        font-weight: 500;
-        // background-color: $brown_light_clr;
-        // border: 2px solid $brown_light_clr;
+    width: 160px;
+    text-transform: uppercase;
+    padding: 5px 25px;
+    font-weight: 500;
+    // background-color: $brown_light_clr;
+    // border: 2px solid $brown_light_clr;
+    background-color: $brown_clr;
+    border: 2px solid $brown_clr;
+
+    box-shadow: $boxshadow_val;
+
+    gap: 5px;
+    color: $lgrey_clr;
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: $transition_val;
+
+    svg {
+        font-size: 1.5rem;
+        margin: 0px;
+    }
+
+    &:hover {
+        // background-color: rgba($color: $brown_light_clr, $alpha: .9);
+        // border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
+        background-color: rgba($color: $brown_clr, $alpha: .9);
+        border: 2px solid rgba($color: $brown_clr, $alpha: .9);
+        color: $lgrey_clr;
+    }
+
+    &:disabled,
+    &:disabled:hover {
+        opacity: 1;
         background-color: $brown_clr;
         border: 2px solid $brown_clr;
-
-        box-shadow: $boxshadow_val;
-        
-        gap: 5px;
-        color: $lgrey_clr;
-        border-radius: 5px;
-        white-space: nowrap;
-        transition: $transition_val;
-
-        svg {
-            font-size: 1.5rem;
-            margin: 0px;
-        }
-
-        &:hover {
-            // background-color: rgba($color: $brown_light_clr, $alpha: .9);
-            // border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
-            background-color: rgba($color: $brown_clr, $alpha: .9);
-            border: 2px solid rgba($color: $brown_clr, $alpha: .9);
-            color: $lgrey_clr;
-        }
+    }
 }
-
-
-

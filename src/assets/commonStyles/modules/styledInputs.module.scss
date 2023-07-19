@@ -1,0 +1,37 @@
+textarea.styledTextarea,
+input.styledInput {
+    border: 2px solid;
+    border-color: rgba($color: $brown_light_clr, $alpha: .3);
+    transition: $transition_val;
+}
+
+input.styledInput:hover,
+textarea.styledTextarea:hover {
+    border-color: rgba($color: $brown_light_clr, $alpha: .6);
+}
+
+textarea.styledTextarea:focus-visible,
+textarea.styledTextarea[data-focus-visible],
+input.styledInput:focus-visible {
+    border-color: rgba($color: $brown_light_clr, $alpha: .6);
+    // box-shadow: $boxshadow_val;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+
+input.styledInput[aria-invalid=true]:focus-visible,
+input.styledInput[aria-invalid=true]:hover {
+    border-color: rgba($color: $err_clr, $alpha: 1);
+    // box-shadow: $boxshadow_val;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+input.styledInput[aria-invalid=true] {
+    box-shadow: 0 0 0 0 transparent;
+}
+
+textarea.styledTextarea::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}

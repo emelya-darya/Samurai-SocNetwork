@@ -1,8 +1,6 @@
 import { Avatar, Button, HStack, Icon } from '@chakra-ui/react'
 
 import { Link } from 'react-router-dom'
-import { GiMeshBall, GiMeshNetwork, GiMeltingIceCube, GiRadialBalance, GiCompass, GiMoebiusTriangle, GiPoolTriangle, GiMoebiusTrefoil, GiMoebiusStar, GiTriangleTarget } from 'react-icons/gi'
-import { FaConnectdevelop } from 'react-icons/fa'
 import { AiOutlineUser, AiOutlineLogout, AiOutlineLogin } from 'react-icons/ai'
 import { BiMenuAltLeft } from 'react-icons/bi'
 
@@ -11,8 +9,9 @@ import { useMatchMedia } from '../../../customHooks/useMatchMedia'
 import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../store/redux/storeTypes'
 import { AuthAC } from '../../../store/redux/auth/authReducer'
-import { LuLogOut,LuLogIn } from 'react-icons/lu'
-// SiGnusocial
+import { LuLogOut, LuLogIn } from 'react-icons/lu'
+import React from 'react'
+import { logoIcon } from '../../reusableElements/logoIcon'
 
 type PropsType = {
    sidebarHandler: () => void
@@ -20,12 +19,16 @@ type PropsType = {
 const Header: React.FC<PropsType> = ({ sidebarHandler }) => {
    const isLess992 = useMatchMedia().less992
 
-   const { login, avatar, isAuth } = useSelector((state: GlobalStateType) => state.forAuthData)
-   const { errOnCheckAuth } = useSelector((state: GlobalStateType) => state.forErrorsData.authErrors)
+   const { login, avatar, isAuth, isInProgressLogOut } = useSelector((state: GlobalStateType) => state.forAuthData)
+   const { errOnCheckAuth, errOnLogOut } = useSelector((state: GlobalStateType) => state.forErrorsData.authErrors)
 
    const dispatch = useDispatch()
 
-   const logOutHandler = () => dispatch(AuthAC.logOut())
+   const logOutHandler = () => dispatch(AuthAC.signOut())
+
+   React.useEffect(() => {
+      if (errOnLogOut) alert(errOnLogOut)
+   }, [errOnLogOut])
 
    return (
       <header className={`${c.header} header`}>
@@ -38,8 +41,9 @@ const Header: React.FC<PropsType> = ({ sidebarHandler }) => {
             )}
 
             <Link to='/' className={c.logoWr}>
-               <Icon as={FaConnectdevelop} />
+               <Icon as={logoIcon} />
             </Link>
+
             <div className={c.rightPartHeader}>
                {isAuth ? (
                   <>
@@ -47,7 +51,7 @@ const Header: React.FC<PropsType> = ({ sidebarHandler }) => {
                         <Avatar className={c.avatarHeader} size='md' name={login || ''} src={avatar || ''} icon={<AiOutlineUser fontSize='2.5rem' />} />
                         <span className={c.nickName}>{login}</span>
                      </Link>
-                     <Button rightIcon={<LuLogOut fontSize='1.5rem' />} variant='solid' className={c.logoutBtn} onClick={logOutHandler}>
+                     <Button rightIcon={<LuLogOut fontSize='1.5rem' />} variant='solid' className={c.logoutBtn} onClick={logOutHandler} isLoading={isInProgressLogOut}>
                         Sign out
                      </Button>
                   </>

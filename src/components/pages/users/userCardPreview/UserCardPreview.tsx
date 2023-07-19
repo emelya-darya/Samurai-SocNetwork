@@ -10,9 +10,10 @@ import { UsersAC } from '../../../../store/redux/users/usersReducer'
 
 type UserCardPreviewPropsType = {
    userData: UserFriendItemType
+   isAuth: boolean
 }
 
-const UserCardPreview: React.FC<UserCardPreviewPropsType> = ({ userData }) => {
+const UserCardPreview: React.FC<UserCardPreviewPropsType> = ({ userData, isAuth }) => {
    const errOnFollowUnfollow = useSelector((state: GlobalStateType) => state.forErrorsData.errorOnFollowUnfollowUser)
 
    const dispatch = useDispatch()
@@ -35,18 +36,21 @@ const UserCardPreview: React.FC<UserCardPreviewPropsType> = ({ userData }) => {
             </div>
          </Link>
 
-         <div className={c.blockWBtn}>
-            <Button
-               size='md'
-               isLoading={userData.fetchingFollowingProgress}
-               // isDisabled={true}
-               className={`${c.buttFollUnfoll} ${userData.followed ? c.unfollowBtn : c.followBtn}`}
-               rightIcon={userData.followed ? <BiMinus /> : <BiPlus />}
-               onClick={handleFollowUnfollowUser}>
-               {userData.followed ? 'Unfollow' : 'Follow'}
-            </Button>
-            <p className={`${c.error} ${userData.id === errOnFollowUnfollow.userId ? c.visible : ''}`}>{errOnFollowUnfollow.message || ''}</p>
-         </div>
+         {isAuth && (
+            <div className={c.blockWBtn}>
+               <Button
+                  size='md'
+                  isLoading={userData.fetchingFollowingProgress}
+                  // isDisabled={true}
+                  className={`${c.buttFollUnfoll} ${userData.followed ? c.unfollowBtn : c.followBtn}`}
+                  rightIcon={userData.followed ? <BiMinus /> : <BiPlus />}
+                  onClick={handleFollowUnfollowUser}>
+                  {userData.followed ? 'Unfollow' : 'Follow'}
+               </Button>
+
+               <p className={`${c.error} ${userData.id === errOnFollowUnfollow.userId ? c.visible : ''}`}>{errOnFollowUnfollow.message || ''}</p>
+            </div>
+         )}
       </div>
    )
 }

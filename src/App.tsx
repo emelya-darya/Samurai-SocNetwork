@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/layout/Layout'
 import { ProfilePage } from './components/pages/profile/Profile'
 import { DialogsPage } from './components/pages/dialogs/Dialogs'
-import { ContactsPage } from './components/pages/contacts/Contacts'
+import { InfoPage } from './components/pages/info/InfoPage'
 import { UsersPage } from './components/pages/users/Users'
 import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from './store/redux/storeTypes'
@@ -13,9 +13,7 @@ import { FriendsNavbarAC } from './store/redux/friendsNavbar/friendsNavbarReduce
 import { FriendsAC } from './store/redux/friends/friendsReducer'
 import { AuthAC } from './store/redux/auth/authReducer'
 import { Preloader } from './components/reusableElements/preloader/Preloader'
-
-
-
+import { LoginPage } from './components/pages/login/Login'
 
 const App = function () {
    const { searchRequest: searchReqUsers, currentPage: usersActPage } = useSelector((state: GlobalStateType) => state.forUsersData)
@@ -60,9 +58,9 @@ const App = function () {
       if (isAuth) dispatch(FriendsNavbarAC.getNavbarFriends())
    }, [isAuth])
 
-   const isInProgressCheckAuth = useSelector((state: GlobalStateType) => state.forAuthData.isInProgressCheckAuth)
+   const { isInProgressCheckAuth, isAuthChecking } = useSelector((state: GlobalStateType) => state.forAuthData)
 
-   if (isInProgressCheckAuth) return <Preloader color='#EFEFEF' size={100} minHeight='100vh'/>
+   if (isInProgressCheckAuth || !isAuthChecking) return <Preloader color='#EFEFEF' size={100} minHeight='100vh' />
    else
       return (
          <>
@@ -73,8 +71,8 @@ const App = function () {
                   <Route path='/users' element={<UsersPage />} />
                   <Route path='/subs' element={<FriendsPage />} />
                   <Route path='/dialogs' element={<DialogsPage />} />
-                  <Route path='/contacts' element={<ContactsPage />} />
-                  <Route path='/login' element={<h1>Log in</h1>} />
+                  <Route path='/info' element={<InfoPage />} />
+                  <Route path='/login' element={<LoginPage />} />
                   <Route path='*' element={<Navigate to='/profile' replace={true} />} />
                </Route>
             </Routes>

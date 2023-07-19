@@ -111,3 +111,10 @@ export type AuthDataToSetType = {
    email: string | null
    login: string | null
 }
+
+export type LogInDataToSend = {
+   email: string
+   password: string
+   rememberMe: boolean
+   captcha?: string
+}

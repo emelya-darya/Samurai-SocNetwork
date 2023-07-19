@@ -2,9 +2,12 @@ import type { GetActionWInferType } from '../storeTypes'
 import {
    SET_ERR_ON_CHECK_AUTH,
    SET_ERR_ON_FETCHING_FOLLOW_UNFOLLOW_PROFILE_STAT,
+   SET_ERR_ON_GET_CAPTCHA,
    SET_ERR_ON_GET_PROFILE,
    SET_ERR_ON_GET_PROFILE_FOLLOW_STAT,
    SET_ERR_ON_GET_PROFILE_STATUS,
+   SET_ERR_ON_LOG_IN,
+   SET_ERR_ON_SIGN_OUT,
    SET_ERR_ON_UPDATE_PROFILE_MAIN_DATA,
    SET_ERR_ON_UPDATE_PROFILE_PHOTO,
    SET_ERR_ON_UPDATE_PROFILE_STATUS,
@@ -42,6 +45,9 @@ const initialState = {
 
    authErrors: {
       errOnCheckAuth: null as string | null,
+      errOnLogOut: null as string | null,
+      errOnLogIn: null as string | null,
+      errOnGetCaptcha: null as string | null,
    },
 }
 
@@ -103,6 +109,15 @@ export const errorsReducer = function (state: InitialErrorsStateType = initialSt
       case SET_ERR_ON_CHECK_AUTH:
          return { ...state, authErrors: { ...state.authErrors, errOnCheckAuth: action.message } }
 
+      case SET_ERR_ON_SIGN_OUT:
+         return { ...state, authErrors: { ...state.authErrors, errOnLogOut: action.message } }
+
+      case SET_ERR_ON_LOG_IN:
+         return { ...state, authErrors: { ...state.authErrors, errOnLogIn: action.message } }
+
+      case SET_ERR_ON_GET_CAPTCHA:
+         return { ...state, authErrors: { ...state.authErrors, errOnGetCaptcha: action.message } }
+
       default:
          return state
    }
@@ -130,6 +145,10 @@ export const ErrorsAC = {
    setErrOnUpdateProfileMainData: (message: string | null) => ({ type: SET_ERR_ON_UPDATE_PROFILE_MAIN_DATA, message } as const),
 
    setErrOnCheckAuth: (message: string | null) => ({ type: SET_ERR_ON_CHECK_AUTH, message } as const),
+   setErrOnSignOut: (message: string | null) => ({ type: SET_ERR_ON_SIGN_OUT, message } as const),
+
+   setErrOnLogIn: (message: string | null) => ({ type: SET_ERR_ON_LOG_IN, message } as const),
+   setErrOnGetCaptcha: (message: string | null) => ({ type: SET_ERR_ON_GET_CAPTCHA, message } as const),
 }
 
 export type AllACErrorsTypes = ReturnType<GetActionWInferType<typeof ErrorsAC>>

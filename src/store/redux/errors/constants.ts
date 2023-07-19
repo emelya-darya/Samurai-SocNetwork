@@ -17,3 +17,7 @@ export const SET_ERR_ON_UPDATE_PROFILE_PHOTO = 'forErrorsData/SET_ERR_ON_UPDATE_
 export const SET_ERR_ON_UPDATE_PROFILE_MAIN_DATA = 'forErrorsData/SET_ERR_ON_UPDATE_PROFILE_MAIN_DATA'
 
 export const SET_ERR_ON_CHECK_AUTH = 'forErrorsData/SET_ERR_ON_CHECK_AUTH'
+export const SET_ERR_ON_SIGN_OUT = 'forErrorsData/SET_ERR_ON_SIGN_OUT'
+
+export const SET_ERR_ON_LOG_IN = 'forErrorsData/SET_ERR_ON_LOG_IN'
+export const SET_ERR_ON_GET_CAPTCHA = 'forErrorsData/SET_ERR_ON_GET_CAPTCHA'
