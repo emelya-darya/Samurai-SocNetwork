@@ -130,7 +130,7 @@ button.updateBtn {
     color: $lgrey_clr;
     display: flex;
     margin-left: auto;
-    margin-bottom: 12px;
+    margin-bottom: 7px;
 
 
     svg {
@@ -154,6 +154,7 @@ button.updateBtn[disabled]:hover{
     opacity: 0;
     visibility: hidden;
     transition: $transition_val;
+    margin-bottom: 5px;
 
     &.visible {
         opacity: 1;

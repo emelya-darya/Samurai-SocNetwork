@@ -118,3 +118,12 @@ export type LogInDataToSend = {
    rememberMe: boolean
    captcha?: string
 }
+
+// *--------------------------------------------------------------Common WS Chat Reducer-------------------------------------------------------*//
+
+export type CommonWSChatMessageType = {
+   message: string
+   photo: string | null
+   userId: number
+   userName: string
+}

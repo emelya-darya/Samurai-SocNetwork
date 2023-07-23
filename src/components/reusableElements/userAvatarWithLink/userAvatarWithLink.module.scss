@@ -1,0 +1,46 @@
+@import '../../../assets//commonStyles//vars_mixins';
+
+.subAvatarWPhoto,
+.subAvatarWLett {
+    display: flex;
+    width: 53px;
+    height: 53px;
+    border: 1px solid $lgrey_clr;
+    border-radius: 50%;
+
+    &:hover{
+        color: $lgrey_clr;
+    }
+}
+
+// .subAvatarWPhoto:not(:first-child),
+// .subAvatarWLett:not(:first-child) {
+//     margin-left: -13px;
+
+// }
+
+.subAvatarWPhoto {
+    @include img-absolute;
+
+    img {
+        border-radius: 50%;
+    }
+}
+
+.subAvatarWLett {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    background-color: $orange_clr;
+    // font-weight: 700;
+    color: $lgrey_clr;
+    font-size: 16px;
+
+}
+
+div.subAvatarWLett {
+    background-color: $lgrey_clr;
+    color: $brown_clr;
+}

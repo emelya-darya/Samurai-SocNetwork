@@ -66,29 +66,23 @@
         height: 53;
     }
 
-    .subAvatarWPhoto,
-    .subAvatarWLett {
+    .subItemWr {
+        flex: 0 0 53px;
+        width: 53px;
+        height: 53px;
+    }
+
+    .subItemWr:not(:first-child) {
+        margin-left: -13px;
+    }
+
+    div.restSubsCountBlock {
+        flex: 0 0 53px;
         width: 53px;
         height: 53px;
         border: 1px solid $lgrey_clr;
         border-radius: 50%;
-    }
 
-    .subAvatarWPhoto:not(:first-child),
-    .subAvatarWLett:not(:first-child) {
-        margin-left: -13px;
-
-    }
-
-    .subAvatarWPhoto {
-        @include img-absolute;
-
-        img {
-            border-radius: 50%;
-        }
-    }
-
-    .subAvatarWLett {
         position: relative;
         display: flex;
         justify-content: center;
@@ -98,10 +92,8 @@
         // font-weight: 700;
         color: $lgrey_clr;
         font-size: 16px;
+        margin-left: -13px;
 
-    }
-
-    div.subAvatarWLett {
         background-color: $lgrey_clr;
         color: $brown_clr;
     }
@@ -114,7 +106,7 @@
     }
 }
 
-.serverErrMessage{
+.serverErrMessage {
     color: $err_clr;
     text-align: center;
     font-weight: 700;

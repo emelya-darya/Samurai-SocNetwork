@@ -17,6 +17,7 @@ const signOutSagaWorker = function* () {
 
       yield put(AuthAC.setAuthData({ id: null, email: null, login: null }))
       yield put(AuthAC.setAvatar(null))
+      yield put(AuthAC.setCaptchaUrl(null))
       yield put(AuthAC.setIsAuth(false))
    } catch (err: any) {
       yield put(ErrorsAC.setErrOnSignOut(cutText(err.message, 60, 'Error on logging out')))

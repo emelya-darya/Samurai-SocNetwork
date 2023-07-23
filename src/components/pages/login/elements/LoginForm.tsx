@@ -23,7 +23,7 @@ const LoginForm = () => {
    const [showPassword, setShowPassword] = React.useState(false)
    const handleShowHidePassword = () => setShowPassword(!showPassword)
 
-   const { isInProgressLogIn, captchaUrl, isInProgressGetCaptcha, isAuth } = useSelector((state: GlobalStateType) => state.forAuthData)
+   const { isInProgressLogIn, captchaUrl, isInProgressGetCaptcha } = useSelector((state: GlobalStateType) => state.forAuthData)
 
    const {
       authErrors: { errOnLogIn, errOnGetCaptcha },
@@ -53,7 +53,7 @@ const LoginForm = () => {
 
    const refreshCaptchaHandler = () => dispatch(AuthAC.getCaptchaUrl())
 
-   if (isAuth) return <Navigate to={from} />
+   
    return (
       <form className={c.form} onSubmit={handleSubmit(submitHandler)}>
          <FormControl className={c.formControll} isInvalid={!!errors.email}>

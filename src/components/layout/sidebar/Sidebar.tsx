@@ -5,19 +5,16 @@ import { VStack } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../store/redux/reduxStore'
 import { BsArrowRight } from 'react-icons/bs'
-import { FriendAvatarNavbar } from './FriendNavbarAvatar'
 import shortid from 'shortid'
+import { UserAvatarWithLink } from '../../reusableElements/userAvatarWithLink/UserAvatarWithLink'
+import { colorsAvatars, shuffleArray } from '../../reusableElements/userAvatarWithLink/colorsAvatars'
 
 type PropsForViewType = {
    isSidebarHidden: boolean
    sidebarHandler: () => void
 }
 
-const colors = ['#38A169', '#F0772B', '#38B2AC', '#3182CE', '#00A3C4', '#805AD5']
-
-const shuffle = function (array: Array<any>) {
-   array.sort(() => Math.random() - 0.5)
-}
+const colors = [...colorsAvatars]
 
 const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }) => {
    const { searchRequestFromLC, activePageFromLC, searchRequest, currentPage } = useSelector((state: GlobalStateType) => state.forUsersData)
@@ -36,15 +33,21 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
    const { totalFriendsCount, friendsNavbar } = useSelector((state: GlobalStateType) => state.forFriendsNavbarData)
    const navbarFriendsErr = useSelector((state: GlobalStateType) => state.forErrorsData.navbarFriendsErr)
 
-   React.useEffect(() => shuffle(colors), [])
+   React.useEffect(() => shuffleArray(colors), [])
 
-   const subsBlockItems = friendsNavbar.map((fr, i) => <FriendAvatarNavbar key={shortid.generate()} {...fr} closeSidebarHandler={sidebarHandler} bgColor={colors[i]} />)
+   const subsBlockItems = friendsNavbar.map((fr, i) => {
+      return (
+         <div className={c.subItemWr} key={shortid.generate()}>
+            <UserAvatarWithLink id={fr.id} photo={fr.photos.small} name={fr.name || ''} bgColor={colors[i]} onClickHandler={sidebarHandler} />
+         </div>
+      )
+   })
 
    const { isAuth } = useSelector((state: GlobalStateType) => state.forAuthData)
 
    if (totalFriendsCount > 5) {
       subsBlockItems[4] = (
-         <div className={c.subAvatarWLett} key={shortid.generate()}>
+         <div className={c.restSubsCountBlock} key={shortid.generate()}>
             <span>+{totalFriendsCount - 4}</span>
          </div>
       )
@@ -59,11 +62,12 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
             <NavLink to='/dialogs' onClick={sidebarHandler} className={currPathName === '/dialogs' ? c.act : c.navbar__link}>
                <span>Dialogs</span>
             </NavLink>
-            <NavLink to='/info' onClick={sidebarHandler} className={currPathName === '/info' ? c.act : c.navbar__link}>
-               <span>Info</span>
-            </NavLink>
+
             <NavLink to={pathToUsersWithQueryParams} onClick={sidebarHandler} className={currPathName === '/users' ? c.act : c.navbar__link}>
                <span>Users</span>
+            </NavLink>
+            <NavLink to='/info' onClick={sidebarHandler} className={currPathName === '/info' ? c.act : c.navbar__link}>
+               <span>App info</span>
             </NavLink>
          </VStack>
          <div className={c.subsBlock}>

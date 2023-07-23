@@ -1,0 +1,20 @@
+@import '../../../../../assets//commonStyles//vars_mixins';
+
+.messageItem{
+    padding: 10px 0px;
+    // border-bottom: 1px solid rgba($color: $brown_clr, $alpha: .2);
+    display: flex;
+    gap: 20px;
+}
+
+.avatarWr{
+    a{
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+}
+
+.userName{
+    font-weight: 700;
+}
