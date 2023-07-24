@@ -8,48 +8,91 @@ import { colorsAvatars, shuffleArray } from '../../reusableElements/userAvatarWi
 import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../store/redux/reduxStore'
 import { CommonWSchatAC } from '../../../store/redux/commonWSchat/commonWSchatReducer'
+import { WSChannel, commonChatWSApi } from '../../../store/DAL/websocketCommonChatAPI'
+import { CommonWSChatMessageType } from '../../../store/redux/storeTypes'
+import { Preloader } from '../../reusableElements/preloader/Preloader'
 
-let WSChannel: WebSocket | null = null
-const createWSChannel = function () {
-   WSChannel = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
-}
+// const colors = [...colorsAvatars]
 
-const colors = [...colorsAvatars]
+//* dispatch(CommonWSchatAC.onCloseEvent()) - чистит массив сообщений, isOpenWSChannel переключает в false, isInProgeressOpenWSChannel ставит на true
 
 const DialogsPage = withAuthRedirectHOC(() => {
-   // const [messages, setMessages] = React.useState<Array<ChatMessageItemType>>([])
-
-   const [isOpenWSChannel, setIsOpenWSChannel] = React.useState<boolean>(false)
-
-   const messages = useSelector((state: GlobalStateType) => state.forCommonWSchatData.messages)
+   const { messages, isOpenWSChannel, isInProgeressOpenWSChannel } = useSelector((state: GlobalStateType) => state.forCommonWSchatData)
 
    const dispatch = useDispatch()
 
+   const openChannelHandler = () => dispatch(CommonWSchatAC.onOpenEvent())
+   const messageChannelHandler = (e: MessageEvent<string>) => {
+      dispatch(CommonWSchatAC.onMessageEvent(JSON.parse(e.data)))
+   }
+
+   // если канал закрывается, то снимаем все обработчики со старого WSChannel, обнуляем state, создаем новый WSChannel и вешаем на него обработчики
+   const closeChannelToRebirthHandler = () => {
+      removeAllListeners(WSChannel)
+      dispatch(CommonWSchatAC.onCloseEvent())
+      dispatch(CommonWSchatAC.createWSChannel())
+      addAllListeners(WSChannel)
+   }
+
+   //! убираем все обработчики
+   function removeAllListeners(WSChannel: WebSocket | null) {
+      if (WSChannel) {
+         WSChannel.onopen = null
+         WSChannel.onmessage = null
+         WSChannel.onclose = null
+      }
+   }
+
+   //! добавляем все обработчики
+   function addAllListeners(WSChannel: WebSocket | null) {
+      if (WSChannel) {
+         WSChannel.onopen = openChannelHandler
+         WSChannel.onmessage = messageChannelHandler
+         WSChannel.onclose = closeChannelToRebirthHandler
+      }
+   }
+
+   // const errorChannelHandler = () => dispatch(CommonWSchatAC.onErrorEvent())
+
    React.useEffect(() => {
-      createWSChannel()
+      dispatch(CommonWSchatAC.createWSChannel())
+      addAllListeners(WSChannel)
 
-      WSChannel?.addEventListener('open', e => setIsOpenWSChannel(true))
-
-      WSChannel?.addEventListener('message', e => {
-         dispatch(CommonWSchatAC.addMessages(JSON.parse(e.data)))
-      })
+      // сработает только при уходе с компоненты
+      return () => {
+         if (WSChannel) {
+            WSChannel.close(1000, 'Close channel')
+            removeAllListeners(WSChannel)
+            dispatch(CommonWSchatAC.onCloseEvent())
+         }
+      }
    }, [])
-
-   // React.useEffect(() => {
-   //    shuffleArray(colors)
-   // }, [])
 
    return (
       <>
          <h1 className={c.title}>Common users chat</h1>
-         <div className={c.messagesContainer}>
-            <div className={c.messagesContainerInner}>
-               {messages.map(m => (
-                  <ChatMessageItem key={shortid.generate()} {...m} bgColor='red' />
-               ))}
-            </div>
-         </div>
-         <AddMessageForm WSChannel={WSChannel} isOpenWSChannel={isOpenWSChannel} />
+         {isInProgeressOpenWSChannel ? (
+            <Preloader color='#A0450B' size={100} minHeight='75vh' />
+         ) : (
+            <>
+               <button
+                  style={{ background: 'red' }}
+                  onClick={() => {
+                     WSChannel?.close(1000, 'Close channel')
+                  }}>
+                  Клик
+               </button>
+               <div className={c.messagesContainer}>
+                  <div className={c.messagesContainerInner}>
+                     {messages.map(m => (
+                        <ChatMessageItem key={shortid.generate()} {...m} bgColor='red' />
+                     ))}
+                  </div>
+               </div>
+
+               <AddMessageForm WSChannel={WSChannel} isOpenWSChannel={isOpenWSChannel} />
+            </>
+         )}
       </>
    )
 })

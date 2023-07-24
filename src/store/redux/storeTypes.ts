@@ -3,6 +3,7 @@ export type { GlobalStateType, AppDispatchType } from './reduxStore'
 
 export type GetActionWInferType<T> = T extends { [key: string]: infer U } ? U : never
 
+
 enum CommonResultCodesEnum {
    Success = 0,
    Error = 1,

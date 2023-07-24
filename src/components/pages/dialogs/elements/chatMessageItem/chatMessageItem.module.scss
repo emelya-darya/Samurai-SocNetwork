@@ -7,6 +7,10 @@
     gap: 20px;
 }
 
+.messageItem:last-child{
+    padding-bottom: 0px;
+}
+
 .avatarWr{
     a{
         width: 40px;

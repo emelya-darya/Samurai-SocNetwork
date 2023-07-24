@@ -4,9 +4,10 @@ import { navbarWatcher } from './friendsNavbarSagas'
 import { friendsSagaWatcher } from './friendsSagas'
 import { profileSagaWatcher } from './profileSagas/index'
 import { authSagaWatcher } from './authSagas'
+import { commonWSChatSagaWatcher } from './commonWSChatSagas'
 
 function* rootSaga() {
-   yield all([fork(usersSagaWatcher), fork(navbarWatcher), fork(friendsSagaWatcher), fork(profileSagaWatcher), fork(authSagaWatcher)])
+   yield all([fork(usersSagaWatcher), fork(navbarWatcher), fork(friendsSagaWatcher), fork(profileSagaWatcher), fork(authSagaWatcher), fork(commonWSChatSagaWatcher)])
 }
 
 export { rootSaga }

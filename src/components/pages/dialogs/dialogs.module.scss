@@ -18,6 +18,8 @@
 
 .messagesContainerInner{
     max-height: 380px;
+    width: 100%;
+    overflow-x: hidden;
     overflow-y: auto;
     padding: 0px 15px;
     &::-webkit-scrollbar {
