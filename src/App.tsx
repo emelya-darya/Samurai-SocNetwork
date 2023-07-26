@@ -1,8 +1,8 @@
 import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/layout/Layout'
 import { ProfilePage } from './components/pages/profile/Profile'
-import { DialogsPage } from './components/pages/dialogs/Dialogs'
+import { CommonChatPage } from './components/pages/commonChat/CommonChat'
 import { InfoPage } from './components/pages/info/InfoPage'
 import { UsersPage } from './components/pages/users/Users'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,6 +14,7 @@ import { FriendsAC } from './store/redux/friends/friendsReducer'
 import { AuthAC } from './store/redux/auth/authReducer'
 import { Preloader } from './components/reusableElements/preloader/Preloader'
 import { LoginPage } from './components/pages/login/Login'
+import { DialogsPage } from './components/pages/dialogs/Dialogs'
 
 const App = function () {
    const { searchRequest: searchReqUsers, currentPage: usersActPage } = useSelector((state: GlobalStateType) => state.forUsersData)
@@ -70,7 +71,12 @@ const App = function () {
                   <Route path='/profile/:userId?' element={<ProfilePage />} />
                   <Route path='/users' element={<UsersPage />} />
                   <Route path='/subs' element={<FriendsPage />} />
+                  <Route path='/common-chat' element={<CommonChatPage />} />
                   <Route path='/dialogs' element={<DialogsPage />} />
+                  {/* <Route path='/dialogs/*' element={<Outlet />}>
+                     <Route index element={<DialogsPage />} />
+                     <Route path='common-chat' element={<CommonChatPage />} />
+                  </Route> */}
                   <Route path='/info' element={<InfoPage />} />
                   <Route path='/login' element={<LoginPage />} />
                   <Route path='*' element={<Navigate to='/profile' replace={true} />} />

@@ -31,7 +31,6 @@ input.styledInput[aria-invalid=true] {
     box-shadow: 0 0 0 0 transparent;
 }
 
-textarea.styledTextarea::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
+textarea.styledTextarea {
+    @include thin-grey-scrollbar;
 }

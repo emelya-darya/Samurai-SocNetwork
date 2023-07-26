@@ -2,10 +2,8 @@ export const URL_WS_CHAT = 'wss://social-network.samuraijs.com/handlers/ChatHand
 
 let WSChannel = null as null | WebSocket
 
-const commonChatWSApi = {
-   createWSChannel: () => {
-      WSChannel = new WebSocket(URL_WS_CHAT)
-   },
+const createWSChannel = () => {
+   WSChannel = new WebSocket(URL_WS_CHAT)
 }
 
-export { WSChannel, commonChatWSApi }
+export { WSChannel, createWSChannel }

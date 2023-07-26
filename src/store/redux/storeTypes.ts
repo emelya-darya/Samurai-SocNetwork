@@ -1,8 +1,6 @@
 export type { GlobalStateType, AppDispatchType } from './reduxStore'
-// export GlobalStateType, AppDispatch
 
 export type GetActionWInferType<T> = T extends { [key: string]: infer U } ? U : never
-
 
 enum CommonResultCodesEnum {
    Success = 0,
@@ -128,3 +126,24 @@ export type CommonWSChatMessageType = {
    userId: number
    userName: string
 }
+
+// * ------------------------------------------------------------- Dialogs Reducer ------------------------------------------------------------ *//
+
+type OnSendMessageResponseDataType = {
+   message: {
+      addedAt: string
+      body: string
+      deletedByRecipient: boolean
+      deletedBySender: boolean
+      distributionId: null | string // не знаю
+      id: string
+      isSpam: boolean
+      recipientId: number
+      recipientName: string
+      senderId: number
+      translatedBody: null
+      viewed: false
+   }
+}
+
+export type OnSendMessageResponseType = GenericResponceType<OnSendMessageResponseDataType>

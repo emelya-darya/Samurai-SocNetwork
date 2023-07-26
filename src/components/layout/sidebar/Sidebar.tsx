@@ -62,6 +62,9 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
             <NavLink to='/dialogs' onClick={sidebarHandler} className={currPathName === '/dialogs' ? c.act : c.navbar__link}>
                <span>Dialogs</span>
             </NavLink>
+            <NavLink to='/common-chat' onClick={sidebarHandler} className={currPathName === '/common-chat' ? c.act : c.navbar__link}>
+               <span>Common chat</span>
+            </NavLink>
 
             <NavLink to={pathToUsersWithQueryParams} onClick={sidebarHandler} className={currPathName === '/users' ? c.act : c.navbar__link}>
                <span>Users</span>

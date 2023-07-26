@@ -17,6 +17,7 @@ import { ModalWindowForm } from './elements/modalWindowForm/ModalWindowForm'
 import { LuLogOut } from 'react-icons/lu'
 import { AuthAC } from '../../../store/redux/auth/authReducer'
 import { withAuthRedirectHOC } from '../../reusableElements/HOC_withAuthRedirect/withAuthRedirectHOC'
+import { onCloseModal, onOpenModal } from '../../reusableElements/forOpenModalOverflowHandler/forOpenModalOverflowHandler'
 
 const ProfilePage = withAuthRedirectHOC<{}>(() => {
    const MY_ID = useSelector((state: GlobalStateType) => state.forAuthData.id)
@@ -40,11 +41,11 @@ const ProfilePage = withAuthRedirectHOC<{}>(() => {
    const [isOpenModal, setIsOpenModal] = React.useState(false)
    const handleOpenModal = () => {
       setIsOpenModal(true)
-      document.body.classList.add('lock')
+      onOpenModal()
    }
    const handleCloseModal = () => {
       setIsOpenModal(false)
-      document.body.classList.remove('lock')
+      onCloseModal()
    }
 
    const logOutHandler = () => dispatch(AuthAC.signOut())

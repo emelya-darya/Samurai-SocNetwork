@@ -8,6 +8,7 @@ import { FriendReducerType, friendsReducer } from './friends/friendsReducer'
 import { ProfileReducerType, profileReducer } from './profile/profileReducer'
 import { AuthReducerType, authReducer } from './auth/authReducer'
 import { CommonWSChatReducerType, commonWSchatReducer } from './commonWSchat/commonWSchatReducer'
+import { DialogsReducerType, dialogsReducer } from './dialogs/dialogsReducer'
 
 const rootReducer = combineReducers({
    forUsersData: usersReducer as UsersReducerType,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
    forFriendsPageData: friendsReducer as FriendReducerType,
    forProfileData: profileReducer as ProfileReducerType,
    forAuthData: authReducer as AuthReducerType,
-   forCommonWSchatData: commonWSchatReducer as CommonWSChatReducerType
+   forCommonWSchatData: commonWSchatReducer as CommonWSChatReducerType,
+   forDialogsData: dialogsReducer as DialogsReducerType
 })
 
 // type RootReducerType = typeof rootReducer

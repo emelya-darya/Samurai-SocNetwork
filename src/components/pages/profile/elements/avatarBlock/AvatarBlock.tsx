@@ -1,12 +1,13 @@
 import { useSelector } from 'react-redux'
 import c from './avatarBlock.module.scss'
 import { GlobalStateType } from '../../../../../store/redux/storeTypes'
-import nophoto from '../../../../../assets/images/catAstro.webp'
 import { TbCameraUp } from 'react-icons/tb'
 import { Button, Icon } from '@chakra-ui/react'
 import React from 'react'
 import { AvatarModal } from './avatarModal/AvatarModal'
 import { Crop } from 'react-image-crop'
+import { onCloseModal, onOpenModal } from '../../../../reusableElements/forOpenModalOverflowHandler/forOpenModalOverflowHandler'
+import { nophoto } from '../../../../reusableElements/nophoto'
 
 type AvatarBlockPropsType = {
    isMyProfile: boolean
@@ -23,12 +24,12 @@ const AvatarBlock: React.FC<AvatarBlockPropsType> = ({ isMyProfile }) => {
 
    const handleOpenModal = function () {
       setIsOpenModalCrop(true)
-      document.body.classList.add('lock')
+      onOpenModal()
    }
 
    const handleCloseModal = function () {
       setIsOpenModalCrop(false)
-      document.body.classList.remove('lock')
+      onCloseModal()
    }
 
    function onUploadPhotoFile(e: React.ChangeEvent<HTMLInputElement>) {

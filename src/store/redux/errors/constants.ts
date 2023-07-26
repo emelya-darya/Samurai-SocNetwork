@@ -21,3 +21,8 @@ export const SET_ERR_ON_SIGN_OUT = 'forErrorsData/SET_ERR_ON_SIGN_OUT'
 
 export const SET_ERR_ON_LOG_IN = 'forErrorsData/SET_ERR_ON_LOG_IN'
 export const SET_ERR_ON_GET_CAPTCHA = 'forErrorsData/SET_ERR_ON_GET_CAPTCHA'
+
+
+export const SET_ERR_ON_TRYING_TO_CONNECT_WS = 'forErrorsData/SET_ERR_ON_TRYING_TO_CONNECT_WS'
+
+export const SET_ERR_ON_SEND_DIALOGS_MESSAGE = 'forErrorsData/SET_ERR_ON_SEND_DIALOGS_MESSAGE'

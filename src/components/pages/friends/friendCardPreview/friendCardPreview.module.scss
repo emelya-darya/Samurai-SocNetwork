@@ -2,7 +2,7 @@
 @import '../../../../assets//commonStyles//modules//buttonFollowUnfollow.module.scss';
 @import '../../users//userCardPreview//userCardPreview.module.scss';
 
-.userItem {
+.userItemWr {
     position: relative;
 //     border-bottom: 1px solid rgba($color: $brown_clr, $alpha: .3);
 //     padding: 15px 0px 15px 15px;
@@ -16,99 +16,7 @@
 //     }
 }
 
-// .userItem:first-child {
-//     border-top: 1px solid rgba($color: $brown_clr, $alpha: .3);
-// }
 
-// .avatarNameStatus {
-//     flex: 1 1 auto;
-//     display: flex;
-//     gap: 30px;
-
-//     @media(max-width: 500px) {
-//         flex: 0 1 100%;
-//         flex-wrap: wrap;
-//         justify-content: center;
-//         gap: 7px;
-//     }
-// }
-
-// .avatarWr {
-//     flex: 0 0 90px;
-//     max-width: 90px;
-//     max-height: 90px;
-//     width: 100%;
-//     aspect-ratio: 1/1;
-//     border-radius: 50%;
-//     overflow: hidden;
-//     border: 1px solid rgba($color: $brown_clr, $alpha: .5);
-//     box-shadow: $boxshadow_val;
-//     background-color: $orange_clr;
-
-//     @include img-absolute;
-// }
-
-// .textPart {
-//     flex: 1 1 auto;
-
-//     @media(max-width: 500px) {
-//         flex: 0 1 100%;
-//     }
-// }
-
-// .name {
-//     font-weight: 700;
-//     font-size: 16px;
-//     margin-bottom: 10px;
-
-//     @media(max-width: 500px) {
-//         text-align: center;
-//     }
-// }
-
-// .status {
-//     display: flex;
-//     gap: 10px;
-//     margin-bottom: 0px;
-
-//     svg {
-//         width: 18px;
-//         height: 18px;
-//         transform: scale(-1, 1);
-//     }
-// }
-
-// .blockWBtn {
-//     display: flex;
-//     justify-content: start;
-//     flex-direction: column;
-//     align-items: center;
-//     gap: 4px;
-
-//     @media(max-width: 500px) {
-//         align-items: flex-end;
-//     }
-
-   
-// }
-
-// .error {
-//     visibility: hidden;
-//     opacity: 0;
-//     color: $err_clr;
-//     font-weight: 700;
-//     text-align: center;
-//     font-size: 10px;
-//     white-space: nowrap;
-//     height: 15px;
-// }
-
-// .error.visible {
-//     visibility: visible;
-//     opacity: 1;
-// }
-
-// .maskWr {}
 
 .maskWr .mask {
     position: absolute;

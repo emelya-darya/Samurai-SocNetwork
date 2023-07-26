@@ -1,9 +1,12 @@
 @import '../../../../assets//commonStyles//vars_mixins';
 @import '../../../../assets//commonStyles//modules//buttonFollowUnfollow.module.scss';
 
-.userItem {
+.userItemWr {
     border-bottom: 1px solid rgba($color: $brown_clr, $alpha: .3);
     padding: 15px 0px 15px 15px;
+}
+
+.userItem {
     display: flex;
     gap: 30px;
 
@@ -14,7 +17,7 @@
     }
 }
 
-.userItem:first-child {
+.userItemWr:first-child {
     border-top: 1px solid rgba($color: $brown_clr, $alpha: .3);
 }
 
@@ -32,11 +35,9 @@
 }
 
 .avatarWr {
-    flex: 0 0 90px;
-    max-width: 90px;
-    max-height: 90px;
-    width: 100%;
-    aspect-ratio: 1/1;
+    flex: 0 0 100px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid rgba($color: $brown_clr, $alpha: .5);
@@ -76,15 +77,16 @@
     }
 }
 
-.blockWBtn {
+.followUnfollowBtnBlock {
     display: flex;
-    justify-content: start;
     flex-direction: column;
-    align-items: center;
     gap: 4px;
 
-    @media(max-width: 500px) {
-        align-items: flex-end;
+    button,
+    p {
+        @media(max-width: 500px) {
+            align-self: flex-end //align-items: center;
+        }
     }
 }
 
@@ -102,4 +104,27 @@
 .error.visible {
     visibility: visible;
     opacity: 1;
+}
+
+.writeAMessageBlock {
+    margin-top: 9px;
+    font-size: 13px;
+
+    @media(max-width: 500px) {
+        display: flex;
+        justify-content: end;
+        padding-right: 15px;
+    }
+
+
+    button {
+        width: 100px;
+        color: $brown_clr;
+        transition: $transition_val;
+    }
+
+    button:hover {
+        text-decoration: none;
+        color: $brown_light_clr;
+    }
 }

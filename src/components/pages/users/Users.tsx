@@ -10,7 +10,13 @@ import { Preloader } from '../../reusableElements/preloader/Preloader'
 import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType, UserFriendItemType } from '../../../store/redux/storeTypes'
 import { UsersAC } from '../../../store/redux/users/usersReducer'
+import { ModalWindowWriteMessage } from '../../reusableElements/modalWindowWriteMessage/ModalWindowWriteMessage'
 
+export type DataForModalType = {
+   photoSrc: null | string
+   userName: null | string
+   userId: null | number
+}
 const UsersPage = () => {
    // получение из стора всего, что надо
    const {
@@ -110,7 +116,7 @@ const UsersPage = () => {
                ) : (
                   <div className={c.usersContainer}>
                      {currentPage && totalPagesCount >= currentPage ? (
-                        usersData.map(userData => <UserCardPreview userData={userData} key={shortid.generate()} isAuth={isAuth}/>)
+                        usersData.map(userData => <UserCardPreview userData={userData} key={shortid.generate()} isAuth={isAuth} />)
                      ) : (
                         <div className={c.errorBlock}>
                            <p>Ваш запрос не дал результатов</p>

@@ -15,7 +15,7 @@ const ModalWindowForm: React.FC<ModalWindowFormPropsType> = ({ isOpen, handleClo
    const handleCloseWrapper = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
       //@ts-ignore
       const classListArr = Array.from(e?.target?.classList || [])
-      if (classListArr.includes('close')) {
+      if (classListArr.includes('close') && e.button === 0) {
          handleCloseModal()
          setShouldShowErrLettOnSubmit(false)
       }
