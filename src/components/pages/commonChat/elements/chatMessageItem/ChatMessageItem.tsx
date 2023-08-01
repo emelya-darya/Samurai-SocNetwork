@@ -14,8 +14,8 @@ type ChatMessageItemType = {
    // isLast?: true
 }
 
-const ChatMessageItem: React.FC<ChatMessageItemType> = ({ userId, userName, photo, message, bgColor}) => {
-  
+const ChatMessageItem: React.FC<ChatMessageItemType> = ({ userId, userName, photo, message, bgColor }) => {
+   // console.log('ререндер ChatMessageItem')
 
    const myID = useSelector((state: GlobalStateType) => state.forAuthData.id)
 

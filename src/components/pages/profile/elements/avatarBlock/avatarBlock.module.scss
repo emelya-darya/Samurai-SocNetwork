@@ -1,16 +1,8 @@
 @import '../../profile.module.scss';
 
-.avatarWr {
-    position: relative;
-    flex: 0 0 230px;
 
-    width: 230px;
-    height: 230px;
-    @include img-absolute;
-    border-radius: 50%;
-    border: 1px solid $lgrey_clr;
-    background-color: $orange_clr;
-    box-shadow: $boxshadow_val;
+.avatarBlock {
+    flex: 0 0 230px;
 
     @media(max-width:768px) {
         margin: 0px auto 15px auto;
@@ -18,12 +10,40 @@
 
     @media(max-width: 576px) {
         flex: 0 0 190px;
+    }
+}
+
+.avatarWr {
+    position: relative;
+    // flex: 0 0 230px;
+
+    width: 230px;
+    height: 230px;
+    // @include img-absolute;
+    border-radius: 50%;
+    border: 1px solid $lgrey_clr;
+    background-color: $orange_clr;
+    box-shadow: $boxshadow_val;
+    
+
+    // @media(max-width:768px) {
+    //     margin: 0px auto 15px auto;
+    // }
+
+    @media(max-width: 576px) {
+        // flex: 0 0 190px;
         width: 190px;
         height: 190px;
     }
 
-    img {
+    &>img {
         border-radius: 50%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 }
 
@@ -55,11 +75,11 @@ button.uploadPhotoBtn {
         background-color: $lgrey_clr;
     }
 
-    &:disabled{
+    &:disabled {
         opacity: 1;
         box-shadow: $boxshadow_val;
 
-        label{
+        label {
             cursor: not-allowed;
         }
     }
@@ -89,4 +109,46 @@ button.uploadPhotoBtn {
     white-space: nowrap;
     // text-align: center;
     height: 20px;
+}
+
+
+.writeAMessageBlock{
+    display: flex;
+    justify-content: center;
+}
+
+button.sendMessageBtn {
+    width: 230px;
+    text-transform: uppercase;
+    padding: 15px 25px;
+    background-color: $brown_light_clr;
+    box-shadow: $boxshadow_val;
+    border: 2px solid $brown_light_clr;
+    transition: $transition_val;
+    gap: 5px;
+    color: $lgrey_clr;
+
+    @media(max-width: 576px) {
+        width: 190px;
+    }
+
+    svg {
+        font-size: 1.5rem;
+        ;
+    }
+
+    &:hover {
+        background-color: rgba($color: $brown_light_clr, $alpha: .9);
+        border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
+    }
+}
+
+button.sendMessageBtn:disabled:hover {
+    
+    background-color: $brown_light_clr;
+    // box-shadow: $boxshadow_val;
+    border: 2px solid $brown_light_clr;
+    // transition: $transition_val;
+    // gap: 5px;
+    color: $lgrey_clr;
 }

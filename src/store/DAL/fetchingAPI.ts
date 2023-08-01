@@ -118,15 +118,12 @@ const dialogsFetchingAPI = {
    },
 
    async onSendMessage(userId: number, message: string) {
-      return instance.post<OnSendMessageResponseType>(`/dialogs/${userId}/messages`, { body: message }).then(response => {
-         console.log('response.data ')
-         console.log(response.data)
-         return response.data
-      })
+      return instance.post<OnSendMessageResponseType>(`/dialogs/${userId}/messages`, { body: message }).then(response => response.data)
+   },
+
+   async getDialogsList() {
+      return instance.get('/dialogs').then(response => response.data)
    },
 }
 
 export { usersFetchingAPI, friendsFetchingAPI, profileFetchingAPI, followUnfollowAPI, authFetchingAPI, dialogsFetchingAPI }
-// export { authFetchingAPI }
-// export { profileFetchingAPI }
-// export { friendsFetchingAPI }

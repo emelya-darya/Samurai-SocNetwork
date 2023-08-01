@@ -9,10 +9,12 @@ import { GlobalStateType } from '../../../store/redux/reduxStore'
 import { CommonWSchatAC } from '../../../store/redux/commonWSchat/commonWSchatReducer'
 import { WSChannel } from '../../../store/DAL/websocketCommonChatAPI'
 import { Preloader } from '../../reusableElements/preloader/Preloader'
+import { MessagesBlock } from './elements/messagesBlock/MessagesBlock'
 
 //! dispatch(CommonWSchatAC.onCloseEvent()) - чистит массив сообщений, isOpenWSChannel переключает в false, isInProgeressOpenWSChannel ставит на true
 
 const CommonChatPage = withAuthRedirectHOC(() => {
+   // console.log('рeрендер CommonChatPage')
    const { messages, isOpenWSChannel, isInProgeressOpenWSChannel, colorsAvatars } = useSelector((state: GlobalStateType) => state.forCommonWSchatData)
    const errorOnTryingToConnectWS = useSelector((state: GlobalStateType) => state.forErrorsData.errorOnTryingToConnectWS)
 
@@ -90,7 +92,7 @@ const CommonChatPage = withAuthRedirectHOC(() => {
    return (
       <div className={c.dialogsPage}>
          <h1 className={c.title}>Common websocket users chat</h1>
-         <p className={c.desc}>(api gives access to messages only for the last few hours)</p>
+         <p className={c.desc}>*api gives access to messages only for the last few hours</p>
 
          {errorOnTryingToConnectWS && <p className={c.err}>{errorOnTryingToConnectWS}</p>}
          {isInProgeressOpenWSChannel ? (
@@ -98,17 +100,17 @@ const CommonChatPage = withAuthRedirectHOC(() => {
          ) : (
             <>
                <div className={c.messagesContainer}>
-                  <div className={c.messagesContainerInner} ref={blockWithMessages}>
+                  {/* <div className={c.messagesContainerInner} ref={blockWithMessages}>
                      {messages?.length ? (
                         messages.map((m, idx, arr) => {
-                           if (idx === arr.length - 1) return <ChatMessageItem key={shortid.generate()} {...m} bgColor={colorsAvatars[m.userId] || '#F0772B'} />
                            return <ChatMessageItem key={shortid.generate()} {...m} bgColor={colorsAvatars[m.userId] || '#F0772B'} />
                         })
                      ) : (
                         <p className={c.noMessagesLett}>There have been no messages in the chat lately. Fix it, write first.</p>
                      )}
                      <div ref={anchorRefForAutoscroll}></div>
-                  </div>
+                  </div> */}
+                  <MessagesBlock messages={messages} anchorRefForAutoscroll={anchorRefForAutoscroll} blockWithMessages={blockWithMessages} />
                   <AddMessageForm WSChannel={WSChannel} isOpenWSChannel={isOpenWSChannel} />
                </div>
             </>

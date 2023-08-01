@@ -21,7 +21,7 @@ const sendMessageSagaWorker = function* (action: ReturnType<typeof DialogsAC.sen
 
 
    } catch (err: any) {
-      yield put(ErrorsAC.setErrOnSendsMessageInDialogs(cutText(err.message, 30, 'Error on sending message')))
+      yield put(ErrorsAC.setErrOnSendsMessageInDialogs(cutText(err.message, 100, 'Error on sending message')))
    }
 
    yield put(DialogsAC.setIsInProgressSendMessage(false))

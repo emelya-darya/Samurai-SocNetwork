@@ -6,6 +6,7 @@ import {
    SET_ERR_ON_GET_PROFILE,
    SET_ERR_ON_GET_PROFILE_FOLLOW_STAT,
    SET_ERR_ON_GET_PROFILE_STATUS,
+   SET_ERR_ON_LOADING_DIALOGS_LIST,
    SET_ERR_ON_LOG_IN,
    SET_ERR_ON_SEND_DIALOGS_MESSAGE,
    SET_ERR_ON_SIGN_OUT,
@@ -56,6 +57,7 @@ const initialState = {
 
    dialogsErrors: {
       errOnSendMessage: null as string | null,
+      errOnLoadingsDialogsList: null as string | null,
    },
 }
 
@@ -132,6 +134,9 @@ export const errorsReducer = function (state: InitialErrorsStateType = initialSt
       case SET_ERR_ON_SEND_DIALOGS_MESSAGE:
          return { ...state, dialogsErrors: { ...state.dialogsErrors, errOnSendMessage: action.message } }
 
+      case SET_ERR_ON_LOADING_DIALOGS_LIST:
+         return { ...state, dialogsErrors: { ...state.dialogsErrors, errOnLoadingsDialogsList: action.message } }
+
       default:
          return state
    }
@@ -167,6 +172,7 @@ export const ErrorsAC = {
    setErrOnTryingToConnectWS: (message: string | null) => ({ type: SET_ERR_ON_TRYING_TO_CONNECT_WS, message } as const),
 
    setErrOnSendsMessageInDialogs: (message: string | null) => ({ type: SET_ERR_ON_SEND_DIALOGS_MESSAGE, message } as const),
+   setErrOnLoadingsDialogsList: (message: string | null) => ({ type: SET_ERR_ON_LOADING_DIALOGS_LIST, message } as const),
 }
 
 export type AllACErrorsTypes = ReturnType<GetActionWInferType<typeof ErrorsAC>>

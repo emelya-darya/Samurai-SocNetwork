@@ -147,3 +147,13 @@ type OnSendMessageResponseDataType = {
 }
 
 export type OnSendMessageResponseType = GenericResponceType<OnSendMessageResponseDataType>
+
+export type DialogsListItemType = {
+   id: number
+   userName: string
+   hasNewMessages: boolean
+   lastDialogActivityDate: string
+   lastUserActivityDate: string
+   newMessagesCount: number
+   photos: PhotosType
+}

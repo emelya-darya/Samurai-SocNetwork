@@ -11,7 +11,6 @@ const FollowUnfollowBtn = () => {
 
     const {
         userId,isFollowed,
-        
         isFetchingFollowUnfollowInProgress,
      } = useSelector((state: GlobalStateType) => state.forProfileData)
    const { errOnGetProfile, errOnGetFollowStat, errOnFetchingFollowUnfollow, errOnUpdatePhoto, errOnUpdateMainData } = useSelector((state: GlobalStateType) => state.forErrorsData.profileErrors)

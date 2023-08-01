@@ -119,7 +119,7 @@ const UsersPage = () => {
                         usersData.map(userData => <UserCardPreview userData={userData} key={shortid.generate()} isAuth={isAuth} />)
                      ) : (
                         <div className={c.errorBlock}>
-                           <p>Ваш запрос не дал результатов</p>
+                           <p>No results found for your query</p>
                         </div>
                      )}
                   </div>

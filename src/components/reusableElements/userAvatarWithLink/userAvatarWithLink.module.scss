@@ -7,6 +7,7 @@
     height: 53px;
     border: 1px solid $lgrey_clr;
     border-radius: 50%;
+    color: $lgrey_clr;
 
     &:hover{
         color: $lgrey_clr;
@@ -40,7 +41,7 @@
 
 }
 
-div.subAvatarWLett {
-    background-color: $lgrey_clr;
-    color: $brown_clr;
-}
+// div.subAvatarWLett {
+//     background-color: $lgrey_clr;
+//     color: $brown_clr;
+// }

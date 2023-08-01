@@ -35,7 +35,7 @@
     // border: 3px solid $brown_clr;
     box-shadow: $boxshadow_val;
 
-    padding: 20px 30px 12px 30px;
+    padding: 20px 30px 20px 30px;
 
     @media(max-width: 630px) {
         width: 100%;
@@ -129,7 +129,7 @@ button.sendBtn {
     color: $lgrey_clr;
     display: flex;
     margin-left: auto;
-    margin-bottom: 7px;
+    // margin-bottom: 7px;
 
 
     svg {
@@ -149,42 +149,58 @@ button.sendBtn[disabled]:hover {
     border: 2px solid $brown_light_clr;
 }
 
-
-
-.onSubmitErrOrSuccWr {
+.notificationModal {
+    transform: translateY(120px);
     opacity: 0;
     visibility: hidden;
+    position: fixed;
+    bottom: 7px;
+    left: 7px;
+    z-index: 20;
+    background-color: $lgrey_clr;
+    padding: 15px 20px;
     transition: $transition_val;
-    margin-bottom: 5px;
-
-    &.visible {
-        opacity: 1;
-        visibility: visible;
-    }
-}
-
-
-
-.onSubmitErrOrSucc {
-    display: flex;
-    // justify-content: end;
-    gap: 5px;
-    align-items: center;
-    font-size: 13px;
-    white-space: nowrap;
-    font-weight: 600;
-    // height: 21px;
-    height: 19px;
-
-    svg {
-        font-size: 15px;
-    }
+    border-radius: $borderR_value;
+    width: 280px;
+    height: 100px;
+    box-shadow: $boxshadow_val;
 
     &.succ {
-        color: #38A169;
+        background-color: rgba($color: #BFE8B6, $alpha: 1);
     }
 
     &.err {
+        background-color: rgba($color: #fcd2c6, $alpha: 1);
         color: $err_clr;
+    }
+}
+
+.notificationModal.visible {
+    transform: translateY(0px);
+    opacity: 1;
+    visibility: visible;
+}
+
+.closeSmallBtn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+
+.subtitle {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.text {
+    margin-bottom: 0px;
+    font-size: 13px;
+
+    a {
+        font-weight: 700;
+        color: $brown_light_clr;
     }
 }

@@ -35,60 +35,63 @@ const ModalWindowWriteMessage: React.FC<ModalWindowWriteMessagePropsType> = ({ p
    const handleCloseWrapper = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
       //@ts-ignore
       const classListArr = Array.from(e?.target?.classList || [])
-      if (classListArr.includes('close') && e.button === 0) {
-         closeModalHandler()
-         setShouldShowSuccErrLett(false)
-      }
+      if (classListArr.includes('close') && e.button === 0) closeModalHandler()
    }
    const dispatch = useDispatch()
 
+   const [shouldShowNtf, setShouldShowNtf] = React.useState(false)
+
    const submitHandler = (data: FormValues) => {
       dispatch(DialogsAC.sendMessage(data.message, userId))
-      setShouldShowSuccErrLett(true)
+      setShouldShowNtf(true)
    }
 
-   const [shouldShowSuccErrLett, setShouldShowSuccErrLett] = React.useState(false)
+   const [isVisibleNtf, setIsVisibleNtf] = React.useState(false)
 
-   // React.useEffect(() => {
-   //    if (!isInProgressSendMessage && !errOnSend) {
-   //       setTimeout(() => {
-   //          closeModalHandler()
-   //          setShouldShowSuccErrLett(false)
-   //       }, 3000)
-   //       reset()
-   //    }
-   // }, [isInProgressSendMessage])
+   React.useEffect(() => {
+      if (shouldShowNtf && !isInProgressSendMessage) {
+         if (!errOnSend) {
+            closeModalHandler()
+            setIsVisibleNtf(true)
+            setTimeout(() => setIsVisibleNtf(false), 3000)
+            reset()
+         } else {
+            setIsVisibleNtf(true)
+            setTimeout(() => setIsVisibleNtf(false), 3000)
+         }
+         setShouldShowNtf(false)
+      }
+   }, [isInProgressSendMessage])
 
    return (
       <>
-      {/* <p style={{position: 'fixed', top: '300px', left: '0px'}}>dddddddddddddddddddddddd</p> */}
-      <div className={`${c.modalWind} ${isOpen ? c.visible : ''} close`} onClick={handleCloseWrapper}>
-         <div className={c.modalContent}>
-            <div className={`${c.closeBtn} close`}>
-               <Icon as={AiOutlineClose} className='close' />
-               <div className={`${c.closeBtnMask} close`}></div>
-            </div>
-            <p className={c.title}>New message</p>
-            <Link className={c.jumpToDialogLink} to={'/dialogs/' + userId}>
-               <span>Jump to dialog with {userName}</span> <Icon as={BsArrowRight} />
-            </Link>
-            <div className={c.userDataBlock}>
-               <div className={c.avatarWr}>
-                  <UserAvatarWithLink id={userId} photo={photoSrc} name={userName} bgColor='#F0772B' />
+         <div className={`${c.modalWind} ${isOpen ? c.visible : ''} close`} onClick={handleCloseWrapper}>
+            <div className={c.modalContent}>
+               <div className={`${c.closeBtn} close`}>
+                  <Icon as={AiOutlineClose} className='close' />
+                  <div className={`${c.closeBtnMask} close`}></div>
                </div>
-               <Link to={'/profile/' + userId} className={c.name}>
-                  {userName}
+               <p className={c.title}>New message</p>
+               <Link className={c.jumpToDialogLink} to={'/dialogs/' + userId}>
+                  <span>Jump to dialog with {userName}</span> <Icon as={BsArrowRight} />
                </Link>
-            </div>
+               <div className={c.userDataBlock}>
+                  <div className={c.avatarWr}>
+                     <UserAvatarWithLink id={userId} photo={photoSrc} name={userName} bgColor='#F0772B' />
+                  </div>
+                  <Link to={'/profile/' + userId} className={c.name}>
+                     {userName}
+                  </Link>
+               </div>
 
-            <form className={c.form} onSubmit={handleSubmit(submitHandler)}>
-               <Textarea {...register('message', { required: 'This field is required' })} placeholder='Message' size='lg' resize='none' className={c.styledTextarea} />
-               <Button rightIcon={<Icon as={AiOutlineSend} />} className={c.sendBtn} type='submit' isDisabled={!isValid} isLoading={isInProgressSendMessage}>
-                  Send
-               </Button>
-            </form>
+               <form className={c.form} onSubmit={handleSubmit(submitHandler)}>
+                  <Textarea {...register('message', { required: 'This field is required' })} placeholder='Message' size='lg' resize='none' className={c.styledTextarea} />
+                  <Button rightIcon={<Icon as={AiOutlineSend} />} className={c.sendBtn} type='submit' isDisabled={!isValid} isLoading={isInProgressSendMessage}>
+                     Send
+                  </Button>
+               </form>
 
-            <div className={`${shouldShowSuccErrLett && !isInProgressSendMessage ? c.visible : ''} ${c.onSubmitErrOrSuccWr}`}>
+               {/* <div className={`${shouldShowSuccErrLett && !isInProgressSendMessage ? c.visible : ''} ${c.onSubmitErrOrSuccWr}`}>
                {errOnSend ? (
                   <div className={`${c.err} ${c.onSubmitErrOrSucc} `}>
                      <Icon as={BiError} />
@@ -100,9 +103,33 @@ const ModalWindowWriteMessage: React.FC<ModalWindowWriteMessagePropsType> = ({ p
                      <span>Message sent</span>
                   </div>
                )}
+            </div> */}
             </div>
          </div>
-      </div>
+
+         <div className={`${c.notificationModal} ${errOnSend ? c.err : c.succ} ${isVisibleNtf ? c.visible : ''}`}>
+            <div
+               onClick={() => {
+                  setIsVisibleNtf(false)
+               }}
+               className={c.closeSmallBtn}>
+               <Icon as={AiOutlineClose} />
+            </div>
+
+            {errOnSend ? (
+               <>
+                  <p className={c.subtitle}>Some error</p>
+                  <p className={c.text}>{errOnSend}</p>
+               </>
+            ) : (
+               <>
+                  <p className={c.subtitle}>Message sent</p>
+                  <p className={c.text}>
+                     Your message has been sent to <Link to={`/profile/${userId}`}>{userName}</Link>
+                  </p>
+               </>
+            )}
+         </div>
       </>
    )
 }

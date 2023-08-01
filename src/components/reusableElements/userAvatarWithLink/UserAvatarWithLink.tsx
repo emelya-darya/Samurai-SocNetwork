@@ -19,11 +19,24 @@ type UserAvatarWithLinkPropsType = {
    photo: string | null
    name: string
    bgColor: string
+   type?: 'div'
    onClickHandler?: () => void
 }
 
-const UserAvatarWithLink: React.FC<UserAvatarWithLinkPropsType> = ({ id, photo, name, bgColor, onClickHandler }) => {
-   if (photo) {
+const UserAvatarWithLink: React.FC<UserAvatarWithLinkPropsType> = ({ id, photo, name, bgColor, onClickHandler, type }) => {
+   if (type === 'div' && photo) {
+      return (
+         <div className={c.subAvatarWPhoto} title={name || ''} style={{ backgroundColor: bgColor }}>
+            <img src={photo} alt={name || ''} />
+         </div>
+      )
+   } else if (type === 'div' && !photo) {
+      return (
+         <div className={c.subAvatarWLett} title={name || ''} style={{ backgroundColor: bgColor }}>
+            <span>{getInitialsForAvatar(name)}</span>
+         </div>
+      )
+   } else if (photo) {
       return (
          <Link to={'/profile/' + id} className={c.subAvatarWPhoto} onClick={onClickHandler ? onClickHandler : () => null} title={name || ''} style={{ backgroundColor: bgColor }}>
             <img src={photo} alt={name || ''} />

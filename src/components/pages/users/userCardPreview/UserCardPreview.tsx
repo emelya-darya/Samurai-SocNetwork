@@ -12,8 +12,6 @@ import React from 'react'
 import { onCloseModal, onOpenModal } from '../../../reusableElements/forOpenModalOverflowHandler/forOpenModalOverflowHandler'
 import { nophoto } from '../../../reusableElements/nophoto'
 
-// import { TbMessageCirclePlus, TbMessages } from 'react-icons/tb'
-
 type UserCardPreviewPropsType = {
    userData: UserFriendItemType
    isAuth: boolean
@@ -75,13 +73,15 @@ const UserCardPreview: React.FC<UserCardPreviewPropsType> = ({ userData, isAuth 
             )}
          </div>
          {isAuth && userData.followed && (
-            <div className={c.writeAMessageBlock}>
-               <Button variant='link' onClick={openModalHandler}>
-                  Write a message
-               </Button>
-            </div>
+            <>
+               <div className={c.writeAMessageBlock}>
+                  <Button variant='link' onClick={openModalHandler}>
+                     Write a message
+                  </Button>
+               </div>
+               <ModalWindowWriteMessage photoSrc={photo} userName={userData.name || 'User'} userId={userData.id} isOpen={isOpenModal} closeModalHandler={closeModalHandler} />
+            </>
          )}
-         <ModalWindowWriteMessage photoSrc={photo} userName={userData.name || 'User'} userId={userData.id} isOpen={isOpenModal} closeModalHandler={closeModalHandler} />
       </div>
    )
 }

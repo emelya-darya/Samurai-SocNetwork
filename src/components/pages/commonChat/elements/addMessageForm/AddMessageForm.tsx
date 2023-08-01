@@ -13,6 +13,7 @@ type AddMessagePropsType = {
 const MAX_LENGTH = 98
 
 const AddMessageForm: React.FC<AddMessagePropsType> = ({ WSChannel, isOpenWSChannel }) => {
+   // console.log('ререндер AddMessageForm')
    const [textareaValue, setTextareaValue] = React.useState('')
    const [countCharacters, setCountCharacters] = React.useState(textareaValue.length)
 

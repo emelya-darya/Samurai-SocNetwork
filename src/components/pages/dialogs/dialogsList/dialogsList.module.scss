@@ -1,0 +1,28 @@
+@import '../../../../assets//commonStyles//vars_mixins';
+
+.title {
+    margin-top: 0px;
+}
+
+.warn {
+    margin-bottom: 25px;
+    color: $err_clr;
+    font-weight: 600;
+    font-size: 13px;
+
+    @media(max-width: 576px) {
+        font-size: 11px;
+    }
+}
+
+.serverErrMessage {
+    color: $err_clr;
+    text-align: center;
+    font-weight: 700;
+    margin: 40px 0px 30px 0px;
+}
+
+.emptyLett{
+    text-align: center;
+    margin: 40px 0px 30px 0px;
+}

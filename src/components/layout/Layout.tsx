@@ -4,7 +4,6 @@ import { Header } from './header/Header'
 import c from './layout.module.scss'
 import { Sidebar } from './sidebar/Sidebar'
 import { useMatchMedia } from '../../customHooks/useMatchMedia'
-// import { SidebarContainer } from './sidebar/SidebarContainer'
 
 const Layout = () => {
    const isLess992 = useMatchMedia().less992
@@ -15,6 +14,7 @@ const Layout = () => {
    const handleOpenCloseSidebar = () => {
       setIsSidebarOpen(!isSidebarOpen)
    }
+
    return (
       <>
          <Header sidebarHandler={handleOpenCloseSidebar} />

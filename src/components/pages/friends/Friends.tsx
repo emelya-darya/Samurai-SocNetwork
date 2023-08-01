@@ -112,7 +112,7 @@ const FriendsPage = withAuthRedirectHOC(() => {
                         friendsData.map(friendData => <FriendCardPreview friendData={friendData} key={shortid.generate()} />)
                      ) : (
                         <div className={c.errorBlock}>
-                           <p>Ваш запрос не дал результатов</p>
+                           <p>No results found for your query</p>
                         </div>
                      )}
                   </div>

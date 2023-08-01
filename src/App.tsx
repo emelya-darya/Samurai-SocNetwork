@@ -72,7 +72,7 @@ const App = function () {
                   <Route path='/users' element={<UsersPage />} />
                   <Route path='/subs' element={<FriendsPage />} />
                   <Route path='/common-chat' element={<CommonChatPage />} />
-                  <Route path='/dialogs' element={<DialogsPage />} />
+                  <Route path='/dialogs/:userId?' element={<DialogsPage />} />
                   {/* <Route path='/dialogs/*' element={<Outlet />}>
                      <Route index element={<DialogsPage />} />
                      <Route path='common-chat' element={<CommonChatPage />} />

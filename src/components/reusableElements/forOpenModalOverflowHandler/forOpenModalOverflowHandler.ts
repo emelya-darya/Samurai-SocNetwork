@@ -1,12 +1,14 @@
 // let scrollValue = window.scrollY || window.pageYOffset
 
+// const scrollbarWidth = window.innerWidth - document.body.offsetWidth + 'px'
+
 export const onOpenModal = () => {
-   // scrollValue = window.scrollY || window.pageYOffset
+   const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth + 'px'
+   document.body.style.paddingRight = scrollbarWidth
    document.body.classList.add('lock')
-   //    window.scrollTo(0, scrollValue)
 }
 
 export const onCloseModal = () => {
+   document.body.style.paddingRight = '0px'
    document.body.classList.remove('lock')
-   // window.scrollTo(0, scrollValue)
 }
