@@ -10,6 +10,7 @@ import {
    LogInDataToSend,
    GenericResponceType,
    OnSendMessageResponseType,
+   GetMessagesPortionResponseDataType,
 } from '../redux/storeTypes'
 
 // axios можно настроить с помощью create, чтобы не дублировать каждый раз объект с параметрами и базовый URL
@@ -124,6 +125,18 @@ const dialogsFetchingAPI = {
    async getDialogsList() {
       return instance.get('/dialogs').then(response => response.data)
    },
+
+   async getMessagesPortion(userId: number, page: number, count: number) {
+      return instance.get<GetMessagesPortionResponseDataType>(`/dialogs/${userId}/messages/?page=${page}&count=${count}`).then(response => response.data)
+   },
+
+   // async getIsViewedMessage(messageId: string){
+   //    return instance.get<boolean>(`/dialogs/messages/${messageId}/viewed`).then(response => response.data)
+   // }
+
+   // async markMessageAsSpam(messageId: string){
+   //    return instance.post<сюда типизацию ответа>(`/dialogs/messages/${messageId}/spam`).then(response => response.data)
+   // }
 }
 
 export { usersFetchingAPI, friendsFetchingAPI, profileFetchingAPI, followUnfollowAPI, authFetchingAPI, dialogsFetchingAPI }

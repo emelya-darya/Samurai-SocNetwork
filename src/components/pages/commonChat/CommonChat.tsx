@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../store/redux/reduxStore'
 import { CommonWSchatAC } from '../../../store/redux/commonWSchat/commonWSchatReducer'
 import { WSChannel } from '../../../store/DAL/websocketCommonChatAPI'
-import { Preloader } from '../../reusableElements/preloader/Preloader'
+import { Preloader } from '../../reusableElements/preloaders/main/Preloader'
 import { MessagesBlock } from './elements/messagesBlock/MessagesBlock'
 
 //! dispatch(CommonWSchatAC.onCloseEvent()) - чистит массив сообщений, isOpenWSChannel переключает в false, isInProgeressOpenWSChannel ставит на true

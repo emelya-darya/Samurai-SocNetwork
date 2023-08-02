@@ -7,6 +7,8 @@ import {
    SET_ERR_ON_GET_PROFILE_FOLLOW_STAT,
    SET_ERR_ON_GET_PROFILE_STATUS,
    SET_ERR_ON_LOADING_DIALOGS_LIST,
+   SET_ERR_ON_LOADING_EXTRA_MESSAGES_PORTION,
+   SET_ERR_ON_LOADING_FIRST_MESSAGES_PORTION,
    SET_ERR_ON_LOG_IN,
    SET_ERR_ON_SEND_DIALOGS_MESSAGE,
    SET_ERR_ON_SIGN_OUT,
@@ -58,6 +60,9 @@ const initialState = {
    dialogsErrors: {
       errOnSendMessage: null as string | null,
       errOnLoadingsDialogsList: null as string | null,
+
+      errOnLoadingFirstMessagesPortion: null as string | null,
+      errOnLoadingExtraMessagesPortion: null as string | null,
    },
 }
 
@@ -137,6 +142,12 @@ export const errorsReducer = function (state: InitialErrorsStateType = initialSt
       case SET_ERR_ON_LOADING_DIALOGS_LIST:
          return { ...state, dialogsErrors: { ...state.dialogsErrors, errOnLoadingsDialogsList: action.message } }
 
+      case SET_ERR_ON_LOADING_FIRST_MESSAGES_PORTION:
+         return { ...state, dialogsErrors: { ...state.dialogsErrors, errOnLoadingFirstMessagesPortion: action.message } }
+
+      case SET_ERR_ON_LOADING_EXTRA_MESSAGES_PORTION:
+         return { ...state, dialogsErrors: { ...state.dialogsErrors, errOnLoadingExtraMessagesPortion: action.message } }
+
       default:
          return state
    }
@@ -173,6 +184,9 @@ export const ErrorsAC = {
 
    setErrOnSendsMessageInDialogs: (message: string | null) => ({ type: SET_ERR_ON_SEND_DIALOGS_MESSAGE, message } as const),
    setErrOnLoadingsDialogsList: (message: string | null) => ({ type: SET_ERR_ON_LOADING_DIALOGS_LIST, message } as const),
+
+   setErrOnLoadingFirstMessagesPortion: (message: string | null) => ({ type: SET_ERR_ON_LOADING_FIRST_MESSAGES_PORTION, message } as const),
+   setErrOnLoadingExtraMessagesPortion: (message: string | null) => ({ type: SET_ERR_ON_LOADING_EXTRA_MESSAGES_PORTION, message } as const),
 }
 
 export type AllACErrorsTypes = ReturnType<GetActionWInferType<typeof ErrorsAC>>

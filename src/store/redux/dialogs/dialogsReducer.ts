@@ -1,4 +1,4 @@
-import type { AuthDataToSetType, DialogsListItemType, GetActionWInferType, LogInDataToSend } from '../storeTypes'
+import type { AuthDataToSetType, DialogsListItemType, GetActionWInferType, IncomingMessageType, LogInDataToSend } from '../storeTypes'
 import { GET_DIALOGS_LIST, INCREASE_SHOWING_PORTION, IS_IN_PROGRESS_SEND_MESSAGE, SEND_MESSAGE, SET_DIALOGS_LIST, SET_IS_IN_PROGRESS_LOADING_DIALOGS_LIST } from './constants'
 
 const initialState = {
@@ -7,13 +7,16 @@ const initialState = {
    dialogsListData: {
       items: [] as Array<DialogsListItemType>,
       isInProgressLoadingDialogsList: false,
-
       portionSizeToShow: 20,
-
       showingItems: [] as Array<DialogsListItemType>,
    },
-   // dialogsList: [] as Array<DialogsListItemType>,
-   // isInProgressLoadingDialogsList: false,
+
+   messagesListData: {
+      portionSize: 15 as number,
+      scrolledToPage: 1 as number,
+      visibleMessages: [] as Array<IncomingMessageType>,
+      isLoadingMessagePortion: false as boolean,
+   },
 }
 
 type InitialDialogsStateType = typeof initialState

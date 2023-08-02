@@ -4,7 +4,7 @@ import React from 'react'
 import { DialogsAC } from '../../../../store/redux/dialogs/dialogsReducer'
 import { GlobalStateType } from '../../../../store/redux/reduxStore'
 import shortid from 'shortid'
-import { Preloader } from '../../../reusableElements/preloader/Preloader'
+import { Preloader } from '../../../reusableElements/preloaders/main/Preloader'
 import { DialogItem } from './dialogItem/DialogItem'
 import { colorsAvatars, shuffleArray } from '../../../reusableElements/userAvatarWithLink/colorsAvatars'
 

@@ -12,7 +12,7 @@ import { FriendsPage } from './components/pages/friends/Friends'
 import { FriendsNavbarAC } from './store/redux/friendsNavbar/friendsNavbarReducer'
 import { FriendsAC } from './store/redux/friends/friendsReducer'
 import { AuthAC } from './store/redux/auth/authReducer'
-import { Preloader } from './components/reusableElements/preloader/Preloader'
+import { Preloader } from './components/reusableElements/preloaders/main/Preloader'
 import { LoginPage } from './components/pages/login/Login'
 import { DialogsPage } from './components/pages/dialogs/Dialogs'
 

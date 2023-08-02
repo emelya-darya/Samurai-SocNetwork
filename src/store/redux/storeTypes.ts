@@ -157,3 +157,20 @@ export type DialogsListItemType = {
    newMessagesCount: number
    photos: PhotosType
 }
+
+export type IncomingMessageType = {
+   id: string
+   body: string
+   translatedBody: null
+   addedAt: string
+   senderId: number
+   senderName: string
+   recipientId: number
+   viewed: boolean
+}
+
+export type GetMessagesPortionResponseDataType = {
+   items: Array<IncomingMessageType>
+   totalCount: number
+   error: string | null
+}
