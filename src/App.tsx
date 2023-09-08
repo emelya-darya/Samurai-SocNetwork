@@ -58,7 +58,6 @@ const App = function () {
    React.useEffect(() => {
       if (isAuth) {
          dispatch(FriendsNavbarAC.getNavbarFriends())
-         //* вот тут запрос за количеством сообщений
       }
    }, [isAuth])
 
