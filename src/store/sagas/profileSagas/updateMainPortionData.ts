@@ -14,7 +14,7 @@ const updateProfileMainDataSagaWorker = function* (action: ReturnType<typeof Pro
       if (resultCode != 0) throw new Error(messages[0])
       yield put(ProfileAC.setNewProfileData(action.profileData))
    } catch (err: any) {
-      yield put(ErrorsAC.setErrOnUpdateProfileMainData(cutText(err.message, 30, 'Error on updating profile data')))
+      yield put(ErrorsAC.setErrOnUpdateProfileMainData(cutText(err.response?.data?.message || err.message, 30, 'Error on updating profile data')))
    }
 
    yield put(ProfileAC.setIsInProgressUpdateProfileData(false))

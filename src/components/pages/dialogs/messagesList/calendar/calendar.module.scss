@@ -1,0 +1,71 @@
+@import '../../../../../assets//commonStyles/vars_mixins';
+
+.calendarWr {
+    padding: 5px 0px 18px 0px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    @media(max-width: 450px) {
+        justify-content: flex-start;
+    }
+}
+
+.subtitle {
+    font-weight: 600;
+    margin: 0px;
+
+    @media(max-width: 450px) {
+        flex: 0 1 100%;
+    }
+}
+
+.selectBtn {
+    position: relative;
+    display: flex;
+    gap: 7px;
+    justify-content: flex-end;
+}
+
+.getBtn,
+.getBtn:disabled:hover {
+    background-color: $brown_light_clr;
+    height: 35px;
+    width: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $lgrey_clr;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: $borderR_value_small;
+    cursor: pointer;
+    box-shadow: $boxshadow_val_small;
+    transition: $transition_val;
+}
+
+.getBtn:disabled,
+.getBtn:disabled:hover {
+    opacity: .7;
+    cursor: not-allowed;
+}
+
+.getBtn:disabled:hover .getBtn:hover {
+    background-color: rgba($color: $brown_light_clr, $alpha: .9);
+
+}
+
+.err {
+    position: absolute;
+    top: -15px;
+    left: 0px;
+    color: $err_clr;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1;
+    height: 13px;
+    white-space: nowrap;
+    margin: 0px;
+}

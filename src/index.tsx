@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './assets/commonStyles/index.scss'
+import 'react-datepicker/dist/react-datepicker.css'
+import './assets/commonStyles/calendarStyles.scss'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { ChakraProvider } from '@chakra-ui/react'
@@ -11,13 +13,13 @@ import { store } from './store/redux/reduxStore'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
    // <React.StrictMode>
-   <BrowserRouter>
-      <Provider store={store}>
-         <ChakraProvider>
-            <App />
-         </ChakraProvider>
-      </Provider>
-   </BrowserRouter>
+      <BrowserRouter>
+         <Provider store={store}>
+            <ChakraProvider>
+               <App />
+            </ChakraProvider>
+         </Provider>
+      </BrowserRouter>
    // </React.StrictMode>
 )
 

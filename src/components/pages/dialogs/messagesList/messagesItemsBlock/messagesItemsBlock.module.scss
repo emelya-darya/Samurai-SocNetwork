@@ -1,0 +1,31 @@
+@import '../../../../../assets/commonStyles/vars_mixins';
+
+.smallPreloaderWr{
+    margin-bottom: 3px;
+    height: 20px;
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.scrollErr{
+    color: $err_clr;
+}
+
+
+.messagesItems{
+    max-height: 420px;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    @include thin-grey-scrollbar;
+    // margin: 0px 10px;
+    // padding: 0px 7px;
+
+    @media(max-width: 768px) {
+        max-height: 300px;
+    }
+}

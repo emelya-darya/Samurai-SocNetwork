@@ -1,8 +1,11 @@
 import type { GetActionWInferType } from '../storeTypes'
 import {
+   NULLING_SET_ERR_ON_DELETE_SPAM_RESTORE_MESSAGE,
    SET_ERR_ON_CHECK_AUTH,
+   SET_ERR_ON_DELETE_SPAM_RESTORE_MESSAGE,
    SET_ERR_ON_FETCHING_FOLLOW_UNFOLLOW_PROFILE_STAT,
    SET_ERR_ON_GET_CAPTCHA,
+   SET_ERR_ON_GET_NEWER_THAN_MESSAGES,
    SET_ERR_ON_GET_PROFILE,
    SET_ERR_ON_GET_PROFILE_FOLLOW_STAT,
    SET_ERR_ON_GET_PROFILE_STATUS,
@@ -63,6 +66,10 @@ const initialState = {
 
       errOnLoadingFirstMessagesPortion: null as string | null,
       errOnLoadingExtraMessagesPortion: null as string | null,
+
+      errOnDeleteSpamRestoreMessage: {} as { [key: string]: string | null },
+
+      errOnGetNewerThanMessages: null as string | null,
    },
 }
 
@@ -148,6 +155,32 @@ export const errorsReducer = function (state: InitialErrorsStateType = initialSt
       case SET_ERR_ON_LOADING_EXTRA_MESSAGES_PORTION:
          return { ...state, dialogsErrors: { ...state.dialogsErrors, errOnLoadingExtraMessagesPortion: action.message } }
 
+      case SET_ERR_ON_DELETE_SPAM_RESTORE_MESSAGE:
+         return {
+            ...state,
+            dialogsErrors: {
+               ...state.dialogsErrors,
+               errOnDeleteSpamRestoreMessage: { ...state.dialogsErrors.errOnDeleteSpamRestoreMessage, [action.messageId]: action.message },
+            },
+         }
+      case NULLING_SET_ERR_ON_DELETE_SPAM_RESTORE_MESSAGE:
+         return {
+            ...state,
+            dialogsErrors: {
+               ...state.dialogsErrors,
+               errOnDeleteSpamRestoreMessage: {},
+            },
+         }
+
+      case SET_ERR_ON_GET_NEWER_THAN_MESSAGES:
+         return {
+            ...state,
+            dialogsErrors: {
+               ...state.dialogsErrors,
+               errOnGetNewerThanMessages: action.message,
+            },
+         }
+
       default:
          return state
    }
@@ -157,10 +190,12 @@ export type ErrorsReducerType = typeof errorsReducer
 
 export const ErrorsAC = {
    setUsersLoadErrorAC: (err: null | string) => ({ type: SET_USERS_LOAD_ERROR, err } as const),
-   setUsersFollowUnfollowErr: (userId: number | null, message: string | null) => ({ type: SET_USERS_FOLLOW_UNFOLLOW_ERR, userId, message } as const),
+   setUsersFollowUnfollowErr: (userId: number | null, message: string | null) =>
+      ({ type: SET_USERS_FOLLOW_UNFOLLOW_ERR, userId, message } as const),
 
    setFriendsLoadErrorAC: (err: null | string) => ({ type: SET_FRIENDS_LOAD_ERROR, err } as const),
-   setFriendsFollowUnfollowErr: (userId: number | null, message: string | null) => ({ type: SET_FRIENDS_FOLLOW_UNFOLLOW_ERR, userId, message } as const),
+   setFriendsFollowUnfollowErr: (userId: number | null, message: string | null) =>
+      ({ type: SET_FRIENDS_FOLLOW_UNFOLLOW_ERR, userId, message } as const),
 
    setErrorOnGetFriendsNavbar: (message: string | null) => ({ type: SET_FRIENDS_NAVBAR_ERR, message } as const),
 
@@ -168,7 +203,8 @@ export const ErrorsAC = {
    setErrorOnGetProfileStatus: (message: string | null) => ({ type: SET_ERR_ON_GET_PROFILE_STATUS, message } as const),
    setErrorOnGetProfileFollowStat: (message: string | null) => ({ type: SET_ERR_ON_GET_PROFILE_FOLLOW_STAT, message } as const),
 
-   setErrOnProfileFetchingFollowUnfollow: (message: string | null) => ({ type: SET_ERR_ON_FETCHING_FOLLOW_UNFOLLOW_PROFILE_STAT, message } as const),
+   setErrOnProfileFetchingFollowUnfollow: (message: string | null) =>
+      ({ type: SET_ERR_ON_FETCHING_FOLLOW_UNFOLLOW_PROFILE_STAT, message } as const),
 
    setErrOnUpdateProfileStatus: (message: string | null) => ({ type: SET_ERR_ON_UPDATE_PROFILE_STATUS, message } as const),
    setErrOnUpdateProfilePhoto: (message: string | null) => ({ type: SET_ERR_ON_UPDATE_PROFILE_PHOTO, message } as const),
@@ -187,6 +223,13 @@ export const ErrorsAC = {
 
    setErrOnLoadingFirstMessagesPortion: (message: string | null) => ({ type: SET_ERR_ON_LOADING_FIRST_MESSAGES_PORTION, message } as const),
    setErrOnLoadingExtraMessagesPortion: (message: string | null) => ({ type: SET_ERR_ON_LOADING_EXTRA_MESSAGES_PORTION, message } as const),
+
+   setErrOnDeleteSpamRestoreMessage: (messageId: string, message: string | null) =>
+      ({ type: SET_ERR_ON_DELETE_SPAM_RESTORE_MESSAGE, messageId, message } as const),
+
+   nullingSetErrOnDeleteSpamRestoreMessage: () => ({ type: NULLING_SET_ERR_ON_DELETE_SPAM_RESTORE_MESSAGE } as const),
+
+   setErrOnGetNewerThanMessages: (message: string | null) => ({ type: SET_ERR_ON_GET_NEWER_THAN_MESSAGES, message } as const),
 }
 
 export type AllACErrorsTypes = ReturnType<GetActionWInferType<typeof ErrorsAC>>

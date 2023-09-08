@@ -41,10 +41,12 @@
         width: 100%;
         border-radius: 0px;
         border: 0px solid transparent;
+        
     }
 
     @media(max-width: 576px) {
-        padding: 20px 15px 7px 15px;
+        padding: 20px 15px 20px 15px;
+        min-height: 100vh;
     }
 }
 
@@ -97,7 +99,7 @@
 .jumpToDialogLink {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 7px;
     // text-align: right;
     font-weight: 600;
@@ -112,7 +114,7 @@
 
 textarea.styledTextarea {
     height: 120px;
-    margin-bottom: 15px;
+    margin-bottom: 3px;
 }
 
 button.sendBtn {
@@ -203,4 +205,11 @@ button.sendBtn[disabled]:hover {
         font-weight: 700;
         color: $brown_light_clr;
     }
+}
+
+.charactersLeft {
+    // text-align: right;
+    margin-bottom: 2px;
+    font-size: 12px;
+    color: rgba($color: $brown_clr, $alpha: .7);
 }

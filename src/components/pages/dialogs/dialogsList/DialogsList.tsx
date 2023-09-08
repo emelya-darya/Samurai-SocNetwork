@@ -8,14 +8,6 @@ import { Preloader } from '../../../reusableElements/preloaders/main/Preloader'
 import { DialogItem } from './dialogItem/DialogItem'
 import { colorsAvatars, shuffleArray } from '../../../reusableElements/userAvatarWithLink/colorsAvatars'
 
-const todayDate = new Date(Date.now())
-
-export const todayDateObj = {
-   currentYear: todayDate.getFullYear(),
-   currentMonth: todayDate.getMonth(),
-   currentDay: todayDate.getDate(),
-}
-
 const colors = [...colorsAvatars]
 shuffleArray(colors)
 
@@ -54,8 +46,8 @@ const DialogsList = () => {
 
    return (
       <>
-         <h1 className={c.title}>Dialogs list</h1>
-         <p className={c.warn}>*working with REST API, not real time</p>
+         <h1 className={c.title}>Dialogue list</h1>
+         <p className={c.warn}>*working with REST API, not real time (only the last 200 dialogues are available)</p>
 
          {errOnLoadingsDialogsList ? (
             <p className={c.serverErrMessage}>{errOnLoadingsDialogsList}</p>
@@ -66,8 +58,8 @@ const DialogsList = () => {
                {showingItems.length ? (
                   <>
                      {showingItems.map((d, idx) => {
-                        if (d.photos.small) return <DialogItem key={shortid.generate()} todayDateObj={todayDateObj} {...d} />
-                        else return <DialogItem key={shortid.generate()} todayDateObj={todayDateObj} {...d} colorAvatar={colors[idx % colors.length]} />
+                        if (d.photos.small) return <DialogItem key={shortid.generate()} {...d} />
+                        else return <DialogItem key={shortid.generate()} {...d} colorAvatar={colors[idx % colors.length]} />
                      })}
                   </>
                ) : (

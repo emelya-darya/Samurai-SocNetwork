@@ -1,0 +1,258 @@
+@import '../../../../../assets//commonStyles//vars_mixins';
+
+.messageItem {
+    // padding: 5px 8px;
+    padding: 5px 8px;
+    display: flex;
+    gap: 20px;
+    border-radius: $borderR_value;
+    margin-bottom: 4px;
+
+    @media(max-width: 450px) {
+        gap: 15px;
+    }
+}
+
+
+
+.avatarWr {
+    align-self: flex-end;
+
+    a {
+        width: 43px;
+        height: 43px;
+        font-size: 15px;
+
+        @media(max-width: 450px) {
+            width: 33px;
+            height: 33px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    }
+}
+
+.messageContent {
+    position: relative;
+    display: flex;
+    background-color: rgba($color: #000000, $alpha: .1);
+    padding: 5px 10px 5px 7px;
+    border-radius: $borderR_value_small $borderR_value_small $borderR_value_small 0px;
+    gap: 15px;
+    background-color: #fff;
+    box-shadow: $boxshadow_for_message;
+}
+
+.actionErr{
+    position: absolute;
+    color: $err_clr;
+    font-weight: 600;
+    top: -11px;
+    font-size: 11px;
+    right: 0px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+
+
+
+.userNameMessageBlock {
+    flex-grow: 1;
+    min-width: 75px;
+
+    .userName {
+        display: inline-block;
+        font-weight: 700;
+        // margin-bottom: 3px;
+    }
+}
+
+
+
+.actionsDateViewed {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.actions {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2px;
+    font-size: 15px;
+
+    .spam,
+    .delete {
+        padding: 1px;
+        cursor: pointer;
+        transition: $transition_val;
+
+    }
+
+    .spam {
+        color: rgba($color: $warn_clr, $alpha: .3);
+    }
+
+    .spam:hover {
+        color: rgba($color: $warn_clr, $alpha: 1);
+    }
+
+    .delete {
+        color: rgba($color: $err_clr, $alpha: .3)
+    }
+
+    .delete:hover {
+        color: rgba($color: $err_clr, $alpha: 1)
+    }
+}
+
+.dateAndIsVieved {
+    display: flex;
+    gap: 7px;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.date {
+    display: inline-block;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 11px;
+    white-space: nowrap;
+    margin-bottom: 1px;
+    // color: $my_message_icons_clr;
+}
+
+.isViewed {
+    display: none;
+    font-size: 16px;
+    color: $my_message_icons_clr;
+}
+
+.messageContent .maskForRestore {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: $borderR_value_small $borderR_value_small $borderR_value_small 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 7px;
+    padding: 5px 10px;
+    background-color: rgba($color: $lgrey_clr, $alpha: .9);
+    font-size: 13px;
+    line-height: 1;
+
+    .pseudoElemWr {
+        svg path {
+            fill: rgba($color: $lgrey_clr, $alpha: .9)
+        }
+    }
+
+    .restoreBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 7px 10px;
+        border-radius: $borderR_value_small;
+        background-color: $lgrey_clr;
+        gap: 5px;
+        // box-shadow: $boxshadow_val_small;
+        font-weight: 600;
+        color: $my_message_icons_clr;
+        transition: $transition_val;
+        cursor: pointer;
+        
+
+        .restoreIcon {
+            color: $my_message_icons_clr;
+            font-size: 14px;
+        }
+    }
+
+    .restoreBtn:hover{
+        box-shadow: $boxshadow_val_small;
+    }
+
+    .restoreBtn:disabled{
+        cursor: not-allowed;
+        // pointer-events: none;
+    }
+
+    .restoreBtn:disabled:hover{
+        box-shadow: 0px 0px 0px transparent;
+    }
+
+    .maskNotify {
+        font-weight: 600;
+    }
+
+
+}
+
+.pseudoElemWr {
+    bottom: 0px;
+    left: -15px;
+    width: 15px;
+    height: 15px;
+    @include img-absolute;
+    position: absolute;
+
+    svg path {
+        fill: #fff;
+    }
+}
+
+
+.myMessageItem {
+    .messageContent {
+        background-color: $my_message_clr;
+    }
+
+    .pseudoElemWr {
+
+        svg path {
+            fill: $my_message_clr;
+        }
+    }
+
+    .date {
+        color: $my_message_icons_clr;
+    }
+
+    .isViewed {
+        display: block
+    }
+}
+
+.messageItem {
+    .messageContent.markedAsTrash {
+        // opacity: .5;
+
+        .maskForRestore {
+            opacity: 1;
+            visibility: visible;
+
+            // background-color: red;
+        }
+
+    }
+}
+
+
+
+
+// .float{
+//     float: right;
+//     height: 20px;
+//    margin-top: calc(100% - 20px);
+
+// }

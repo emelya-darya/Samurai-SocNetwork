@@ -4,6 +4,7 @@ import { Header } from './header/Header'
 import c from './layout.module.scss'
 import { Sidebar } from './sidebar/Sidebar'
 import { useMatchMedia } from '../../customHooks/useMatchMedia'
+import { MessagePseudoElem } from '../reusableElements/MessagePseudoElem'
 
 const Layout = () => {
    const isLess992 = useMatchMedia().less992

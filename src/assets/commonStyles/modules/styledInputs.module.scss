@@ -15,7 +15,7 @@ textarea.styledTextarea[data-focus-visible],
 input.styledInput:focus-visible {
     border-color: rgba($color: $brown_light_clr, $alpha: .6);
     // box-shadow: $boxshadow_val;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: $boxshadow_val_small;
 }
 
 
@@ -24,7 +24,7 @@ input.styledInput[aria-invalid=true]:focus-visible,
 input.styledInput[aria-invalid=true]:hover {
     border-color: rgba($color: $err_clr, $alpha: 1);
     // box-shadow: $boxshadow_val;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: $boxshadow_val_small;
 }
 
 input.styledInput[aria-invalid=true] {

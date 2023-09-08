@@ -12,7 +12,7 @@ const getCaptchaSagaWorker = function* () {
       const { url } = yield call(authFetchingAPI.getCaptcha)
       yield put(AuthAC.setCaptchaUrl(url))
    } catch (err: any) {
-      yield put(ErrorsAC.setErrOnGetCaptcha(cutText(err.message, 40, 'Error on get captcha url')))
+      yield put(ErrorsAC.setErrOnGetCaptcha(cutText(err.response?.data?.message || err.message, 40, 'Error on get captcha url')))
    }
 
    yield put(AuthAC.setIsInProgressGetCaptcha(false))

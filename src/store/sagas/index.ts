@@ -8,7 +8,15 @@ import { commonWSChatSagaWatcher } from './commonWSChatSagas'
 import { dialogsSagaWatcher } from './dialogsSagas'
 
 function* rootSaga() {
-   yield all([fork(usersSagaWatcher), fork(navbarWatcher), fork(friendsSagaWatcher), fork(profileSagaWatcher), fork(authSagaWatcher), fork(commonWSChatSagaWatcher), fork(dialogsSagaWatcher)])
+   yield all([
+      fork(usersSagaWatcher),
+      fork(navbarWatcher),
+      fork(friendsSagaWatcher),
+      fork(profileSagaWatcher),
+      fork(authSagaWatcher),
+      fork(commonWSChatSagaWatcher),
+      fork(dialogsSagaWatcher),
+   ])
 }
 
 export { rootSaga }

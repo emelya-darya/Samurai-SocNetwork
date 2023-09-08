@@ -14,7 +14,7 @@ const sagaWorkerGetDialogsList = function* () {
       const data: Array<DialogsListItemType> = yield call(dialogsFetchingAPI.getDialogsList)
       yield put(DialogsAC.setDialogsList(data))
    } catch (err: any) {
-      yield put(ErrorsAC.setErrOnLoadingsDialogsList(cutText(err.message, 200, 'Error on loading dialogs list')))
+      yield put(ErrorsAC.setErrOnLoadingsDialogsList(cutText(err.response?.data?.message || err.message, 200, 'Error on loading dialogs list')))
    }
    yield put(DialogsAC.setIsInProgressLoadindDialogsList(false))
 }

@@ -20,7 +20,7 @@ const singInSagaWorker = function* (action: ReturnType<typeof AuthAC.logIn>) {
          throw new Error(messages[0])
       } else if (resultCode == 0) yield put(AuthAC.chechAuth())
    } catch (err: any) {
-      yield put(ErrorsAC.setErrOnLogIn(cutText(err.message, 40, 'Error on trying to login')))
+      yield put(ErrorsAC.setErrOnLogIn(cutText(err.response?.data?.message || err.message, 40, 'Error on trying to login')))
    }
 
    yield put(AuthAC.setIsInProgressSignIn(false))

@@ -20,7 +20,7 @@ const navbarWorker = function* () {
          yield put(FriendsNavbarAC.setFriendsForNavbar(friendsNavbar))
       } else throw new Error(error)
    } catch (err: any) {
-      yield put(ErrorsAC.setErrorOnGetFriendsNavbar(err.message || 'Error on load subs list'))
+      yield put(ErrorsAC.setErrorOnGetFriendsNavbar(err.response?.data?.message || err.message || 'Error on load subs list'))
    }
 }
 

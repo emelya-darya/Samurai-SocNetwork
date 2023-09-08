@@ -28,7 +28,7 @@ const checkAuthSagaWorker = function* () {
       }
    } catch (err: any) {
       yield put(AuthAC.setIsAuth(false))
-      yield put(ErrorsAC.setErrOnCheckAuth(cutText(err.message, 25, 'Authorization check error')))
+      yield put(ErrorsAC.setErrOnCheckAuth(cutText(err.response?.data?.message || err.message, 25, 'Authorization check error')))
    }
 
    yield put(AuthAC.setIsInProgressCheckAuth(false))

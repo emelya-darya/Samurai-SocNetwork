@@ -174,3 +174,9 @@ export type GetMessagesPortionResponseDataType = {
    totalCount: number
    error: string | null
 }
+
+export type GetDialogsListResponseDataType = Array<DialogsListItemType>
+
+export type DeleteMarkSpamMessageRespType = { resultCode?: 0 | 1; message?: string }
+
+export type GetMessagesNewerThanResponseType = Array<IncomingMessageType> | { message: string }

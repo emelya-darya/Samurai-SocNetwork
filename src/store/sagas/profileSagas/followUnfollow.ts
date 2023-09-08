@@ -29,7 +29,7 @@ const handleFollowUnfollow = function* (userId: number, isFollowedNow: boolean) 
       }
       yield put(ProfileAC.setNewFollowStat())
    } catch (err: any) {
-      yield put(ErrorsAC.setErrOnProfileFetchingFollowUnfollow(cutText(err.message, 25, 'Some server error')))
+      yield put(ErrorsAC.setErrOnProfileFetchingFollowUnfollow(cutText(err.response?.data?.message || err.message, 25, 'Some server error')))
    }
 
    yield put(ProfileAC.setIsInProgressChangeFollowStat(false))

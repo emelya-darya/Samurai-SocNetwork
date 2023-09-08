@@ -16,7 +16,7 @@ const updatePhotoSagaWorker = function* (action: ReturnType<typeof ProfileAC.upd
       yield put(ProfileAC.setNewPhotos(data.photos))
       yield put(AuthAC.setAvatar(data.photos.small))
    } catch (err: any) {
-      yield put(ErrorsAC.setErrOnUpdateProfilePhoto(cutText(err.message, 45, 'Error on update photo')))
+      yield put(ErrorsAC.setErrOnUpdateProfilePhoto(cutText(err.response?.data?.message || err.message, 45, 'Error on update photo')))
    }
 
    yield put(ProfileAC.setIsInProgressUpdatePhotos(false))

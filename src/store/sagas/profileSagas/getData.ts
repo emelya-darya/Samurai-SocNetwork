@@ -13,7 +13,7 @@ const handleGetProfileMainPortionData = function* (userId: number) {
       const data: ProfileDataTypeOnGet = yield call(profileFetchingAPI.onShowProfile, userId)
       yield put(ProfileAC.setLargePortionData(data))
    } catch (err: any) {
-      yield put(ErrorsAC.setErrorOnGetProfile(cutText(err.message, 200, 'Error on get profile data')))
+      yield put(ErrorsAC.setErrorOnGetProfile(cutText(err.response?.data?.message || err.message, 200, 'Error on get profile data')))
    }
 }
 
@@ -24,7 +24,7 @@ const handleGetProfileStatus = function* (userId: number) {
       const status: string | null = yield call(profileFetchingAPI.onGetStatus, userId)
       yield put(ProfileAC.setStatus(status))
    } catch (err: any) {
-      yield put(ErrorsAC.setErrorOnGetProfileStatus(cutText(err.message, 40, 'Error on get profile status')))
+      yield put(ErrorsAC.setErrorOnGetProfileStatus(cutText(err.response?.data?.message || err.message, 40, 'Error on get profile status')))
    }
 }
 
@@ -35,7 +35,7 @@ const handleGetIsFollowedProfile = function* (userId: number) {
       const followStat: boolean = yield call(profileFetchingAPI.onCheckFollowForProfile, userId)
       yield put(ProfileAC.setIsFollowed(followStat))
    } catch (err: any) {
-      yield put(ErrorsAC.setErrorOnGetProfileFollowStat(cutText(err.message, 25, 'Error on get follow status')))
+      yield put(ErrorsAC.setErrorOnGetProfileFollowStat(cutText(err.response?.data?.message || err.message, 25, 'Error on get follow status')))
    }
 }
 

@@ -50,5 +50,11 @@ const createChannelWSSagaWatcher = function* () {
 }
 
 export const commonWSChatSagaWatcher = function* () {
-   yield all([fork(createChannelWSSagaWatcher), fork(openWSChannelSagaWatcher), fork(onMessageWSChannelSagaWatcher), fork(onCloseWSChannelSagaWatcher), fork(onErrorWSChannelSagaWatcher)])
+   yield all([
+      fork(createChannelWSSagaWatcher),
+      fork(openWSChannelSagaWatcher),
+      fork(onMessageWSChannelSagaWatcher),
+      fork(onCloseWSChannelSagaWatcher),
+      fork(onErrorWSChannelSagaWatcher),
+   ])
 }

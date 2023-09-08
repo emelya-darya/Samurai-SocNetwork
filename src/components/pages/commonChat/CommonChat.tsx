@@ -100,16 +100,7 @@ const CommonChatPage = withAuthRedirectHOC(() => {
          ) : (
             <>
                <div className={c.messagesContainer}>
-                  {/* <div className={c.messagesContainerInner} ref={blockWithMessages}>
-                     {messages?.length ? (
-                        messages.map((m, idx, arr) => {
-                           return <ChatMessageItem key={shortid.generate()} {...m} bgColor={colorsAvatars[m.userId] || '#F0772B'} />
-                        })
-                     ) : (
-                        <p className={c.noMessagesLett}>There have been no messages in the chat lately. Fix it, write first.</p>
-                     )}
-                     <div ref={anchorRefForAutoscroll}></div>
-                  </div> */}
+                 
                   <MessagesBlock messages={messages} anchorRefForAutoscroll={anchorRefForAutoscroll} blockWithMessages={blockWithMessages} />
                   <AddMessageForm WSChannel={WSChannel} isOpenWSChannel={isOpenWSChannel} />
                </div>

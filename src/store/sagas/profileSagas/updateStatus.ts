@@ -15,7 +15,7 @@ const updateStatusSagaWorker = function* (action: ReturnType<typeof ProfileAC.up
       yield put(ProfileAC.setStatus(action.status))
       
    } catch (err: any) {
-      yield put(ErrorsAC.setErrOnUpdateProfileStatus(cutText(err.message, 30, 'Error on update status')))
+      yield put(ErrorsAC.setErrOnUpdateProfileStatus(cutText(err.response?.data?.message || err.message, 30, 'Error on update status')))
    }
 
    yield put(ProfileAC.setIsInProgressUpdateStatus(false))

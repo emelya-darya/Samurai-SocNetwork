@@ -11,6 +11,9 @@ import {
    GenericResponceType,
    OnSendMessageResponseType,
    GetMessagesPortionResponseDataType,
+   GetDialogsListResponseDataType,
+   DeleteMarkSpamMessageRespType,
+   GetMessagesNewerThanResponseType,
 } from '../redux/storeTypes'
 
 // axios можно настроить с помощью create, чтобы не дублировать каждый раз объект с параметрами и базовый URL
@@ -40,7 +43,9 @@ const friendsFetchingAPI = {
    },
 
    async getFriendsForNavbar(page: number, pageSizeForNavbar: number) {
-      return instance.get<GetUsersFriendsServerResponseDataType>(`users?page=${page}&count=${pageSizeForNavbar}&friend=true`).then(response => response.data)
+      return instance
+         .get<GetUsersFriendsServerResponseDataType>(`users?page=${page}&count=${pageSizeForNavbar}&friend=true`)
+         .then(response => response.data)
    },
 }
 
@@ -123,20 +128,36 @@ const dialogsFetchingAPI = {
    },
 
    async getDialogsList() {
-      return instance.get('/dialogs').then(response => response.data)
+      return instance.get<GetDialogsListResponseDataType>('/dialogs').then(response => response.data)
    },
 
    async getMessagesPortion(userId: number, page: number, count: number) {
-      return instance.get<GetMessagesPortionResponseDataType>(`/dialogs/${userId}/messages/?page=${page}&count=${count}`).then(response => response.data)
+      return instance
+         .get<GetMessagesPortionResponseDataType>(`/dialogs/${userId}/messages/?page=${page}&count=${count}`)
+         .then(response => response.data)
    },
 
-   // async getIsViewedMessage(messageId: string){
-   //    return instance.get<boolean>(`/dialogs/messages/${messageId}/viewed`).then(response => response.data)
-   // }
+   async deleteMessage(messageId: string) {
+      return instance.delete<DeleteMarkSpamMessageRespType>(`/dialogs/messages/${messageId}`).then(response => response.data)
+   },
 
-   // async markMessageAsSpam(messageId: string){
-   //    return instance.post<сюда типизацию ответа>(`/dialogs/messages/${messageId}/spam`).then(response => response.data)
-   // }
+   async markSpamMessage(messageId: string) {
+      return instance.post<DeleteMarkSpamMessageRespType>(`/dialogs/messages/${messageId}/spam`).then(response => response.data)
+   },
+
+   async restoreMessage(messageId: string) {
+      return instance.put<DeleteMarkSpamMessageRespType>(`/dialogs/messages/${messageId}/restore`).then(response => response.data)
+   },
+
+   async getMessagesNewerThan(userId: number, dateString: string) {
+      return instance
+         .get<GetMessagesNewerThanResponseType>(`/dialogs/${userId}/messages/new?newerThen=${dateString}`)
+         .then(response => response.data)
+   },
+
+   async getNewMessagesCount() {
+      return instance.get<number>(`/dialogs/messages/new/count`).then(response => response.data)
+   },
 }
 
 export { usersFetchingAPI, friendsFetchingAPI, profileFetchingAPI, followUnfollowAPI, authFetchingAPI, dialogsFetchingAPI }

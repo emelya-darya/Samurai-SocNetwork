@@ -8,6 +8,7 @@
     border: 1px solid $lgrey_clr;
     border-radius: 50%;
     color: $lgrey_clr;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 
     &:hover{
         color: $lgrey_clr;
@@ -22,6 +23,7 @@
 
 .subAvatarWPhoto {
     @include img-absolute;
+    
 
     img {
         border-radius: 50%;

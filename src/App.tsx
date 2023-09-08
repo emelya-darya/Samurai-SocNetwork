@@ -56,7 +56,10 @@ const App = function () {
 
    const { isAuth } = useSelector((state: GlobalStateType) => state.forAuthData)
    React.useEffect(() => {
-      if (isAuth) dispatch(FriendsNavbarAC.getNavbarFriends())
+      if (isAuth) {
+         dispatch(FriendsNavbarAC.getNavbarFriends())
+         //* вот тут запрос за количеством сообщений
+      }
    }, [isAuth])
 
    const { isInProgressCheckAuth, isAuthChecking } = useSelector((state: GlobalStateType) => state.forAuthData)
