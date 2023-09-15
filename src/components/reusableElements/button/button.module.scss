@@ -1,0 +1,47 @@
+@import ',./../../../../assets//commonStyles//vars_mixins';
+
+
+.btn,
+a.btn,
+.btn:disabled:hover {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    letter-spacing: .5px;
+
+    padding: 8px 15px;
+    
+    background-color: $brown_light_clr;
+    border: 0px solid transparent;
+    box-shadow: $boxshadow_val_small;
+    border-radius: $borderR_value_small;
+
+    font-size: 1rem;
+    font-weight: 600;
+    // letter-spacing: .5px;
+    text-transform: uppercase;
+    color: $lgrey_clr;
+    white-space: nowrap;
+   
+    cursor: pointer;
+    transition: $transition_val;
+
+    svg {
+        font-size: 20px;
+        margin: 0px;
+        flex-shrink: 0;
+    }
+}
+
+.btn:hover {
+    background-color: rgba($color: $brown_light_clr, $alpha: .9);
+    color: $lgrey_clr;
+}
+
+.btn:disabled,
+.btn:disabled:hover {
+    opacity: .7;
+    cursor: not-allowed;
+}

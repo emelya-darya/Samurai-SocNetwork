@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import c from './sidebar.module.scss'
-import { VStack } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../store/redux/reduxStore'
 import { BsArrowRight } from 'react-icons/bs'
@@ -9,6 +8,7 @@ import shortid from 'shortid'
 import { UserAvatarWithLink } from '../../reusableElements/userAvatarWithLink/UserAvatarWithLink'
 import { colorsAvatars, shuffleArray } from '../../reusableElements/userAvatarWithLink/colorsAvatars'
 import { DialogsAC } from '../../../store/redux/dialogs/dialogsReducer'
+import { NewMessagesNotify } from './elements/NewMessagesNotify'
 
 type PropsForViewType = {
    isSidebarHidden: boolean
@@ -27,6 +27,7 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
       searchRequest: friendsSearchRequest,
       currentPage: friendsCurrentPage,
    } = useSelector((state: GlobalStateType) => state.forFriendsPageData)
+
    const pathToFriendsWithQueryParams = `/subs?search=${friendsSearchRequest || friendsSearchRequestFromLC}&page=${
       friendsCurrentPage || friendsActivePageFromLC
    }`
@@ -52,31 +53,22 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
       )
    })
 
-   const { isAuth } = useSelector((state: GlobalStateType) => state.forAuthData)
+   const isAuth = useSelector((state: GlobalStateType) => state.forAuthData.isAuth)
 
    if (totalFriendsCount > 5) {
+      // const totalFriendsCount = 878686666
+      const str = String(totalFriendsCount - 4)
+      const lett = str.length <= 3 ? str : str.slice(0, 2) + '...'
       subsBlockItems[4] = (
          <div className={c.restSubsCountBlock} key={shortid.generate()}>
-            <span>+{totalFriendsCount - 4}</span>
+            <span>+{lett}</span>
          </div>
       )
    }
 
-   const newMessagesCount = useSelector((state: GlobalStateType) => state.forDialogsData.newMessagesCount)
-   const newMessagesCountFormatted = String(newMessagesCount).length > 2 ? String(newMessagesCount)[0] + '..' : String(newMessagesCount)
-
-   React.useEffect(() => {
-      dispatch(DialogsAC.getNewMessagesCount())
-   }, [])
-
-   const dispatch = useDispatch()
-   setInterval(() => {
-      dispatch(DialogsAC.getNewMessagesCount())
-   }, 10000)
-
    return (
       <aside className={`${c.sidebar} ${isSidebarHidden ? c.hide : ''}`}>
-         <VStack className={c.linksContainer}>
+         <div className={c.linksContainer}>
             <NavLink
                to='/profile'
                onClick={sidebarHandler}
@@ -88,13 +80,7 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
                onClick={sidebarHandler}
                className={`${currPathName === '/dialogs' ? c.act : c.navbar__link} ${c.linkToDialogs}`}>
                <span>Dialogs</span>
-               {newMessagesCount ? (
-                  <div className={c.newMessagesNotify}>
-                     <span>{newMessagesCountFormatted}</span>
-                  </div>
-               ) : (
-                  <></>
-               )}
+               <NewMessagesNotify />
             </NavLink>
             <NavLink to='/common-chat' onClick={sidebarHandler} className={currPathName === '/common-chat' ? c.act : c.navbar__link}>
                <span>Common chat</span>
@@ -109,7 +95,7 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
             <NavLink to='/info' onClick={sidebarHandler} className={currPathName === '/info' ? c.act : c.navbar__link}>
                <span>App info</span>
             </NavLink>
-         </VStack>
+         </div>
          <div className={c.subsBlock}>
             {isAuth ? (
                <>

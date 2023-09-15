@@ -1,11 +1,18 @@
-button.buttFollUnfoll {
+@import '../vars_mixins';
+
+button.buttFollUnfoll,
+button.buttFollUnfoll:disabled:hover {
     width: 160px;
     text-transform: uppercase;
-    padding: 15px 25px;
-    box-shadow: $boxshadow_val;
+    // padding: 15px 25px;
+    box-shadow: $boxshadow_val_small;
     border: 2px solid $orange_clr;
     transition: $transition_val;
-    gap: 5px;
+    gap: 12px;
+    // font-size: 14px;
+    height: 35px;
+    // line-height: 1;
+    
 
     svg {
         width: 1.3rem;
@@ -25,11 +32,12 @@ button.followBtn {
 
 button.unfollowBtn:hover {
     background-color: rgba($color: $orange_clr, $alpha: .8);
-    border: 2px solid rgba($color: $orange_clr, $alpha: .8);
+    border-color:  rgba($color: $orange_clr, $alpha: .8);
 }
 
 button.followBtn:hover {
     background-color: rgba($color: $orange_clr, $alpha: .1);
+    color: $orange_clr;
     // color: $lgrey_clr;
 }
 

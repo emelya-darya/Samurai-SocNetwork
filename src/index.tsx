@@ -6,20 +6,17 @@ import 'react-datepicker/dist/react-datepicker.css'
 import './assets/commonStyles/calendarStyles.scss'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import { ChakraProvider } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
 import { store } from './store/redux/reduxStore'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
    // <React.StrictMode>
-      <BrowserRouter>
-         <Provider store={store}>
-            <ChakraProvider>
-               <App />
-            </ChakraProvider>
-         </Provider>
-      </BrowserRouter>
+   <BrowserRouter>
+      <Provider store={store}>
+         <App />
+      </Provider>
+   </BrowserRouter>
    // </React.StrictMode>
 )
 

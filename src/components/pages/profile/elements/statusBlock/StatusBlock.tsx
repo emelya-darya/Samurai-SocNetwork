@@ -1,4 +1,3 @@
-import { Button, Icon, Input, InputGroup, InputRightElement, Textarea } from '@chakra-ui/react'
 import c from './statusBlock.module.scss'
 import { TfiThought } from 'react-icons/tfi'
 import { AiOutlineEdit, AiOutlineSend } from 'react-icons/ai'
@@ -6,6 +5,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../../../store/redux/storeTypes'
 import { ProfileAC } from '../../../../../store/redux/profile/profileReducer'
+import { Button } from '../../../../reusableElements/button/Button'
 
 type StatusBlockPropsType = {
    isMyProfile: boolean
@@ -38,25 +38,45 @@ const StatusBlock: React.FC<StatusBlockPropsType> = ({ isMyProfile }) => {
    if (!errOnGetStatus)
       return (
          <div className={c.status}>
-            <Icon as={TfiThought} className={c.iconCloud} />
+            <TfiThought className={c.iconCloud} />
             <div className={c.iconContent}>
                {editMode ? (
-                  <InputGroup size='md'>
-                     <Input placeholder='Status...' variant='flushed' className={c.statusInput} autoFocus={true} onBlur={onUpdateStatusHandler} value={localStatusValue} onInput={onInputHandler} />
-                     <InputRightElement width='28px'>
-                        <Button size='sm' className={c.inputStatusSendBtn} onClick={onUpdateStatusHandler} isLoading={isUpdateStatusInProgress}>
-                           <Icon as={AiOutlineSend} />
-                        </Button>
-                     </InputRightElement>
-                  </InputGroup>
+                  <div className={c.statusInputWr}>
+                     <input
+                        placeholder='Status...'
+                        className={c.statusInput}
+                        autoFocus={true}
+                        onBlur={onUpdateStatusHandler}
+                        value={localStatusValue}
+                        onInput={onInputHandler}
+                     />
+                     <Button
+                        name={null}
+                        extraClassName={c.inputStatusSendBtn}
+                        onClickHandler={onUpdateStatusHandler}
+                        isLoading={isUpdateStatusInProgress}
+                        isDisabled={false}
+                        Icon={AiOutlineSend}
+                        type='button'
+                        preloaderClr='#A0450B'
+                     />
+                  </div>
                ) : (
                   <span className={c.statusText}>{status?.trim() || '...'}</span>
                )}
                <p className={`${c.err} ${c.updateStatusErr}`}>{errOnUpdateProfileStatus}</p>
                {isMyProfile && !editMode && (
-                  <Button className={c.statusUpdateBtn} title='Update status' type='button' onClick={installEditMode} isLoading={isUpdateStatusInProgress}>
-                     <Icon as={AiOutlineEdit} />
-                  </Button>
+                  <Button
+                     name={null}
+                     Icon={AiOutlineEdit}
+                     extraClassName={c.statusUpdateBtn}
+                     title='Update status'
+                     type='button'
+                     onClickHandler={installEditMode}
+                     isLoading={isUpdateStatusInProgress}
+                     isDisabled={false}
+                     preloaderClr='#A0450B'
+                  />
                )}
             </div>
          </div>
@@ -64,7 +84,7 @@ const StatusBlock: React.FC<StatusBlockPropsType> = ({ isMyProfile }) => {
    else
       return (
          <div className={c.status}>
-            <Icon as={TfiThought} />
+            <TfiThought/>
             <span className={c.err}>{errOnGetStatus}</span>
          </div>
       )

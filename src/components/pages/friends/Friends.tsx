@@ -2,7 +2,6 @@ import c from './friends.module.scss'
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import shortid from 'shortid'
-import { Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { BsSearch } from 'react-icons/bs'
 import { Paginator } from '../../reusableElements/paginator/Paginator'
 import { FriendCardPreview } from './friendCardPreview/FriendCardPreview'
@@ -90,19 +89,25 @@ const FriendsPage = withAuthRedirectHOC(() => {
             {!errOnLoadFriends && <p>({totalFriendsCount})</p>}
          </div>
 
-         <InputGroup className={c.searchInputGroup}>
-            <InputLeftElement pointerEvents='none' className={c.searchInputLeftEl}>
-               <Icon as={BsSearch} />
-            </InputLeftElement>
-            <Input value={searchRequest || ''} placeholder='Search...' variant='flushed' className={c.searchInput} onInput={onTypeSearchRequestHandler} />
-         </InputGroup>
+         <div className={c.searchInputGroup}>
+            <input value={searchRequest || ''} placeholder='Search...' className={c.searchInput} onInput={onTypeSearchRequestHandler} />
+            <div className={c.searchIconWr}>
+               <BsSearch />
+            </div>
+         </div>
 
          {errOnLoadFriends ? (
             <p className={c.serverErrMessage}>{errOnLoadFriends}</p>
          ) : (
             <>
                <div className={c.paginationBlock}>
-                  <Paginator totalRecordsCount={totalFriendsCount} pageLimit={pageSize} onPageChangeHandler={onChangePageFunc} baseURI={BASE_URL_FOR_PAGINATOR} activePage={currentPage || 1} />
+                  <Paginator
+                     totalRecordsCount={totalFriendsCount}
+                     pageLimit={pageSize}
+                     onPageChangeHandler={onChangePageFunc}
+                     baseURI={BASE_URL_FOR_PAGINATOR}
+                     activePage={currentPage || 1}
+                  />
                </div>
                {isLoading ? (
                   <Preloader color='#A0450B' size={100} minHeight='75vh' />
@@ -119,7 +124,13 @@ const FriendsPage = withAuthRedirectHOC(() => {
                )}
 
                <div className={c.paginationBlock}>
-                  <Paginator totalRecordsCount={totalFriendsCount} pageLimit={pageSize} onPageChangeHandler={onChangePageFunc} baseURI={BASE_URL_FOR_PAGINATOR} activePage={currentPage || 1} />
+                  <Paginator
+                     totalRecordsCount={totalFriendsCount}
+                     pageLimit={pageSize}
+                     onPageChangeHandler={onChangePageFunc}
+                     baseURI={BASE_URL_FOR_PAGINATOR}
+                     activePage={currentPage || 1}
+                  />
                </div>
             </>
          )}

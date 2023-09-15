@@ -1,9 +1,7 @@
-import { Button, Icon, Textarea } from '@chakra-ui/react'
 import { AiOutlineSend } from 'react-icons/ai'
 import c from './addMessageForm.module.scss'
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { GlobalStateType } from '../../../../../store/redux/reduxStore'
+import { Button } from '../../../../reusableElements/button/Button'
 
 type AddMessagePropsType = {
    WSChannel: null | WebSocket
@@ -38,13 +36,29 @@ const AddMessageForm: React.FC<AddMessagePropsType> = ({ WSChannel, isOpenWSChan
    }
 
    return (
-      <form className={c.form} onSubmit={onSubmitHandler}>
-         <Textarea onInput={onChangeHandler} value={textareaValue} placeholder='Message' size='lg' resize='none' className={c.styledTextarea} maxLength={MAX_LENGTH} onKeyUp={onKeyupHandler} />
+      <form className={c.form} onSubmit={onSubmitHandler} action=''>
+         <textarea
+            onInput={onChangeHandler}
+            value={textareaValue}
+            placeholder='Message'
+            className={c.styledTextarea}
+            maxLength={MAX_LENGTH}
+            onKeyUp={onKeyupHandler}
+         />
          <p className={c.charactersLeft}>{MAX_LENGTH - countCharacters} characters left</p>
 
-         <Button type='submit' className={c.sendBtn} isDisabled={!textareaValue || !isOpenWSChannel}>
+         {/* <Button type='submit' className={c.sendBtn} isDisabled={!textareaValue || !isOpenWSChannel}>
             <Icon as={AiOutlineSend} />
-         </Button>
+         </Button> */}
+         {/* <input type='submit' value='отправить' style={{position: 'absolute', top: '0px'}}/> */}
+         <Button
+            name={null}
+            Icon={AiOutlineSend}
+            type='submit'
+            isDisabled={!textareaValue || !isOpenWSChannel}
+            isLoading={false}
+            extraClassName={c.sendBtn}
+         />
       </form>
    )
 }

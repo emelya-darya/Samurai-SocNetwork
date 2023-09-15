@@ -25,18 +25,12 @@ const Calendar: React.FC<CalendarPropsType> = ({ anchorRefForAutoscroll }) => {
 
    const isDisabledBtn = dateToGetMessagesNewerThan === calendarValueToEqual || isInProgress
 
-   React.useEffect(() => {
-      console.log(calendarValueToEqual)
-   }, [calendarValueToEqual])
-
    const dispatch = useDispatch()
    const onClickHandler = () => {
-      // console.log('клик')
       dispatch(DialogsAC.getMessagesNewerThan(calendarDate?.toISOString() || null))
    }
 
    React.useEffect(() => {
-      console.log(anchorRefForAutoscroll)
       anchorRefForAutoscroll?.current?.scrollIntoView({ block: 'nearest', inline: 'start' })
    }, [dateToGetMessagesNewerThan])
 

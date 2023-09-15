@@ -1,4 +1,3 @@
-import { Button, Icon } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { GlobalStateType, UserFriendItemType } from '../../../../store/redux/storeTypes'
 import { TfiThought } from 'react-icons/tfi'
@@ -10,6 +9,7 @@ import React from 'react'
 import { onCloseModal, onOpenModal } from '../../../reusableElements/forOpenModalOverflowHandler/forOpenModalOverflowHandler'
 import { ModalWindowWriteMessage } from '../../../reusableElements/modalWindowWriteMessage/ModalWindowWriteMessage'
 import { nophoto } from '../../../reusableElements/nophoto'
+import { Button } from '../../../reusableElements/button/Button'
 
 type FriendCardPreviewPropsType = {
    friendData: UserFriendItemType
@@ -48,7 +48,7 @@ const FriendCardPreview: React.FC<FriendCardPreviewPropsType> = ({ friendData })
                   <p className={c.name}>{friendData.name?.trim()}</p>
                   {friendData.status?.trim() && (
                      <p className={c.status}>
-                        <Icon as={TfiThought} />
+                        <TfiThought />
                         <span>{friendData.status}</span>
                      </p>
                   )}
@@ -57,34 +57,48 @@ const FriendCardPreview: React.FC<FriendCardPreviewPropsType> = ({ friendData })
 
             <div className={c.followUnfollowBtnBlock} style={{ opacity: friendData.followed ? 1 : 0 }}>
                <Button
-                  size='md'
-                  isLoading={friendData.fetchingFollowingProgress}
-                  // isDisabled={true}
-                  className={`${c.buttFollUnfoll} ${friendData.followed ? c.unfollowBtn : c.followBtn}`}
-                  rightIcon={friendData.followed ? <BiMinus /> : <BiPlus />}
-                  onClick={handleFollowUnfollowFriend}>
-                  {friendData.followed ? 'Unfollow' : 'Follow'}
-               </Button>
+                  isLoading={!!friendData.fetchingFollowingProgress}
+                  extraClassName={`${c.buttFollUnfoll} ${friendData.followed ? c.unfollowBtn : c.followBtn}`}
+                  Icon={friendData.followed ? BiMinus : BiPlus}
+                  name={friendData.followed ? 'Unfollow' : 'Follow'}
+                  onClickHandler={handleFollowUnfollowFriend}
+                  type='button'
+                  isDisabled={false}
+                  preloaderClr={friendData.followed ? '#EFEFEF' : '#F0772B'}
+               />
 
-               <p className={`${c.error} ${friendData.id === errOnFollowUnfollow.userId ? c.visible : ''}`}>{errOnFollowUnfollow.message || ''}</p>
+               <p className={`${c.error} ${friendData.id === errOnFollowUnfollow.userId ? c.visible : ''}`}>
+                  {errOnFollowUnfollow.message || ''}
+               </p>
             </div>
          </div>
 
          <div className={c.writeAMessageBlock}>
-            <Button onClick={openModalHandler} variant='link'>
-               Write a message
-            </Button>
+            <div className={c.writeAMessage} onClick={openModalHandler}>Write a message</div>
          </div>
          {!friendData.followed && (
             <div className={c.maskWr}>
                <div className={c.mask}></div>
-               <Button size='md' isLoading={friendData.fetchingFollowingProgress} onClick={handleFollowUnfollowFriend} className={c.cancelBtn}>
-                  Cancel delete
-               </Button>
+
+               <Button
+                  isLoading={!!friendData.fetchingFollowingProgress}
+                  onClickHandler={handleFollowUnfollowFriend}
+                  extraClassName={c.cancelBtn}
+                  name='Cancel delete'
+                  Icon={null}
+                  type='button'
+                  isDisabled={false}
+               />
             </div>
          )}
 
-         <ModalWindowWriteMessage photoSrc={photo} userName={friendData.name || 'User'} userId={friendData.id} isOpen={isOpenModal} closeModalHandler={closeModalHandler} />
+         <ModalWindowWriteMessage
+            photoSrc={photo}
+            userName={friendData.name || 'User'}
+            userId={friendData.id}
+            isOpen={isOpenModal}
+            closeModalHandler={closeModalHandler}
+         />
       </div>
    )
 }

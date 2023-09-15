@@ -23,6 +23,13 @@
     }
 }
 
+.headerInner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
 @keyframes rotate-logo {
     0% {
         transform: rotate(0deg);
@@ -91,6 +98,7 @@ a.logoWr {
 
     svg {
         fill: $brown_light_clr;
+        font-size: 4rem;
 
         @media(max-width: 576px) {
             width: 100%;
@@ -133,7 +141,9 @@ a.logoWr {
         background-color: $brown_light_clr;
         color: $orange_light_clr;
         border: 1px solid $brown_light_clr;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        // box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        width: 43px;
+        height: 43px;
     }
 
     .nickName {
@@ -156,42 +166,17 @@ a.logoWr {
         right: 0px;
         opacity: 0;
         visibility: hidden;
-        transition: $transition_val;
-
-        display: inline-flex;
-
-        justify-content: center;
-        align-items: center;
-
-
+       
         width: 130px;
-        text-transform: uppercase;
-        padding: 5px 25px;
-        font-weight: 500;
-        // background-color: $brown_light_clr;
-        // border: 2px solid $brown_light_clr;
+        font-size: 14px;
+        
+        padding: 8px 20px;
+        // height: auto;
         background-color: $brown_clr;
-        border: 2px solid $brown_clr;
-
-        box-shadow: $boxshadow_val;
-
-        gap: 5px;
-        color: $lgrey_clr;
-        border-radius: 5px;
-        white-space: nowrap;
-        transition: $transition_val;
-
-        svg {
-            font-size: 1.5rem;
-            margin: 0px;
-        }
-
+        gap: 10px;
+    
         &:hover {
-            // background-color: rgba($color: $brown_light_clr, $alpha: .9);
-            // border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
             background-color: rgba($color: $brown_clr, $alpha: .9);
-            border: 2px solid rgba($color: $brown_clr, $alpha: .9);
-            color: $lgrey_clr;
         }
     }
 
@@ -219,39 +204,33 @@ a.logoWr {
 }
 
 
-.loginBtn {
-    // align-self: center;
-    display: inline-flex;
+.loginBtnWr a.loginBtn {
     margin-left: auto;
-    justify-content: center;
-    align-items: center;
     width: 130px;
-    text-transform: uppercase;
-    padding: 5px 25px;
-    font-weight: 500;
+    font-weight: 600;
     background-color: $brown_light_clr;
-    box-shadow: $boxshadow_val;
-    border: 2px solid $brown_light_clr;
-    transition: $transition_val;
-    gap: 10px;
-    color: $lgrey_clr;
-    border-radius: 5px;
-    white-space: nowrap;
-    transition: $transition_val;
+    gap: 15px;
+    height: 35px;
 
     @media(max-width: 576px) {
         width: 100px;
+        gap: 7px;
     }
 
     svg {
         font-size: 1.5rem;
-        ;
     }
 
     &:hover {
         background-color: rgba($color: $brown_light_clr, $alpha: .9);
-        border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
         color: $lgrey_clr;
+    }
+
+    &.disabled,
+    &.disabled:hover{
+        opacity: 0.8;
+        background-color: $brown_light_clr;
+        cursor: not-allowed;
     }
 }
 
@@ -262,4 +241,20 @@ a.logoWr {
     font-weight: 600;
     white-space: nowrap;
     margin-top: 5px;
+}
+
+.avatarWr{
+    position: relative;
+}
+
+.errOnSignOut{
+    position: absolute;
+    left: -10px;
+    bottom: -25px;
+    @include text-cut(80px);
+    font-size: 9px;
+    font-weight: 600;
+    color: $err_clr;
+    // height: 9px;
+
 }

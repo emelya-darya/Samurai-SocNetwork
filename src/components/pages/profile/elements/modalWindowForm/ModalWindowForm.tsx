@@ -1,4 +1,3 @@
-import { Icon } from '@chakra-ui/react'
 import c from './modalWindowForm.module.scss'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Form } from './form/Form'
@@ -25,7 +24,7 @@ const ModalWindowForm: React.FC<ModalWindowFormPropsType> = ({ isOpen, handleClo
       <div className={`${c.modal} ${isOpen ? c.visible : ''} close`} onMouseDown={handleCloseWrapper}>
          <div className={c.modalContent}>
             <div className={`${c.closeBtn} close`}>
-               <Icon as={AiOutlineClose} className='close' />
+               <AiOutlineClose className='close'/>
                <div className={`${c.closeBtnMask} close`}></div>
             </div>
             <p className={c.title}>Edit profile</p>

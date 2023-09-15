@@ -83,22 +83,24 @@ h3 {
     }
 }
 
-a {
+a,
+a:active,
+a:visited {
     color: $brown_clr;
     transition: $transition_val;
+    text-decoration: none;
 }
-
-
 
 a:hover {
     color: $brown_light_clr;
+    text-decoration: none;
 }
+
+
 
 p {
     margin-bottom: 1.3rem;
 }
-
-
 
 
 // Скроллбар

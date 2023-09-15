@@ -1,5 +1,5 @@
 @import '../../../../../../assets//commonStyles//vars_mixins';
-@import '../../../../../../assets//commonStyles//modules/styledInputs.module.scss';
+@import '../../../../../../assets/commonStyles/modules/customInputs.module.scss';
 
 
 .err {
@@ -33,40 +33,37 @@
     align-items: center;
     gap: 30px;
 
-    @media(max-width: 576px){
+    @media(max-width: 576px) {
         flex-wrap: wrap;
         gap: 15px;
     }
 }
 
+
+
+
+
+
+
+
 .switchWr {
-    
     flex-shrink: 1;
+}
+
+.lookingForAJobLabel{
     display: flex;
-    // justify-content: center;
     align-items: center;
     gap: 10px;
     white-space: nowrap;
-
-    label {
-        margin-bottom: 0px;
-    }
-
-    .switch input+span {
-        // background: rgba($color: $brown_light_clr, $alpha: .3);
-        background: #E53E3E;
-    }
-
-    .switch[data-checked] input+span {
-        background: #38A169;
-    }
+    font-weight: 600;
 }
+
 
 .row2 input {
     flex: 1 1 auto;
 
-    @media(max-width: 576px){
-       flex: 0 1 100%
+    @media(max-width: 576px) {
+        flex: 0 1 100%
     }
 }
 
@@ -76,11 +73,12 @@
 
 
 
-.aboutMeTitle,
+label.aboutMeTitle,
 .contactsTitle {
-    font-weight: 500;
-    font-size: 15px;
+    font-weight: 600;
+    // font-size: 15px;
     margin-bottom: 0.8rem;
+    line-height: 1.2;
 }
 
 .contactsFields {
@@ -93,17 +91,23 @@
     gap: 25px;
     margin-bottom: 7px;
 
-    @media(max-width: 576px){
+    @media(max-width: 576px) {
         flex-wrap: wrap;
         gap: 0px;
         margin-bottom: 0px;
     }
 
-    .contactInpWr {
+    .inputGroup {
+        margin-bottom: 0px;
         flex: 1 1 calc((100% - 25px)/2);
 
-        @media(max-width: 576px){
+        @media(max-width: 576px) {
             flex: 0 1 100%;
+            margin-bottom: 2px;
+
+            .spanErr {
+                font-size: 10px;
+            }
         }
     }
 
@@ -116,39 +120,16 @@
 //     margin-bottom: 10px;
 // }
 
+
+
 button.updateBtn {
-    // width: 160px;
     width: 100%;
-    // margin-bottom: 25px;
-    text-transform: uppercase;
-    padding: 15px 25px;
-    background-color: $brown_light_clr;
-    box-shadow: $boxshadow_val;
-    border: 2px solid $brown_light_clr;
-    transition: $transition_val;
-    gap: 5px;
-    color: $lgrey_clr;
-    display: flex;
-    margin-left: auto;
     margin-bottom: 7px;
-
-
-    svg {
-        font-size: 1.5rem;
-        ;
-    }
-
-    &:hover {
-        background-color: rgba($color: $brown_light_clr, $alpha: .9);
-        border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
-    }
 }
 
-button.updateBtn[disabled]:hover{
-    color: $lgrey_clr;
-    background-color: $brown_light_clr;
-    border: 2px solid $brown_light_clr;
-}
+
+
+
 
 .onSubmitErrOrSuccWr {
     opacity: 0;
@@ -172,16 +153,15 @@ button.updateBtn[disabled]:hover{
     font-weight: 600;
     height: 21px;
 
-    svg{
+    svg {
         font-size: 20px;
     }
 
-    &.succ{
+    &.succ {
         color: #38A169;
     }
 
-    &.err{
+    &.err {
         color: $err_clr;
     }
 }
-

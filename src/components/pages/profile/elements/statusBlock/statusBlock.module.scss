@@ -15,6 +15,7 @@
     svg.iconCloud {
         width: 22px;
         height: 22px;
+        flex: 0 0 22px;
         transform: scale(-1, 1);
         color: $brown_light_clr
     }
@@ -29,20 +30,19 @@
         margin-bottom: 3px;
     }
 
-    .statusUpdateBtn {
-        background-color: transparent;
+    .statusUpdateBtn,
+    .statusUpdateBtn:disabled:hover {
+        background-color: $lgrey_clr;
         border-radius: 50%;
         width: 35px;
         height: 35px;
         padding: 0px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 18px;
         margin-left: auto;
-        transition: $transition_val;
-        box-shadow: $boxshadow_val;
         color: $brown_light_clr;
+
+        svg {
+            font-size: 18px;
+        }
     }
 
     .statusUpdateBtn:hover {
@@ -50,11 +50,18 @@
         // box-shadow: $boxshadow_val;
     }
 
+    .statusInputWr{
+        position: relative;
+    }
+
     input.statusInput {
         margin-bottom: 7px;
         width: 100%;
         border-bottom: 1px solid rgba($color: $brown_light_clr, $alpha: .6);
         padding-right: 35px;
+        padding: 5px 35px 5px 0px;
+        outline: 0px solid transparent;
+        background-color: transparent;
     }
 
     input.statusInput:focus-visible {
@@ -62,10 +69,16 @@
         box-shadow: 0px 1px 0px 0px $brown_light_clr;
     }
 
-    .inputStatusSendBtn {
+    .inputStatusSendBtn,
+    .inputStatusSendBtn:disabled:hover {
+        position: absolute;
+        bottom: 7px;
+        right: 0px;
         color: $brown_light_clr;
-        padding: 10px;
+        background-color: transparent;
+        padding: 7px 3px;
         font-size: 20px;
+        box-shadow: 0px 0px 0px transparent;
     }
 
     .inputStatusSendBtn:hover {

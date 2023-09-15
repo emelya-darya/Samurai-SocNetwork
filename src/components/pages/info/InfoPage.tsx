@@ -1,4 +1,3 @@
-import { Icon } from '@chakra-ui/react'
 import c from './infoPage.module.scss'
 
 // import { SiReduxsaga, SiReact, SiTypescript, SiChakraui } from 'react-icons/si'
@@ -16,39 +15,39 @@ import shortid from 'shortid'
 import reactLogo from '../../../assets/images/infoPage/createdWith/react.svg'
 import reduxSagaLogo from '../../../assets/images/infoPage/createdWith/reduxSaga.svg'
 import tsLogo from '../../../assets/images/infoPage/createdWith/typescript.svg'
-import chakraLogo from '../../../assets/images/infoPage/createdWith/chakra.svg'
+// import chakraLogo from '../../../assets/images/infoPage/createdWith/chakra.svg'
 
 type AuthorContactType = {
    name: string
    linkHref: string
-   icon: IconType | string
+   Icon: IconType | string
 }
 
 const backendAuthorLinks: Array<AuthorContactType> = [
    {
       name: 'It-incubator',
       linkHref: 'https://it-incubator.io/',
-      icon: itIncLogo,
+      Icon: itIncLogo,
    },
    {
       name: 'Youtube',
       linkHref: 'https://www.youtube.com/@ITKAMASUTRA',
-      icon: AiFillYoutube,
+      Icon: AiFillYoutube,
    },
    {
       name: 'Linkedin',
       linkHref: 'https://by.linkedin.com/in/kuzyuberdin',
-      icon: AiFillLinkedin,
+      Icon: AiFillLinkedin,
    },
    {
       name: 'Vkontakte',
       linkHref: 'https://vk.com/d.kuzyuberdin',
-      icon: SlSocialVkontakte,
+      Icon: SlSocialVkontakte,
    },
    {
       name: 'Facebook',
       linkHref: 'https://www.facebook.com/mega.kuzyuberdin/',
-      icon: AiFillFacebook,
+      Icon: AiFillFacebook,
    },
 ]
 
@@ -56,28 +55,28 @@ const frontendAuthorLinks: Array<AuthorContactType> = [
    {
       name: 'Telegram',
       linkHref: 'https://t.me/emelyadarya',
-      icon: BiLogoTelegram,
+      Icon: BiLogoTelegram,
    },
    {
       name: 'Github',
       linkHref: 'https://github.com/emelya-darya',
-      icon: AiFillGithub,
+      Icon: AiFillGithub,
    },
    {
       name: 'Whatsapp',
       linkHref: 'https://api.whatsapp.com/send/?phone=79874719487&text&type=phone_number&app_absent=0',
-      icon: FaWhatsapp,
+      Icon: FaWhatsapp,
    },
 
    {
       name: 'Headhunter',
       linkHref: 'https://ufa.hh.ru/resume/576d96d9ff09d8bf970039ed1f453262704570',
-      icon: hhLogo,
+      Icon: hhLogo,
    },
    {
       name: 'Codewars',
       linkHref: 'https://www.codewars.com/users/emelya-darya',
-      icon: SiCodewars,
+      Icon: SiCodewars,
    },
 ]
 
@@ -96,10 +95,10 @@ const createdWith: Array<CreatedWithItemType> = [
       name: 'Typescript',
       logo: tsLogo,
    },
-   {
-      name: 'ChakraUI',
-      logo: chakraLogo,
-   },
+   // {
+   //    name: 'ChakraUI',
+   //    logo: chakraLogo,
+   // },
 ]
 
 const InfoPage = () => {

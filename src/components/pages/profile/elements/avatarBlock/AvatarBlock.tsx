@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux'
 import c from './avatarBlock.module.scss'
 import { GlobalStateType } from '../../../../../store/redux/storeTypes'
 import { TbCameraUp } from 'react-icons/tb'
-import { Button, Icon } from '@chakra-ui/react'
 import React from 'react'
 import { AvatarModal } from './avatarModal/AvatarModal'
 import { Crop } from 'react-image-crop'
@@ -10,13 +9,17 @@ import { onCloseModal, onOpenModal } from '../../../../reusableElements/forOpenM
 import { nophoto } from '../../../../reusableElements/nophoto'
 import { TbMessageCirclePlus, TbMessages } from 'react-icons/tb'
 import { ModalWindowWriteMessage } from '../../../../reusableElements/modalWindowWriteMessage/ModalWindowWriteMessage'
+import { Button } from '../../../../reusableElements/button/Button'
+import { PreloaderSmall } from '../../../../reusableElements/preloaders/small/PreloaderSmall'
 
 type AvatarBlockPropsType = {
    isMyProfile: boolean
 }
 
 const AvatarBlock: React.FC<AvatarBlockPropsType> = ({ isMyProfile }) => {
-   const { photos, isUploadNewPhotoInProgress, fullName, userId, isFollowed } = useSelector((state: GlobalStateType) => state.forProfileData)
+   const { photos, isUploadNewPhotoInProgress, fullName, userId, isFollowed } = useSelector(
+      (state: GlobalStateType) => state.forProfileData
+   )
    const { errOnUpdatePhoto } = useSelector((state: GlobalStateType) => state.forErrorsData.profileErrors)
 
    const [isOpenModalCrop, setIsOpenModalCrop] = React.useState(false)
@@ -68,24 +71,42 @@ const AvatarBlock: React.FC<AvatarBlockPropsType> = ({ isMyProfile }) => {
             <img src={photos.large || nophoto} alt='user' />
             {isMyProfile && (
                <>
-                  <Button className={c.uploadPhotoBtn} isLoading={isUploadNewPhotoInProgress}>
-                     <label className={c.uploadPhotoBtn}>
-                        <Icon as={TbCameraUp} />
-                        <input hidden accept='image/*' type='file' onChange={onUploadPhotoFile} />
-                     </label>
-                  </Button>
+                  <div className={`${c.uploadAvatarPseudoBtn} ${isUploadNewPhotoInProgress ? c.disabled : ''}`}>
+                     {isUploadNewPhotoInProgress ? (
+                        <PreloaderSmall color='#A0450B' size={18} minHeight='18px' />
+                     ) : (
+                        <label className={c.uploadPhotoBtn}>
+                           <TbCameraUp />
+                           <input hidden accept='image/*' type='file' onChange={onUploadPhotoFile} />
+                        </label>
+                     )}
+                  </div>
+
                   <p className={`${c.err} ${c.errUploadPhoto}`}>{errOnUpdatePhoto}</p>
 
-                  <AvatarModal isOpen={isOpenModalCrop} handleCloseModal={handleCloseModal} imgSrc={imgSrc} setImgSrc={setImgSrc} crop={crop} setCrop={setCrop} />
+                  <AvatarModal
+                     isOpen={isOpenModalCrop}
+                     handleCloseModal={handleCloseModal}
+                     imgSrc={imgSrc}
+                     setImgSrc={setImgSrc}
+                     crop={crop}
+                     setCrop={setCrop}
+                  />
                </>
             )}
          </div>
          {canSendMessage && (
             <>
                <div className={c.writeAMessageBlock}>
-                  <Button rightIcon={<Icon as={TbMessageCirclePlus} />} className={c.sendMessageBtn} onClick={openModalMessageHandler} isLoading={isInProgressSendMessage}>
-                     Send message
-                  </Button>
+                  <Button
+                     name='Send message'
+                     type='button'
+                     Icon={TbMessageCirclePlus}
+                     extraClassName={c.sendMessageBtn}
+                     onClickHandler={openModalMessageHandler}
+                     isLoading={isInProgressSendMessage}
+                     isDisabled={false}
+                  />
                </div>
                <ModalWindowWriteMessage
                   photoSrc={photos.small || photos.large || nophoto}

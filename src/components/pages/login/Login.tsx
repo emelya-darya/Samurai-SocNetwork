@@ -1,8 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom'
 import c from './login.module.scss'
-import { Icon } from '@chakra-ui/react'
 import { logoIcon } from '../../reusableElements/logoIcon'
-
 import { LoginForm } from './elements/LoginForm'
 import { useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../store/redux/reduxStore'
@@ -21,7 +19,7 @@ const LoginPage = () => {
    return (
       <div className={c.loginPage}>
          <div className={c.logoWr}>
-            <Icon as={logoIcon} />
+            {logoIcon}
          </div>
 
          <h1 className={c.title}>Sign in to Samurai social network</h1>

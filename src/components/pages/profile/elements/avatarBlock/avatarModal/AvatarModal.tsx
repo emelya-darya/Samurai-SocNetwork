@@ -9,9 +9,9 @@ import { ProfileAC } from '../../../../../../store/redux/profile/profileReducer'
 import { useDebounceEffect } from './assets/useDebounceEffect'
 import { canvasPreview } from './assets/canvasPreview'
 import { centerAspectCrop } from './assets/centerAspectCrop'
-import { Button, Icon } from '@chakra-ui/react'
 import { AiOutlineClose, AiOutlineSend } from 'react-icons/ai'
 import { GlobalStateType } from '../../../../../../store/redux/storeTypes'
+import { Button } from '../../../../../reusableElements/button/Button'
 // import 'react-image-crop/dist/ReactCrop.css'
 
 type AvatarModalPropsType = {
@@ -51,7 +51,13 @@ const AvatarModal: React.FC<AvatarModalPropsType> = ({ isOpen, handleCloseModal,
 
    useDebounceEffect(
       async () => {
-         if (completedCrop?.width && completedCrop?.height && imgRef.current && previewCanvasRefBig.current && previewCanvasRefSmall.current) {
+         if (
+            completedCrop?.width &&
+            completedCrop?.height &&
+            imgRef.current &&
+            previewCanvasRefBig.current &&
+            previewCanvasRefSmall.current
+         ) {
             canvasPreview(imgRef.current, previewCanvasRefBig.current, completedCrop, 1, 0)
             canvasPreview(imgRef.current, previewCanvasRefSmall.current, completedCrop, 1, 0)
          }
@@ -75,7 +81,7 @@ const AvatarModal: React.FC<AvatarModalPropsType> = ({ isOpen, handleCloseModal,
       <div className={`${c.avatarModal} ${isOpen ? c.visible : ''} close`} onMouseDown={handleCloseWrapper}>
          <div className={c.content}>
             <div className={`${c.closeBtn} close`}>
-               <Icon as={AiOutlineClose} className='close' />
+               <AiOutlineClose className='close'/>
                <div className={`${c.closeBtnMask} close`}></div>
             </div>
 
@@ -83,7 +89,13 @@ const AvatarModal: React.FC<AvatarModalPropsType> = ({ isOpen, handleCloseModal,
 
             {!!imgSrc && (
                <div className={c.cropWr}>
-                  <ReactCrop crop={crop} onChange={(_, percentCrop) => setCrop(percentCrop)} onComplete={c => setCompletedCrop(c)} aspect={aspectRatio} circularCrop={true} className={c.cropBlock}>
+                  <ReactCrop
+                     crop={crop}
+                     onChange={(_, percentCrop) => setCrop(percentCrop)}
+                     onComplete={c => setCompletedCrop(c)}
+                     aspect={aspectRatio}
+                     circularCrop={true}
+                     className={c.cropBlock}>
                      <img ref={imgRef} alt='Crop me' src={imgSrc} onLoad={onImageLoad} />
                   </ReactCrop>
                </div>
@@ -97,9 +109,15 @@ const AvatarModal: React.FC<AvatarModalPropsType> = ({ isOpen, handleCloseModal,
                      <canvas className={c.canvasSmall} ref={previewCanvasRefSmall} />
                   </div>
                   <div className={c.btnWr}>
-                     <Button rightIcon={<Icon as={AiOutlineSend} />} className={c.updateBtn} type='submit' onClick={onSendPhoto} isLoading={isUploadNewPhotoInProgress}>
-                        Apply
-                     </Button>
+                     <Button
+                        Icon={AiOutlineSend}
+                        extraClassName={c.updateBtn}
+                        type='button'
+                        onClickHandler={onSendPhoto}
+                        isLoading={isUploadNewPhotoInProgress}
+                        isDisabled={false}
+                        name='Apply'
+                     />
                   </div>
                </>
             )}

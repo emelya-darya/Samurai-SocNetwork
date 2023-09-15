@@ -42,6 +42,10 @@
         transition: $transition_val;
     }
 
+    a:not(:last-child){
+        margin-bottom: 4px;
+    }
+
     a:hover,
     a.act {
         border-left: 5px solid $brown_light_clr;
@@ -96,6 +100,9 @@
 
         background-color: $lgrey_clr;
         color: $brown_clr;
+        box-shadow: $boxshadow_val_small;
+        line-height: 1;
+        font-weight: 600;
     }
 
     .watchAll {
@@ -117,22 +124,4 @@
 
 .linkToDialogs{
     position: relative
-}
-
-.newMessagesNotify{
-    position: absolute;
-    font-size: 12px;
-    font-weight: 700;
-    right: 35px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: $brown_light_clr;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 1;
-    border-radius: 50%;
-    color: $lgrey_clr;
 }

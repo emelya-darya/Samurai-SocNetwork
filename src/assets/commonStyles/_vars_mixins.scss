@@ -20,7 +20,8 @@ $my_message_clr: rgba($color: #5FBE67, $alpha: .25);
 
 $my_message_icons_clr: #38A169;
 
-$borderR_value: 15px;
+// $borderR_value: 15px;
+$borderR_value: 5px;
 $borderR_value_small: 5px;
 
 
@@ -39,7 +40,8 @@ $boxshadow_for_message: 3px 0px 3px rgba(0, 0, 0, 0.05);
 @mixin img-absolute {
     position: relative;
 
-    img, svg {
+    img,
+    svg {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -62,4 +64,12 @@ $boxshadow_for_message: 3px 0px 3px rgba(0, 0, 0, 0.05);
         background-color: rgba($color: #000000, $alpha: .3);
         border-radius: 3px;
     }
+}
+
+@mixin text-cut($widthBlock) {
+    width: $widthBlock;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1;
 }

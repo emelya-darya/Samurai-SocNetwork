@@ -1,5 +1,5 @@
 @import '../../../../assets//commonStyles//vars_mixins';
-@import '../../../../assets//commonStyles//modules//styledInputs.module.scss';
+@import '../../../../assets//commonStyles//modules/customInputs.module.scss';
 
 .form {
     width: 390px;
@@ -15,74 +15,80 @@
     }
 }
 
-.formControll:not(:last-child) {
-    margin-bottom: 6px;
+.passwordInputGroup {
+    position: relative;
+
+    input.styledInput {
+        padding-right: 40px;
+    }
 }
 
-label.label {
-    margin-bottom: 3px;
-}
-
-button.eyeBtn {
-    padding: 3px 8px;
-
-    // background-color: red;
-    height: 100%;
+.eyeBtn {
+    position: absolute;
+    top: 25px;
+    right: 5px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: transparent;
     font-size: 25px;
-    border-color: transparent;
     color: rgba($color: $brown_clr, $alpha: .5);
-    // background-color: red;
-
-    &:hover {
-        background-color: transparent;
-        border-color: transparent;
-    }
+    cursor: pointer;
 }
+
+
 
 .checkboxWr {
-    margin-top: 7px;
-    margin-bottom: 5px;
-}
+    margin-bottom: 6px;
 
-
-
-.checkboxRememberMe span[aria-hidden] {
-    border: 1px solid #dd6b20;
-}
-
-button.updateBtn {
-    // width: 160px;
-    width: 100%;
-    // margin-bottom: 25px;
-    text-transform: uppercase;
-    padding: 15px 25px;
-    background-color: $brown_light_clr;
-    box-shadow: $boxshadow_val;
-    border: 2px solid $brown_light_clr;
-    transition: $transition_val;
-    gap: 5px;
-    color: $lgrey_clr;
-    display: flex;
-    margin-left: auto;
-    // margin-bottom: 12px;
-
-
-    svg {
-        font-size: 1.5rem;
-        ;
+    label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        line-height: 1;
+        cursor: pointer;
+        // font-weight: 600;
     }
 
-    &:hover {
-        background-color: rgba($color: $brown_light_clr, $alpha: .9);
-        border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
-    }
-}
+    label .checkElem {
+        display: inline-block;
+        width: 17px;
+        height: 17px;
+        border: 1px solid $orange_clr;
+        border-radius: 2px;
+        transition: $transition_val;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-button.updateBtn[disabled]:hover {
-    color: $lgrey_clr;
-    background-color: $brown_light_clr;
-    border: 2px solid $brown_light_clr;
+        svg {
+            opacity: 0;
+            visibility: hidden;
+            color: $lgrey_clr;
+            font-size: 13px;
+            transition: $transition_val;
+        }
+    }
+
+    label .checkBoxLett {
+        display: inline-block;
+        white-space: nowrap;
+        font-size: 16px;
+        margin-bottom: 1px;
+    }
+
+    input:checked+label {
+        .checkElem {
+            background-color: $orange_clr;
+
+            svg {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
 }
 
 .err {
@@ -96,32 +102,34 @@ button.updateBtn[disabled]:hover {
     // opacity: 0;
 }
 
+.captchaBlock {
+    margin-bottom: 0px;
+}
+
 .captchaImgAndRefresh {
     display: flex;
     justify-content: end;
     margin-bottom: 10px;
     // gap: 10px;
-
-    .refreshBtn {
-        align-self: flex-end;
-        color: $brown_clr;
-        font-size: 20px;
-        padding: 10px 10px 0px 10px;
-        display: inline-block;
-    }
 }
 
-
-.captchaBlock {
-    margin-bottom: 0px;
+.captchaImgAndRefresh .refreshBtn,
+.refreshBtn:hover,
+.refreshBtn:disabled,
+.refreshBtn:disabled:hover {
+    align-self: flex-end;
+    color: $brown_clr;
+    font-size: 20px;
+    padding: 10px 10px 0px 10px;
+    display: inline-block;
+    background-color: transparent;
+    box-shadow: 0px 0px 0px transparent;
 }
 
 .captchaImgWr {
     height: 100px;
     width: 200px;
     @include img-absolute;
-    // margin-left: auto;
-
 }
 
 .errOnLogin {
@@ -130,6 +138,8 @@ button.updateBtn[disabled]:hover {
     font-weight: 600;
     // height: 19px;
     font-size: 13px;
+    // line-height: 1;
+    // height: 13px;
     margin-bottom: 4px;
     margin-top: 3px;
     white-space: nowrap;
@@ -141,4 +151,16 @@ button.updateBtn[disabled]:hover {
     height: auto;
     line-height: 1;
     height: 11px;
+}
+
+button.signInBtn,
+button.signInBtn:hover,
+button.signInBtn:disabled,
+button.signInBtn:disabled:hover {
+    width: 100%;
+    gap: 7px;
+}
+
+button.signInBtn:disabled {
+    opacity: .6;
 }

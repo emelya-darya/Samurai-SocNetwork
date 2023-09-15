@@ -5,4 +5,4 @@ import { GrCloudlinux } from 'react-icons/gr'
 import { GiNinjaHead, GiOverkill } from 'react-icons/gi'
 import { SiInvoiceninja } from 'react-icons/si'
 
-export const logoIcon = GrCloudlinux
+export const logoIcon = <GrCloudlinux/>

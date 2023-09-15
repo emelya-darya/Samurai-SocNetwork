@@ -24,14 +24,14 @@ const ContactsBlock = () => {
          <div className={c.contactsItems}>
             {isContactFieldsExist ? (
                <>
-                  <ContactItem linkHref={contacts.mainLink} icon={AiOutlineLink} name='Main link' />
-                  <ContactItem linkHref={contacts.github} icon={AiFillGithub} name='Github' />
-                  <ContactItem linkHref={contacts.website} icon={AiOutlineGlobal} name='Website' />
-                  <ContactItem linkHref={contacts.vk} icon={SlSocialVkontakte} name='Vkontakte' />
-                  <ContactItem linkHref={contacts.twitter} icon={AiOutlineTwitter} name='Twitter' />
-                  <ContactItem linkHref={contacts.facebook} icon={AiFillFacebook} name='Facebook' />
-                  <ContactItem linkHref={contacts.youtube} icon={AiFillYoutube} name='Youtube' />
-                  <ContactItem linkHref={contacts.instagram} icon={AiFillInstagram} name='Instagram' />
+                  <ContactItem linkHref={contacts.mainLink} Icon={AiOutlineLink} name='Main link' />
+                  <ContactItem linkHref={contacts.github} Icon={AiFillGithub} name='Github' />
+                  <ContactItem linkHref={contacts.website} Icon={AiOutlineGlobal} name='Website' />
+                  <ContactItem linkHref={contacts.vk} Icon={SlSocialVkontakte} name='Vkontakte' />
+                  <ContactItem linkHref={contacts.twitter} Icon={AiOutlineTwitter} name='Twitter' />
+                  <ContactItem linkHref={contacts.facebook} Icon={AiFillFacebook} name='Facebook' />
+                  <ContactItem linkHref={contacts.youtube} Icon={AiFillYoutube} name='Youtube' />
+                  <ContactItem linkHref={contacts.instagram} Icon={AiFillInstagram} name='Instagram' />
                </>
             ) : (
                <p>The user did not enter contact information</p>

@@ -1,8 +1,6 @@
 import React from 'react'
 import { withAuthRedirectHOC } from '../../reusableElements/HOC_withAuthRedirect/withAuthRedirectHOC'
 import c from './commonChat.module.scss'
-import shortid from 'shortid'
-import { ChatMessageItem } from './elements/chatMessageItem/ChatMessageItem'
 import { AddMessageForm } from './elements/addMessageForm/AddMessageForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../store/redux/reduxStore'

@@ -2,15 +2,13 @@ import c from './users.module.scss'
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import shortid from 'shortid'
-import { Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { BsSearch } from 'react-icons/bs'
 import { Paginator } from '../../reusableElements/paginator/Paginator'
 import { UserCardPreview } from './userCardPreview/UserCardPreview'
 import { Preloader } from '../../reusableElements/preloaders/main/Preloader'
 import { useDispatch, useSelector } from 'react-redux'
-import { GlobalStateType, UserFriendItemType } from '../../../store/redux/storeTypes'
+import { GlobalStateType } from '../../../store/redux/storeTypes'
 import { UsersAC } from '../../../store/redux/users/usersReducer'
-import { ModalWindowWriteMessage } from '../../reusableElements/modalWindowWriteMessage/ModalWindowWriteMessage'
 
 export type DataForModalType = {
    photoSrc: null | string
@@ -97,12 +95,18 @@ const UsersPage = () => {
             {!errOnLoadUsers && <p>({totalUsersCount})</p>}
          </div>
 
-         <InputGroup className={c.searchInputGroup}>
+         {/* <InputGroup className={c.searchInputGroup}>
             <InputLeftElement pointerEvents='none' className={c.searchInputLeftEl}>
                <Icon as={BsSearch} />
             </InputLeftElement>
             <Input value={searchRequest || ''} placeholder='Search...' variant='flushed' className={c.searchInput} onInput={onTypeSearchRequestHandler} />
-         </InputGroup>
+         </InputGroup> */}
+         <div className={c.searchInputGroup}>
+            <input value={searchRequest || ''} placeholder='Search...' className={c.searchInput} onInput={onTypeSearchRequestHandler} />
+            <div className={c.searchIconWr}>
+               <BsSearch />
+            </div>
+         </div>
 
          {errOnLoadUsers ? (
             <p className={c.serverErrMessage}>{errOnLoadUsers}</p>

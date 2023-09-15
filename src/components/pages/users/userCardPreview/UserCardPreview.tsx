@@ -1,4 +1,3 @@
-import { Button, Icon } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { GlobalStateType, UserFriendItemType } from '../../../../store/redux/storeTypes'
 import { TfiThought } from 'react-icons/tfi'
@@ -11,6 +10,7 @@ import { ModalWindowWriteMessage } from '../../../reusableElements/modalWindowWr
 import React from 'react'
 import { onCloseModal, onOpenModal } from '../../../reusableElements/forOpenModalOverflowHandler/forOpenModalOverflowHandler'
 import { nophoto } from '../../../reusableElements/nophoto'
+import { Button } from '../../../reusableElements/button/Button'
 
 type UserCardPreviewPropsType = {
    userData: UserFriendItemType
@@ -51,7 +51,7 @@ const UserCardPreview: React.FC<UserCardPreviewPropsType> = ({ userData, isAuth 
                   <p className={c.name}>{userData.name?.trim()}</p>
                   {userData.status?.trim() && (
                      <p className={c.status}>
-                        <Icon as={TfiThought} />
+                        <TfiThought/>
                         <span>{userData.status}</span>
                      </p>
                   )}
@@ -60,26 +60,36 @@ const UserCardPreview: React.FC<UserCardPreviewPropsType> = ({ userData, isAuth 
 
             {isAuth && (
                <div className={c.followUnfollowBtnBlock}>
+                 
+
                   <Button
-                     size='md'
-                     isLoading={userData.fetchingFollowingProgress}
-                     className={`${c.buttFollUnfoll} ${userData.followed ? c.unfollowBtn : c.followBtn}`}
-                     rightIcon={userData.followed ? <BiMinus /> : <BiPlus />}
-                     onClick={handleFollowUnfollowUser}>
-                     {userData.followed ? 'Unfollow' : 'Follow'}
-                  </Button>
-                  <p className={`${c.error} ${userData.id === errOnFollowUnfollow.userId ? c.visible : ''}`}>{errOnFollowUnfollow.message || ''}</p>
+                     isLoading={!!userData.fetchingFollowingProgress}
+                     extraClassName={`${c.buttFollUnfoll} ${userData.followed ? c.unfollowBtn : c.followBtn}`}
+                     Icon={userData.followed ? BiMinus : BiPlus}
+                     name={userData.followed ? 'Unfollow' : 'Follow'}
+                     onClickHandler={handleFollowUnfollowUser}
+                     type='button'
+                     isDisabled={false}
+                     preloaderClr={userData.followed ? '#EFEFEF' : '#F0772B'}
+                  />
+                  <p className={`${c.error} ${userData.id === errOnFollowUnfollow.userId ? c.visible : ''}`}>
+                     {errOnFollowUnfollow.message || ''}
+                  </p>
                </div>
             )}
          </div>
          {isAuth && userData.followed && (
             <>
                <div className={c.writeAMessageBlock}>
-                  <Button variant='link' onClick={openModalHandler}>
-                     Write a message
-                  </Button>
+                  <div className={c.writeAMessage} onClick={openModalHandler}>Write a message</div>
                </div>
-               <ModalWindowWriteMessage photoSrc={photo} userName={userData.name || 'User'} userId={userData.id} isOpen={isOpenModal} closeModalHandler={closeModalHandler} />
+               <ModalWindowWriteMessage
+                  photoSrc={photo}
+                  userName={userData.name || 'User'}
+                  userId={userData.id}
+                  isOpen={isOpenModal}
+                  closeModalHandler={closeModalHandler}
+               />
             </>
          )}
       </div>

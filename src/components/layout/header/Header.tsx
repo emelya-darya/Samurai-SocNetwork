@@ -1,9 +1,5 @@
-import { Avatar, Button, HStack, Icon } from '@chakra-ui/react'
-
-import { Link } from 'react-router-dom'
-import { AiOutlineUser, AiOutlineLogout, AiOutlineLogin } from 'react-icons/ai'
+import { Link, useLocation } from 'react-router-dom'
 import { BiMenuAltLeft } from 'react-icons/bi'
-
 import c from './header.module.scss'
 import { useMatchMedia } from '../../../customHooks/useMatchMedia'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,6 +8,8 @@ import { AuthAC } from '../../../store/redux/auth/authReducer'
 import { LuLogOut, LuLogIn } from 'react-icons/lu'
 import React from 'react'
 import { logoIcon } from '../../reusableElements/logoIcon'
+import { Button } from '../../reusableElements/button/Button'
+import { UserAvatarWithLink } from '../../reusableElements/userAvatarWithLink/UserAvatarWithLink'
 
 type PropsType = {
    sidebarHandler: () => void
@@ -26,46 +24,74 @@ const Header: React.FC<PropsType> = ({ sidebarHandler }) => {
 
    const logOutHandler = () => dispatch(AuthAC.signOut())
 
-   React.useEffect(() => {
-      if (errOnLogOut) alert(errOnLogOut)
-   }, [errOnLogOut])
+   // React.useEffect(() => {
+   //    if (errOnLogOut) alert(errOnLogOut)
+   // }, [errOnLogOut])
+
+   const location = useLocation()
 
    return (
       <header className={`${c.header} header`}>
          {/* <div className={`header__container`}> */}
-         <HStack align='center' justify='space-between' style={{ height: '100%' }}>
+         <div className={c.headerInner}>
             {isLess992 && (
                <div className={c.burgerIcon} onClick={sidebarHandler}>
-                  <Icon as={BiMenuAltLeft} fontSize='4.0rem' />
+                  <BiMenuAltLeft />
                </div>
             )}
 
             <Link to='/' className={c.logoWr}>
-               <Icon as={logoIcon} />
+               {logoIcon}
             </Link>
 
             <div className={c.rightPartHeader}>
                {isAuth ? (
                   <>
                      <Link to='/profile' className={c.avatarWr}>
-                        <Avatar className={c.avatarHeader} size='md' name={login || ''} src={avatar || ''} icon={<AiOutlineUser fontSize='2.5rem' />} />
+                        <UserAvatarWithLink
+                           id=''
+                           photo={avatar}
+                           name={login || ''}
+                           bgColor='#A0450B'
+                           type='div'
+                           extraClassName={c.avatarHeader}
+                        />
+
                         <span className={c.nickName}>{login}</span>
+                        <p className={c.errOnSignOut}>{errOnLogOut}</p>
                      </Link>
-                     <Button rightIcon={<LuLogOut fontSize='1.5rem' />} variant='solid' className={c.logoutBtn} onClick={logOutHandler} isLoading={isInProgressLogOut}>
-                        Sign out
-                     </Button>
+
+                     <Button
+                        type='button'
+                        Icon={LuLogOut}
+                        name='Sign out'
+                        isDisabled={false}
+                        isLoading={isInProgressLogOut}
+                        extraClassName={c.logoutBtn}
+                        onClickHandler={logOutHandler}
+                     />
                   </>
                ) : (
                   <div className={c.loginBtnWr}>
-                     <Link to='/login' className={c.loginBtn}>
+                     {/* <Link to='/login' className={c.loginBtn}>
                         <span>Login</span>
-                        <Icon as={LuLogIn} />
-                     </Link>
+                        <LuLogIn />
+                     </Link> */}
+                     <Button
+                        tag='link'
+                        linkPath='/login'
+                        name='Login'
+                        Icon={LuLogIn}
+                        extraClassName={`${c.loginBtn} ${location.pathname === '/login'?c.disabled:''}`}
+                        isLoading={false}
+                        isDisabled={location.pathname === '/login'}
+                        type='button'
+                     />
                      {errOnCheckAuth && <p className={c.errOnCheckAuth}>{errOnCheckAuth}</p>}
                   </div>
                )}
             </div>
-         </HStack>
+         </div>
          {/* </div> */}
       </header>
    )

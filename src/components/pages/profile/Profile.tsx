@@ -1,9 +1,9 @@
 import React from 'react'
-import { connect, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../store/redux/storeTypes'
 import { ProfileAC } from '../../../store/redux/profile/profileReducer'
 import c from './profile.module.scss'
-import { Navigate, useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Preloader } from '../../reusableElements/preloaders/main/Preloader'
 import { StatusBlock } from './elements/statusBlock/StatusBlock'
 import { FollowUnfollowBtn } from './elements/FollowUnfollowBtn'
@@ -12,12 +12,12 @@ import { ContactsBlock } from './elements/contactsBlock/ContactsBlock'
 import { AvatarBlock } from './elements/avatarBlock/AvatarBlock'
 
 import { LiaUserEditSolid } from 'react-icons/lia'
-import { Button, Icon } from '@chakra-ui/react'
 import { ModalWindowForm } from './elements/modalWindowForm/ModalWindowForm'
 import { LuLogOut } from 'react-icons/lu'
 import { AuthAC } from '../../../store/redux/auth/authReducer'
 import { withAuthRedirectHOC } from '../../reusableElements/HOC_withAuthRedirect/withAuthRedirectHOC'
 import { onCloseModal, onOpenModal } from '../../reusableElements/forOpenModalOverflowHandler/forOpenModalOverflowHandler'
+import { Button } from '../../reusableElements/button/Button'
 
 const ProfilePage = withAuthRedirectHOC<{}>(() => {
    const MY_ID = useSelector((state: GlobalStateType) => state.forAuthData.id)
@@ -64,9 +64,15 @@ const ProfilePage = withAuthRedirectHOC<{}>(() => {
                   {!isMyProfile ? (
                      <FollowUnfollowBtn />
                   ) : (
-                     <Button leftIcon={<Icon as={LiaUserEditSolid} />} className={c.editProfileBtn} onClick={handleOpenModal}>
-                        Edit profile
-                     </Button>
+                     <Button
+                        name='Edit profile'
+                        Icon={LiaUserEditSolid}
+                        extraClassName={c.editProfileBtn}
+                        onClickHandler={handleOpenModal}
+                        type='button'
+                        isLoading={false}
+                        isDisabled={false}
+                     />
                   )}
                </div>
                <div className={c.topPart}>
@@ -88,9 +94,15 @@ const ProfilePage = withAuthRedirectHOC<{}>(() => {
 
                {isMyProfile && (
                   <div className={c.logOutBtnWr}>
-                     <Button rightIcon={<LuLogOut fontSize='1.5rem' />} variant='solid' className={c.logoutBtn} onClick={logOutHandler} isLoading={isInProgressLogOut}>
-                        Sign out
-                     </Button>
+                     <Button
+                        Icon={LuLogOut}
+                        name='Sign out'
+                        extraClassName={c.logoutBtn}
+                        onClickHandler={logOutHandler}
+                        isLoading={isInProgressLogOut}
+                        isDisabled={false}
+                        type='button'
+                     />
                      <p className={c.err}>{errOnLogOut}</p>
                   </div>
                )}

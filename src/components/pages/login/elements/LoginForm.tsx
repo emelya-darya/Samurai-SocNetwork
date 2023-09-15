@@ -1,6 +1,5 @@
-import { Button, Checkbox, FormControl, FormLabel, Icon, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import c from './loginForm.module.scss'
-import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineSend } from 'react-icons/ai'
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { LuLogIn, LuLogOut } from 'react-icons/lu'
@@ -9,12 +8,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AuthAC } from '../../../../store/redux/auth/authReducer'
 import { Navigate, useLocation } from 'react-router-dom'
 import { RxUpdate } from 'react-icons/rx'
+import { BsCheckLg } from 'react-icons/bs'
+import { Button } from '../../../reusableElements/button/Button'
 
 type LocationState = {
    from?: string
 }
 
-const regEmail: RegExp = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const regEmail: RegExp =
+   /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 const LoginForm = () => {
    const locationObj = useLocation().state as LocationState
@@ -49,58 +51,56 @@ const LoginForm = () => {
    const submitHandler = (data: LogInDataToSend) => {
       dispatch(AuthAC.logIn(data))
       reset(data)
+      // console.log(data)
    }
 
    const refreshCaptchaHandler = () => dispatch(AuthAC.getCaptchaUrl())
 
-   
    return (
       <form className={c.form} onSubmit={handleSubmit(submitHandler)}>
-         <FormControl className={c.formControll} isInvalid={!!errors.email}>
-            <FormLabel htmlFor='email' className={c.label}>
-               Email address
-            </FormLabel>
-            <Input
-               errorBorderColor='red.600'
-               variant='outline'
+         <div className={`${c.inputGroup} ${errors.email ? c.withError : ''}`}>
+            <label htmlFor='email'>Email address</label>
+
+            <input
+               type='text'
+               id='email'
                placeholder='Email*'
                className={c.styledInput}
-               size='md'
                {...register('email', {
                   required: 'Required field',
                   validate: v => regEmail.test(String(v).toLowerCase()),
                })}
             />
-            <p className={c.err}>{errors.email && (errors?.email.message || 'Invalid email address')}</p>
-         </FormControl>
+            <span className={c.spanErr}>{errors.email && (errors?.email.message || 'Invalid email address')}</span>
+         </div>
+         <div className={`${c.inputGroup} ${errors.password ? c.withError : ''} ${c.passwordInputGroup}`}>
+            <label htmlFor='password'>Password</label>
 
-         <FormControl className={c.formControll} isInvalid={!!errors.password}>
-            <FormLabel htmlFor='password' className={c.label}>
-               Password
-            </FormLabel>
-            <InputGroup size='md'>
-               <Input
-                  {...register('password', {
-                     required: 'Required field',
-                     minLength: 4,
-                  })}
-                  pr='2.7rem'
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder='Enter password'
-                  className={c.styledInput}
-               />
-               <InputRightElement style={{ width: 'auto' }}>
-                  <Button onClick={handleShowHidePassword} className={c.eyeBtn}>
-                     <Icon as={showPassword ? AiOutlineEye : AiOutlineEyeInvisible} />
-                  </Button>
-               </InputRightElement>
-            </InputGroup>
-            <p className={c.err}>{errors.password && (errors?.password.message || 'Minimum length 4')}</p>
-         </FormControl>
+            <input
+               type={showPassword ? 'text' : 'password'}
+               id='password'
+               placeholder='Enter password'
+               className={c.styledInput}
+               {...register('password', {
+                  required: 'Required field',
+                  minLength: 4,
+               })}
+            />
+            <span className={c.spanErr}>{errors.password && (errors?.password.message || 'Minimum length 4')}</span>
+
+            <div className={c.eyeBtn} onClick={handleShowHidePassword}>
+               {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+            </div>
+         </div>
+
          <div className={c.checkboxWr}>
-            <Checkbox {...register('rememberMe')} colorScheme='orange' className={c.checkboxRememberMe} size='lg'>
-               Remember me
-            </Checkbox>
+            <input type='checkbox' id='rememberMe' hidden {...register('rememberMe')} />
+            <label htmlFor='rememberMe'>
+               <span className={c.checkElem}>
+                  <BsCheckLg />
+               </span>
+               <span className={c.checkBoxLett}>Remember me</span>
+            </label>
          </div>
 
          <p className={`${c.err} ${c.captchaErr}`}>{errOnGetCaptcha}</p>
@@ -108,38 +108,48 @@ const LoginForm = () => {
          {captchaUrl && (
             <div className={c.captchaBlock}>
                <div className={c.captchaImgAndRefresh}>
-                  <Button className={c.refreshBtn} variant='link' onClick={refreshCaptchaHandler} isLoading={isInProgressGetCaptcha}>
-                     <Icon as={RxUpdate} />
-                  </Button>
+                  <Button
+                     name={null}
+                     Icon={RxUpdate}
+                     type='button'
+                     extraClassName={c.refreshBtn}
+                     isDisabled={false}
+                     isLoading={isInProgressGetCaptcha}
+                     onClickHandler={refreshCaptchaHandler}
+                     preloaderClr='#A0450B'
+                  />
                   <div className={c.captchaImgWr}>
                      <img src={captchaUrl} alt='captcha' />
                   </div>
                </div>
 
-               <FormControl className={c.formControll} isInvalid={!!errors.captcha}>
-                  <FormLabel htmlFor='captcha' className={c.label}>
-                     Enter text from image
-                  </FormLabel>
-                  <Input
-                     errorBorderColor='red.600'
-                     variant='outline'
+               <div className={`${c.inputGroup} ${errors.captcha ? c.withError : ''}`}>
+                  <label htmlFor='captcha'>Enter text from image</label>
+
+                  <input
+                     type='text'
+                     id='captcha'
                      placeholder='Captcha*'
                      className={c.styledInput}
-                     size='md'
                      {...register('captcha', {
                         required: 'Required field',
                      })}
                   />
-                  <p className={c.err}>{errors.captcha && errors?.captcha.message}</p>
-               </FormControl>
+                  <span className={c.spanErr}>{errors.captcha && (errors?.captcha.message || 'Required field')}</span>
+               </div>
             </div>
          )}
 
          <p className={c.errOnLogin}>{errOnLogIn}</p>
 
-         <Button rightIcon={<Icon as={LuLogIn} />} className={c.updateBtn} type='submit' isDisabled={!isValid || !isDirty} isLoading={isInProgressLogIn}>
-            Sign in
-         </Button>
+         <Button
+            name='Sign in'
+            Icon={LuLogIn}
+            extraClassName={c.signInBtn}
+            type='submit'
+            isDisabled={!isValid || !isDirty}
+            isLoading={isInProgressLogIn}
+         />
       </form>
    )
 }

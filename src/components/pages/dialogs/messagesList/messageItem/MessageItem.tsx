@@ -6,9 +6,6 @@ import { GlobalStateType } from '../../../../../store/redux/reduxStore'
 import { parseDateStr } from '../../../../reusableElements/parseDate/parseDate'
 import { BsCheck2, BsCheck2All } from 'react-icons/bs'
 
-import peGreen from '../../../../../assets/images/messagePseudoElemGr.png'
-import peWhite from '../../../../../assets/images/messagePseudoElemWh.png'
-
 import { RiDeleteBin6Line, RiSpam2Fill, RiSpam2Line } from 'react-icons/ri'
 import { DialogsAC } from '../../../../../store/redux/dialogs/dialogsReducer'
 import { MessagePseudoElem } from '../../../../reusableElements/MessagePseudoElem'

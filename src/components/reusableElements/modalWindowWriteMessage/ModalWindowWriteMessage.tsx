@@ -1,4 +1,3 @@
-import { Button, Icon, Textarea } from '@chakra-ui/react'
 import c from './modalWindowWriteMessage.module.scss'
 import { AiOutlineCheck, AiOutlineClose, AiOutlineSend } from 'react-icons/ai'
 import { UserAvatarWithLink } from '../userAvatarWithLink/UserAvatarWithLink'
@@ -9,6 +8,7 @@ import { DialogsAC } from '../../../store/redux/dialogs/dialogsReducer'
 import { GlobalStateType } from '../../../store/redux/reduxStore'
 import React from 'react'
 import { colorsAvatars, getRandomClr } from '../userAvatarWithLink/colorsAvatars'
+import { Button } from '../button/Button'
 
 type ModalWindowWriteMessagePropsType = {
    photoSrc: string
@@ -68,10 +68,10 @@ const ModalWindowWriteMessage: React.FC<ModalWindowWriteMessagePropsType> = ({ p
 
    return (
       <>
-         <div className={`${c.modalWind} ${isOpen ? c.visible : ''} close`} onClick={handleCloseWrapper}>
+         <div className={`${c.modalWind} ${isOpen ? c.visible : ''} close`} onMouseDown={handleCloseWrapper}>
             <div className={c.modalContent}>
                <div className={`${c.closeBtn} close`}>
-                  <Icon as={AiOutlineClose} className='close' />
+                  <AiOutlineClose  className='close' /> 
                   <div className={`${c.closeBtnMask} close`}></div>
                </div>
                <p className={c.title}>New message</p>
@@ -80,7 +80,7 @@ const ModalWindowWriteMessage: React.FC<ModalWindowWriteMessagePropsType> = ({ p
                   to={'/dialogs/' + userId}
                   state={{ colorAvatar: getRandomClr() }}
                   onClick={closeModalHandler}>
-                  <span>Jump to dialog with {userName}</span> <Icon as={BsArrowRight} />
+                  <span>Jump to dialog with {userName}</span> <BsArrowRight  />
                </Link>
                <div className={c.userDataBlock}>
                   <div className={c.avatarWr}>
@@ -92,24 +92,23 @@ const ModalWindowWriteMessage: React.FC<ModalWindowWriteMessagePropsType> = ({ p
                </div>
 
                <form className={c.form} onSubmit={onSubmitHandler}>
-                  <Textarea
+                  <textarea
                      className={c.styledTextarea}
                      onInput={onChangeHandler}
                      value={textareaValue}
                      placeholder='Message'
-                     size='lg'
-                     resize='none'
                      maxLength={MAX_LENGTH}
                   />
+
                   <p className={c.charactersLeft}>{MAX_LENGTH - countCharacters} characters left</p>
                   <Button
-                     rightIcon={<Icon as={AiOutlineSend} />}
-                     className={c.sendBtn}
+                     Icon={AiOutlineSend}
+                     extraClassName={c.sendBtn}
                      type='submit'
                      isDisabled={!textareaValue}
-                     isLoading={isInProgressSendMessage}>
-                     Send
-                  </Button>
+                     isLoading={isInProgressSendMessage}
+                     name='Send'
+                  />
                </form>
             </div>
          </div>
@@ -120,7 +119,7 @@ const ModalWindowWriteMessage: React.FC<ModalWindowWriteMessagePropsType> = ({ p
                   setIsVisibleNtf(false)
                }}
                className={c.closeSmallBtn}>
-               <Icon as={AiOutlineClose} />
+               <AiOutlineClose  />
             </div>
 
             {errOnSend ? (

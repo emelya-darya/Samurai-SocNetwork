@@ -1,0 +1,55 @@
+@import '../../vars_mixins';
+
+
+.searchInputGroup {
+
+    $semitransparent_clr: rgba($color: $brown_light_clr, $alpha: .5);
+    $active_clr: rgba($color: $brown_light_clr, $alpha: 1);
+
+
+    position: relative;
+
+    .searchInput {
+        display: block;
+        width: 100%;
+        padding: 8px 5px 8px 37px;
+        height: 37px;
+        border: 0px solid transparent;
+        outline: 0px solid transparent;
+        transition: $transition_val;
+        border-bottom: 2px solid $semitransparent_clr;
+        background-color: transparent;
+    }
+
+    .searchIconWr {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 37px;
+        // width: 37px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 3px;
+
+
+        svg {
+            transition: $transition_val;
+            font-size: 19px;
+            color: $semitransparent_clr;
+        }
+    }
+
+    &:hover .searchInput,
+    .searchInput:focus,
+    .searchInput:focus-visible {
+        border-bottom: 2px solid $active_clr;
+    }
+
+    &:hover .searchIconWr svg,
+    .searchInput:focus+.searchIconWr svg,
+    .searchInput:focus-visible+.searchIconWr svg {
+        color: $active_clr;
+
+    }
+}

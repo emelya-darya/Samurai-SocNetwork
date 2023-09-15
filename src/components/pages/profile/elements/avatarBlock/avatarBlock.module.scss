@@ -47,12 +47,12 @@
     }
 }
 
-button.uploadPhotoBtn {
+.uploadAvatarPseudoBtn {
     position: absolute;
     bottom: 34px;
     right: 34px;
     transform: translate(50%, 50%);
-    display: block;
+    
     border-radius: 50%;
     background-color: $lgrey_clr;
     width: 35px;
@@ -62,9 +62,10 @@ button.uploadPhotoBtn {
     align-items: center;
     border: 1px solid $lgrey_clr;
     color: rgba($color: $brown_light_clr, $alpha: 1);
-    box-shadow: $boxshadow_val;
+    box-shadow: $boxshadow_val_small;
     font-size: 18px;
-    padding: 0px;
+    cursor: pointer;
+    // padding: 0px;
 
     @media(max-width: 576px) {
         bottom: 28px;
@@ -75,13 +76,9 @@ button.uploadPhotoBtn {
         background-color: $lgrey_clr;
     }
 
-    &:disabled {
-        opacity: 1;
-        box-shadow: $boxshadow_val;
-
-        label {
-            cursor: not-allowed;
-        }
+    &.disabled {
+        cursor: not-allowed;
+        pointer-events: none;
     }
 
     label {
@@ -119,14 +116,7 @@ button.uploadPhotoBtn {
 
 button.sendMessageBtn {
     width: 230px;
-    text-transform: uppercase;
-    padding: 15px 25px;
-    background-color: $brown_light_clr;
-    box-shadow: $boxshadow_val;
-    border: 2px solid $brown_light_clr;
-    transition: $transition_val;
-    gap: 5px;
-    color: $lgrey_clr;
+    gap: 12px;
 
     @media(max-width: 576px) {
         width: 190px;
@@ -134,21 +124,6 @@ button.sendMessageBtn {
 
     svg {
         font-size: 1.5rem;
-        ;
-    }
-
-    &:hover {
-        background-color: rgba($color: $brown_light_clr, $alpha: .9);
-        border: 2px solid rgba($color: $brown_light_clr, $alpha: .9);
     }
 }
 
-button.sendMessageBtn:disabled:hover {
-    
-    background-color: $brown_light_clr;
-    // box-shadow: $boxshadow_val;
-    border: 2px solid $brown_light_clr;
-    // transition: $transition_val;
-    // gap: 5px;
-    color: $lgrey_clr;
-}
