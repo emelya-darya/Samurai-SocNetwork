@@ -13,16 +13,16 @@ a.btn,
 
     padding: 8px 15px;
     
-    background-color: $brown_light_clr;
+    background-color: rgb(var(--accent-clr_main));
     border: 0px solid transparent;
-    box-shadow: $boxshadow_val_small;
+    box-shadow: var(--boxsh-val-small);
     border-radius: $borderR_value_small;
 
     font-size: 1rem;
     font-weight: 600;
     // letter-spacing: .5px;
     text-transform: uppercase;
-    color: $lgrey_clr;
+    color: var(--main-bg-clr);
     white-space: nowrap;
    
     cursor: pointer;
@@ -36,12 +36,12 @@ a.btn,
 }
 
 .btn:hover {
-    background-color: rgba($color: $brown_light_clr, $alpha: .9);
-    color: $lgrey_clr;
+    background-color: rgba(var(--accent-clr_main), .9);
+    color: var(--main-bg-clr);
 }
 
 .btn:disabled,
 .btn:disabled:hover {
-    opacity: .7;
+    opacity: .6;
     cursor: not-allowed;
 }

@@ -39,13 +39,13 @@
     padding: 5px 10px 5px 7px;
     border-radius: $borderR_value_small $borderR_value_small $borderR_value_small 0px;
     gap: 15px;
-    background-color: #fff;
-    box-shadow: $boxshadow_for_message;
+    background-color: var(--companion-msg-clr);
+    box-shadow: var(--boxsh-for-message);
 }
 
-.actionErr{
+.actionErr {
     position: absolute;
-    color: $err_clr;
+    color: var(--err-clr);
     font-weight: 600;
     top: -11px;
     font-size: 11px;
@@ -77,6 +77,9 @@
 }
 
 .actions {
+    opacity: 0;
+    visibility: hidden;
+
     flex-grow: 1;
     display: flex;
     justify-content: flex-end;
@@ -85,6 +88,8 @@
 
     .spam,
     .delete {
+        width: 17px;
+        height: 24px;
         padding: 1px;
         cursor: pointer;
         transition: $transition_val;
@@ -92,7 +97,7 @@
     }
 
     .spam {
-        color: rgba($color: $warn_clr, $alpha: .3);
+        color: rgba($color: $warn_clr, $alpha: .7);
     }
 
     .spam:hover {
@@ -100,12 +105,17 @@
     }
 
     .delete {
-        color: rgba($color: $err_clr, $alpha: .3)
+        color: rgba(var(--delete-msg-icon-clr), .7);
     }
 
     .delete:hover {
-        color: rgba($color: $err_clr, $alpha: 1)
+        color: rgba(var(--delete-msg-icon-clr), 1);
     }
+}
+
+.messageItem:hover .actions {
+    opacity: 1;
+    visibility: visible;
 }
 
 .dateAndIsVieved {
@@ -128,8 +138,10 @@
 .isViewed {
     display: none;
     font-size: 16px;
-    color: $my_message_icons_clr;
+    color: var(--my_msg-date-viewed-clr);
 }
+
+$mask_for_restore_bg: var(--mask-for-restore-msg-bg);
 
 .messageContent .maskForRestore {
     opacity: 0;
@@ -147,13 +159,13 @@
     flex-direction: column;
     gap: 7px;
     padding: 5px 10px;
-    background-color: rgba($color: $lgrey_clr, $alpha: .9);
+    background-color: $mask_for_restore_bg;
     font-size: 13px;
     line-height: 1;
 
     .pseudoElemWr {
         svg path {
-            fill: rgba($color: $lgrey_clr, $alpha: .9)
+            fill: $mask_for_restore_bg;
         }
     }
 
@@ -163,31 +175,32 @@
         align-items: center;
         padding: 7px 10px;
         border-radius: $borderR_value_small;
-        background-color: $lgrey_clr;
+        background-color: var(--main-bg-clr);
         gap: 5px;
+        width: 84px;
         // box-shadow: $boxshadow_val_small;
         font-weight: 600;
-        color: $my_message_icons_clr;
+        color: var(--my_msg-date-viewed-clr);
         transition: $transition_val;
         cursor: pointer;
-        
+
 
         .restoreIcon {
-            color: $my_message_icons_clr;
+            color: var(--my_msg-date-viewed-clr);
             font-size: 14px;
         }
     }
 
-    .restoreBtn:hover{
-        box-shadow: $boxshadow_val_small;
+    .restoreBtn:hover {
+        box-shadow: var(--boxsh-val-small);
     }
 
-    .restoreBtn:disabled{
+    .restoreBtn:disabled {
         cursor: not-allowed;
         // pointer-events: none;
     }
 
-    .restoreBtn:disabled:hover{
+    .restoreBtn:disabled:hover {
         box-shadow: 0px 0px 0px transparent;
     }
 
@@ -200,32 +213,32 @@
 
 .pseudoElemWr {
     bottom: 0px;
-    left: -15px;
+    left: -14px;
     width: 15px;
     height: 15px;
     @include img-absolute;
     position: absolute;
 
     svg path {
-        fill: #fff;
+        fill: var(--companion-msg-clr);
     }
 }
 
 
 .myMessageItem {
     .messageContent {
-        background-color: $my_message_clr;
+        background-color: var(--my-msg-clr);
     }
 
     .pseudoElemWr {
 
         svg path {
-            fill: $my_message_clr;
+            fill: var(--my-msg-clr);
         }
     }
 
     .date {
-        color: $my_message_icons_clr;
+        color: var(--my_msg-date-viewed-clr);
     }
 
     .isViewed {

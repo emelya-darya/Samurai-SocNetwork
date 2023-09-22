@@ -5,9 +5,9 @@
     width: 390px;
     margin: 0px auto;
     padding: 35px 35px;
-    background-color: rgba($color: $brown_clr, $alpha: .03);
+    background-color: rgba($color: var(--text-clr), $alpha: .03);
     border-radius: $borderR_value;
-    box-shadow: $boxshadow_val;
+    box-shadow: var(--boxsh-val);
 
     @media(max-width: 420px) {
         width: 100%;
@@ -34,7 +34,7 @@
     align-items: center;
     background-color: transparent;
     font-size: 25px;
-    color: rgba($color: $brown_clr, $alpha: .5);
+    color: rgba($color: var(--text-clr), $alpha: .5);
     cursor: pointer;
 }
 
@@ -56,7 +56,7 @@
         display: inline-block;
         width: 17px;
         height: 17px;
-        border: 1px solid $orange_clr;
+        border: 1px solid rgba(var(--accent-clr_sec), 1);
         border-radius: 2px;
         transition: $transition_val;
         display: flex;
@@ -66,7 +66,7 @@
         svg {
             opacity: 0;
             visibility: hidden;
-            color: $lgrey_clr;
+            color: var(--main-bg-clr);
             font-size: 13px;
             transition: $transition_val;
         }
@@ -81,7 +81,7 @@
 
     input:checked+label {
         .checkElem {
-            background-color: $orange_clr;
+            background-color: rgba(var(--accent-clr_sec), 1);
 
             svg {
                 opacity: 1;
@@ -97,7 +97,7 @@
     margin-top: 0px;
     white-space: nowrap;
     font-weight: 600;
-    color: $err_clr;
+    color: var(--err-clr);
     height: 13px;
     // opacity: 0;
 }
@@ -118,7 +118,7 @@
 .refreshBtn:disabled,
 .refreshBtn:disabled:hover {
     align-self: flex-end;
-    color: $brown_clr;
+    color: var(--text-clr);
     font-size: 20px;
     padding: 10px 10px 0px 10px;
     display: inline-block;
@@ -133,7 +133,7 @@
 }
 
 .errOnLogin {
-    color: $err_clr;
+    color: var(--err-clr);
     text-align: center;
     font-weight: 600;
     // height: 19px;
@@ -161,6 +161,6 @@ button.signInBtn:disabled:hover {
     gap: 7px;
 }
 
-button.signInBtn:disabled {
-    opacity: .6;
-}
+// button.signInBtn:disabled {
+//     opacity: .6;
+// }

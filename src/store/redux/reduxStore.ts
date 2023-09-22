@@ -11,14 +11,14 @@ import { CommonWSChatReducerType, commonWSchatReducer } from './commonWSchat/com
 import { DialogsReducerType, dialogsReducer } from './dialogs/dialogsReducer'
 
 const rootReducer = combineReducers({
-   forUsersData: usersReducer as UsersReducerType,
-   forErrorsData: errorsReducer as ErrorsReducerType,
-   forFriendsNavbarData: friendsNavbarReducer as FriendsNavbarReducerType,
-   forFriendsPageData: friendsReducer as FriendReducerType,
-   forProfileData: profileReducer as ProfileReducerType,
-   forAuthData: authReducer as AuthReducerType,
-   forCommonWSchatData: commonWSchatReducer as CommonWSChatReducerType,
-   forDialogsData: dialogsReducer as DialogsReducerType
+    forUsersData: usersReducer as UsersReducerType,
+    forErrorsData: errorsReducer as ErrorsReducerType,
+    forFriendsNavbarData: friendsNavbarReducer as FriendsNavbarReducerType,
+    forFriendsPageData: friendsReducer as FriendReducerType,
+    forProfileData: profileReducer as ProfileReducerType,
+    forAuthData: authReducer as AuthReducerType,
+    forCommonWSchatData: commonWSchatReducer as CommonWSChatReducerType,
+    forDialogsData: dialogsReducer as DialogsReducerType,
 })
 
 // type RootReducerType = typeof rootReducer

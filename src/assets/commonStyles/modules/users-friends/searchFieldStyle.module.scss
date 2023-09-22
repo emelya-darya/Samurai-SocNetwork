@@ -3,8 +3,8 @@
 
 .searchInputGroup {
 
-    $semitransparent_clr: rgba($color: $brown_light_clr, $alpha: .5);
-    $active_clr: rgba($color: $brown_light_clr, $alpha: 1);
+    $semitransparent_clr: rgba(var(--accent-clr_main), .5);
+    $active_clr: rgba(var(--accent-clr_main), 1);
 
 
     position: relative;

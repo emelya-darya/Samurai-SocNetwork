@@ -3,6 +3,7 @@
 
 
 html,
+body,
 body.body {
     margin: 0px;
     max-width: 100vw;
@@ -15,8 +16,12 @@ body.body {
     line-height: 1.5;
 
     // background-color: #EFEFEF;
-    background-color: $orange_clr;
-    color: $brown_clr;
+    background-color: var(--body-bg);
+    color: var(--text-clr);
+}
+
+input, textarea{
+    color: var(--text-clr);;
 }
 
 
@@ -86,13 +91,13 @@ h3 {
 a,
 a:active,
 a:visited {
-    color: $brown_clr;
+    color: var(--text-clr);
     transition: $transition_val;
     text-decoration: none;
 }
 
 a:hover {
-    color: $brown_light_clr;
+    color: rgba(var(--accent-clr_main), 1);
     text-decoration: none;
 }
 
@@ -109,9 +114,9 @@ p {
 }
 
 ::-webkit-scrollbar-track {
-    background-color: $brown_light_clr;
+    background-color: rgba(var(--accent-clr_main), 1);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: $orange_light_clr;
+    background-color: var(--sidebar-header-clr);
 }

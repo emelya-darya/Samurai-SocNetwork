@@ -41,6 +41,6 @@
 }
 
 .contactItem:hover {
-    background-color: rgba($color: $brown_light_clr, $alpha: .15);
+    background-color: rgba(var(--accent-clr_main), .15);
 }
 

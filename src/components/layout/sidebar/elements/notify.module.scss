@@ -8,7 +8,7 @@
     right: 35px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: $brown_light_clr;
+    background-color: rgba(var(--accent-clr_main), 1);
     width: 22px;
     height: 22px;
     display: flex;
@@ -16,7 +16,7 @@
     align-items: center;
     line-height: 0;
     border-radius: 50%;
-    color: $lgrey_clr;
+    color: var(--main-bg-clr);
     padding: 11px;
     
 

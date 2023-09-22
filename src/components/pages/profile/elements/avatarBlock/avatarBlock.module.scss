@@ -21,10 +21,10 @@
     height: 230px;
     // @include img-absolute;
     border-radius: 50%;
-    border: 1px solid $lgrey_clr;
-    background-color: $orange_clr;
-    box-shadow: $boxshadow_val;
-    
+    border: 1px solid var(--main-bg-clr);
+    background-color: rgba(var(--accent-clr_sec), 1);
+    box-shadow: var(--boxsh-val);
+
 
     // @media(max-width:768px) {
     //     margin: 0px auto 15px auto;
@@ -52,17 +52,17 @@
     bottom: 34px;
     right: 34px;
     transform: translate(50%, 50%);
-    
+
     border-radius: 50%;
-    background-color: $lgrey_clr;
+    background-color: var(--main-bg-clr);
     width: 35px;
     height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid $lgrey_clr;
-    color: rgba($color: $brown_light_clr, $alpha: 1);
-    box-shadow: $boxshadow_val_small;
+    border: 1px solid rgba($color: #EFEFEF, $alpha: .1);
+    color: rgba(var(--accent-clr_main), 1);
+    box-shadow: var(--boxsh-val-small);
     font-size: 18px;
     cursor: pointer;
     // padding: 0px;
@@ -73,7 +73,7 @@
     }
 
     &:hover {
-        background-color: $lgrey_clr;
+        background-color: var(--main-bg-clr);
     }
 
     &.disabled {
@@ -93,7 +93,7 @@
     }
 
     label:hover {
-        background-color: rgba($color: $brown_light_clr, $alpha: 0.05);
+        background-color: rgba(var(--accent-clr_main), .05);
     }
 }
 
@@ -109,7 +109,7 @@
 }
 
 
-.writeAMessageBlock{
+.writeAMessageBlock {
     display: flex;
     justify-content: center;
 }
@@ -126,4 +126,3 @@ button.sendMessageBtn {
         font-size: 1.5rem;
     }
 }
-

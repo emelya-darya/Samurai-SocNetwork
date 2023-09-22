@@ -2,12 +2,13 @@
 
 .sidebar {
     position: fixed;
+    padding-bottom: 45px;
     top: 80px;
     left: 0px;
     z-index: 4;
     width: 250px;
     height: calc(100vh - 80px);
-    background-color: $orange_light_clr;
+    background-color: var(--sidebar-header-clr);
     transition: $transition_val;
     overflow-y: auto;
 
@@ -19,6 +20,26 @@
 
 .sidebar.hide {
     transform: translateX(-100%);
+}
+
+.linkToSettingsWr{
+    position: absolute;
+    bottom: 25px;
+    left: 0px;
+    padding: 0px 30px;
+
+    a{
+        display: inline-block;
+        padding: 2px;
+        // display: flex;
+        // align-items: center;
+        // gap: 12px;
+    }
+
+    svg{
+        font-size: 1.5rem;
+    }
+   
 }
 
 .linksContainer {
@@ -48,8 +69,8 @@
 
     a:hover,
     a.act {
-        border-left: 5px solid $brown_light_clr;
-        color: $brown_light_clr;
+        border-left: 5px solid rgba(var(--accent-clr_main), 1);;
+        color: rgba(var(--accent-clr_main), 1);
     }
 }
 
@@ -84,7 +105,7 @@
         flex: 0 0 53px;
         width: 53px;
         height: 53px;
-        border: 1px solid $lgrey_clr;
+        border: 1px solid var(--main-bg-clr);
         border-radius: 50%;
 
         position: relative;
@@ -92,15 +113,15 @@
         justify-content: center;
         align-items: center;
         text-transform: uppercase;
-        background-color: $orange_clr;
+        background-color: rgba(var(--accent-clr_sec), 1);
         // font-weight: 700;
-        color: $lgrey_clr;
+        color: var(--main-bg-clr);
         font-size: 16px;
         margin-left: -13px;
 
-        background-color: $lgrey_clr;
-        color: $brown_clr;
-        box-shadow: $boxshadow_val_small;
+        background-color: var(--main-bg-clr);
+        color: var(--text-clr);
+        box-shadow: var(--boxsh-val-small);
         line-height: 1;
         font-weight: 600;
     }
@@ -116,7 +137,7 @@
 }
 
 .serverErrMessage {
-    color: $err_clr;
+    color: var(--err-clr);
     text-align: center;
     font-weight: 700;
     // margin: 40px 0px 30px 0px;

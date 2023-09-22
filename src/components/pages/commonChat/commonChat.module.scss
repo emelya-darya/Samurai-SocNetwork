@@ -8,7 +8,7 @@
 
 .desc {
     margin-bottom: 25px;
-    color: $err_clr;
+    color: var(--err-clr);
     font-weight: 600;
     font-size: 13px;
 
@@ -20,7 +20,7 @@
 .messagesContainer {
     padding: 25px 10px 15px 10px;
     border-radius: $borderR_value;
-    box-shadow: $boxshadow_val;
+    box-shadow: var(--boxsh-val);
 }
 
 .messagesContainerInner {
@@ -55,7 +55,7 @@
 }
 
 .err {
-    color: $err_clr;
+    color: var(--err-clr);
     text-align: center;
     font-weight: 700;
     margin: 40px 0px 30px 0px;

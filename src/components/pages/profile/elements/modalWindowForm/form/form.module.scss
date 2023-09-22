@@ -8,7 +8,7 @@
     margin-top: 3px;
     white-space: nowrap;
     font-weight: 600;
-    color: $err_clr;
+    color: var(--err-clr);
     height: 13px;
     // opacity: 0;
 }
@@ -162,6 +162,6 @@ button.updateBtn {
     }
 
     &.err {
-        color: $err_clr;
+        color: var(--err-clr);
     }
 }

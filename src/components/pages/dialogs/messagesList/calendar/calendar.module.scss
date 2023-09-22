@@ -31,18 +31,18 @@
 
 .getBtn,
 .getBtn:disabled:hover {
-    background-color: $brown_light_clr;
+    background-color: rgba(var(--accent-clr_main), 1);
     height: 35px;
     width: 47px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $lgrey_clr;
+    color: var(--main-bg-clr);
     font-weight: 600;
     padding: 8px 12px;
     border-radius: $borderR_value_small;
     cursor: pointer;
-    box-shadow: $boxshadow_val_small;
+    box-shadow: var(--boxsh-val-small);
     transition: $transition_val;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .getBtn:disabled:hover .getBtn:hover {
-    background-color: rgba($color: $brown_light_clr, $alpha: .9);
+    background-color: rgba(var(--accent-clr_main), .9);
 
 }
 
@@ -61,7 +61,7 @@
     position: absolute;
     top: -15px;
     left: 0px;
-    color: $err_clr;
+    color: var(--err-clr);
     font-weight: 600;
     font-size: 12px;
     line-height: 1;

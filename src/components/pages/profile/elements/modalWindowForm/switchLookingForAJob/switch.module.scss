@@ -21,7 +21,7 @@
         background-color: #fff;
         border-radius: 50%;
         transition: $transition_val;
-        box-shadow: $boxshadow_for_message;
+        // box-shadow: var(--boxsh-for-message);
     }
 }
 

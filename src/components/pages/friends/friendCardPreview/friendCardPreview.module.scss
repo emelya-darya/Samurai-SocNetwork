@@ -1,6 +1,10 @@
 @import '../../../../assets//commonStyles//vars_mixins';
 @import '../../../../assets//commonStyles//modules//users-friends//cardPreview.module.scss';
 
+$mask_bg: rgba(var(--restore-fr-mask-clr), .8);
+$btn_bg: rgba(var(--restore-fr-mask-clr), 1);
+$btn_hover_bg: rgba(var(--restore-fr-mask-clr), .05);
+
 .userItemWr {
     position: relative;
 }
@@ -11,7 +15,7 @@
     left: 0px;
     width: 100%;
     height: 100%;
-    background-color: rgba($color: $lgrey_clr, $alpha: .8);
+    background-color: $mask_bg;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,16 +28,17 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: $lgrey_clr;
+    background-color: $btn_bg;
     padding: 8px 25px;
+    width: 155px;
     transition: $transition_val;
     height: 35px;
-    color: $brown_clr;
+    color: var(--text-clr);
 
     &:hover {
-        background-color: rgba($color: $brown_clr, $alpha: .05);
-        box-shadow: $boxshadow_val_small;
-        
-        color: $brown_clr;
+        background-color: $btn_hover_bg;
+        box-shadow: var(--boxsh-val-small);
+
+        color: var(--text-clr);
     }
 }

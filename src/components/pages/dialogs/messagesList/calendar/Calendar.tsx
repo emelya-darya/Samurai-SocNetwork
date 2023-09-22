@@ -1,66 +1,66 @@
-import c from './calendar.module.scss'
-import DatePicker from 'react-datepicker'
-import ru from 'date-fns/locale/ru'
-
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import DatePicker from 'react-datepicker'
+// import ru from 'date-fns/locale/ru'
 import { GlobalStateType } from '../../../../../store/redux/reduxStore'
 import { PreloaderSmall } from '../../../../reusableElements/preloaders/small/PreloaderSmall'
 import { DialogsAC } from '../../../../../store/redux/dialogs/dialogsReducer'
+import { mainBgClr } from '../../../../reusableElements/getCssVariableColor'
+import c from './calendar.module.scss'
 
 type CalendarPropsType = {
-   anchorRefForAutoscroll?: React.RefObject<HTMLDivElement> | null
+    anchorRefForAutoscroll?: React.RefObject<HTMLDivElement> | null
 }
 
 const Calendar: React.FC<CalendarPropsType> = ({ anchorRefForAutoscroll }) => {
-   const { isInProgressGetNewerThanMessages: isInProgress, dateToGetMessagesNewerThan } = useSelector(
-      (state: GlobalStateType) => state.forDialogsData.messagesListData
-   )
+    const { isInProgressGetNewerThanMessages: isInProgress, dateToGetMessagesNewerThan } = useSelector(
+        (state: GlobalStateType) => state.forDialogsData.messagesListData,
+    )
 
-   const error = useSelector((state: GlobalStateType) => state.forErrorsData.dialogsErrors.errOnGetNewerThanMessages)
+    const error = useSelector((state: GlobalStateType) => state.forErrorsData.dialogsErrors.errOnGetNewerThanMessages)
 
-   const [calendarDate, setCalendarDate] = React.useState<Date | null>(null)
+    const [calendarDate, setCalendarDate] = React.useState<Date | null>(null)
 
-   const calendarValueToEqual = calendarDate?.toISOString() || null
+    const calendarValueToEqual = calendarDate?.toISOString() || null
 
-   const isDisabledBtn = dateToGetMessagesNewerThan === calendarValueToEqual || isInProgress
+    const isDisabledBtn = dateToGetMessagesNewerThan === calendarValueToEqual || isInProgress
 
-   const dispatch = useDispatch()
-   const onClickHandler = () => {
-      dispatch(DialogsAC.getMessagesNewerThan(calendarDate?.toISOString() || null))
-   }
+    const dispatch = useDispatch()
+    const onClickHandler = () => {
+        dispatch(DialogsAC.getMessagesNewerThan(calendarDate?.toISOString() || null))
+    }
 
-   React.useEffect(() => {
-      anchorRefForAutoscroll?.current?.scrollIntoView({ block: 'nearest', inline: 'start' })
-   }, [dateToGetMessagesNewerThan])
+    React.useEffect(() => {
+        anchorRefForAutoscroll?.current?.scrollIntoView({ block: 'nearest', inline: 'start' })
+    }, [dateToGetMessagesNewerThan])
 
-   return (
-      <div className={c.calendarWr}>
-         <p className={c.subtitle}>Receive all messages after:</p>
-         <div className={c.selectBtn}>
-            <DatePicker
-               selected={calendarDate}
-               onChange={date => {
-                  setCalendarDate(date)
-               }}
-               showIcon
-               isClearable={true}
-               // showTimeSelect
-               excludeDateIntervals={[{ start: new Date(Date.now()), end: new Date(Date.now() * 10) }]}
-               // dateFormat='yyyy/MM/dd'
-               // locale={ru}
-               // closeOnScroll={true}
-               className='custom-calendar-input'
-               calendarClassName='custom-calendar-dropdown'
-               placeholderText='Select date'
-            />
-            <button className={c.getBtn} disabled={isDisabledBtn} onClick={onClickHandler}>
-               {isInProgress ? <PreloaderSmall color='#EFEFEF' size={15} minHeight='15px' /> : <span>Get</span>}
-            </button>
-            <p className={c.err}>{error}</p>
-         </div>
-      </div>
-   )
+    return (
+        <div className={c.calendarWr}>
+            <p className={c.subtitle}>Receive all messages after:</p>
+            <div className={c.selectBtn}>
+                <DatePicker
+                    selected={calendarDate}
+                    onChange={date => {
+                        setCalendarDate(date)
+                    }}
+                    showIcon
+                    isClearable={true}
+                    // showTimeSelect
+                    excludeDateIntervals={[{ start: new Date(Date.now()), end: new Date(Date.now() * 10) }]}
+                    // dateFormat='yyyy/MM/dd'
+                    // locale={ru}
+                    // closeOnScroll={true}
+                    className='custom-calendar-input'
+                    calendarClassName='custom-calendar-dropdown'
+                    placeholderText='Without filter'
+                />
+                <button className={c.getBtn} disabled={isDisabledBtn || isInProgress} onClick={onClickHandler}>
+                    {isInProgress ? <PreloaderSmall color={mainBgClr} size={17} minHeight='17px' /> : <span>Get</span>}
+                </button>
+                <p className={c.err}>{error}</p>
+            </div>
+        </div>
+    )
 }
 export { Calendar }
 

@@ -7,10 +7,11 @@
     top: 0px;
     left: 0px;
     width: 100%;
-    background-color: $orange_light_clr;
+    background-color: var(--sidebar-header-clr);
+    transition: $transition_val;
    
     // border-bottom: 1px solid $orange_clr;
-    box-shadow: $boxshadow_val;
+    box-shadow: var(--boxsh-val);
     padding: 8px 50px;
     height: 80px;
 
@@ -65,7 +66,7 @@ a.logoWr {
     svg {
         width: 60px;
         height: 60px;
-        fill: $brown_light_clr;
+        fill: rgba(var(--accent-clr_main), 1);
 
         animation-name: rotate-logo;
         animation-duration: 60s;
@@ -97,7 +98,7 @@ a.logoWr {
     }
 
     svg {
-        fill: $brown_light_clr;
+        fill: rgba(var(--accent-clr_main), 1);
         font-size: 4rem;
 
         @media(max-width: 576px) {
@@ -138,9 +139,9 @@ a.logoWr {
     }
 
     .avatarHeader {
-        background-color: $brown_light_clr;
-        color: $orange_light_clr;
-        border: 1px solid $brown_light_clr;
+        background-color: rgba(var(--accent-clr_main), 1);
+        color: var(--sidebar-header-clr);
+        border: 1px solid rgba(var(--accent-clr_main), 1);
         // box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         width: 43px;
         height: 43px;
@@ -168,15 +169,18 @@ a.logoWr {
         visibility: hidden;
        
         width: 130px;
-        font-size: 14px;
-        
+        // font-size: 14px;
         padding: 8px 20px;
-        // height: auto;
-        background-color: $brown_clr;
+        background-color:rgba(var(--sign-out-btn-bg), 1);
         gap: 10px;
     
         &:hover {
-            background-color: rgba($color: $brown_clr, $alpha: .9);
+            background-color: rgba(var(--sign-out-btn-bg), .9);
+        }
+    
+        &:disabled,
+        &:disabled:hover {
+            background-color: rgba(var(--sign-out-btn-bg), 1);
         }
     }
 
@@ -208,9 +212,10 @@ a.logoWr {
     margin-left: auto;
     width: 130px;
     font-weight: 600;
-    background-color: $brown_light_clr;
+    background-color: rgba(var(--accent-clr_main), 1);
     gap: 15px;
     height: 35px;
+    color: var(--main-bg-clr);
 
     @media(max-width: 576px) {
         width: 100px;
@@ -222,21 +227,21 @@ a.logoWr {
     }
 
     &:hover {
-        background-color: rgba($color: $brown_light_clr, $alpha: .9);
-        color: $lgrey_clr;
+        background-color: rgba(var(--accent-clr_main), .9);
+        color: var(--main-bg-clr);
     }
 
     &.disabled,
     &.disabled:hover{
         opacity: 0.8;
-        background-color: $brown_light_clr;
+        background-color: rgba(var(--accent-clr_main), 1);
         cursor: not-allowed;
     }
 }
 
 .errOnCheckAuth {
     margin: 0px;
-    color: $err_clr;
+    color: var(--err-clr);
     font-size: 10px;
     font-weight: 600;
     white-space: nowrap;
@@ -254,7 +259,7 @@ a.logoWr {
     @include text-cut(80px);
     font-size: 9px;
     font-weight: 600;
-    color: $err_clr;
+    color: var(--err-clr);
     // height: 9px;
 
 }

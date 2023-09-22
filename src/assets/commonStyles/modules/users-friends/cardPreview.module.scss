@@ -2,7 +2,7 @@
 @import '../buttonFollowUnfollow.module.scss';
 
 .userItemWr {
-    border-bottom: 1px solid rgba($color: $brown_clr, $alpha: .3);
+    border-bottom: 1px solid rgba($color: var(--text-clr), $alpha: .3);
     padding: 15px 0px 15px 15px;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .userItemWr:first-child {
-    border-top: 1px solid rgba($color: $brown_clr, $alpha: .3);
+    border-top: 1px solid rgba($color: var(--text-clr), $alpha: .3);
 }
 
 .avatarNameStatus {
@@ -40,9 +40,9 @@
     height: 100px;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid rgba($color: $brown_clr, $alpha: .5);
-    box-shadow: $boxshadow_val;
-    background-color: $orange_clr;
+    border: 1px solid rgba($color: var(--text-clr), $alpha: .5);
+    box-shadow: var(--boxsh-val);
+    background-color: rgba(var(--accent-clr_sec), 1);
 
     @include img-absolute;
 }
@@ -93,7 +93,7 @@
 .error {
     visibility: hidden;
     opacity: 0;
-    color: $err_clr;
+    color: var(--err-clr);
     font-weight: 700;
     text-align: center;
     font-size: 10px;
@@ -122,7 +122,7 @@
         white-space: nowrap;
         font-weight: 600;
         width: 105px;
-        color: $brown_clr;
+        color: var(--text-clr);
         transition: $transition_val;
         line-height: 1;
         padding: 2px;
@@ -131,6 +131,6 @@
 
     .writeAMessage:hover {
         text-decoration: none;
-        color: $brown_light_clr;
+        color: rgba(var(--accent-clr_main), 1);
     }
 }

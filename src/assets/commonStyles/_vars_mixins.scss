@@ -1,41 +1,105 @@
-// Цвета
+:root {
+    // цвет сайдбара, хедера и скроллбара
+    --sidebar-header-clr-light-th: #FFDDAA;
+    --sidebar-header-clr-dark-th: #1D1E19;
 
-$orange_clr: #F0772B;
-$orange_light_clr: #FFDDAA;
+    --boxsh-val-light-th: 2px 2px 10px rgba(0, 0, 0, .5);
+    --boxsh-val-dark-th: 2px 2px 10px rgba(0, 0, 0, .6);
 
-// $yellow_clr: #E7C000;
-$yellow_light_clr: #F4ECC5;
+    --boxsh-val-small-light-th: 2px 2px 5px rgba(0, 0, 0, .3);
+    --boxsh-val-small-dark-th: 2px 2px 5px rgba(0, 0, 0, .3);
 
-$brown_clr:#351704;
-$brown_light_clr: #A0450B;
+    --boxsh-for-message-light-th: 3px 0px 3px rgba(0, 0, 0, .05);
+    --boxsh-for-message-dark-th: 3px 0px 3px rgba(0, 0, 0, .6);
 
-$lgrey_clr: #EFEFEF;
+    --text-clr-light-th: #351704;
+    --text-clr-dark-th: #EFEFEF;
 
-$err_clr: #C53030;
+    --main-bg-clr-light-th: #EFEFEF;
+    --main-bg-clr-dark-th: #272822;
 
-$warn_clr: #CDB507;
+    --body-bg-light-th: #F0772B;
+    --body-bg-dark-th: #3B3C35;
 
-$my_message_clr: rgba($color: #5FBE67, $alpha: .25);
-// $my_message_clr: #CBE3CD;
+    --accent-clr_main-light-th: 160, 69, 11; //rgb(160, 69, 11)
+    --accent-clr_main-dark-th: 247, 136, 66; //rgb(247, 136, 66)  
 
-$my_message_icons_clr: #38A169;
+    --accent-clr_sec-light-th: 240, 119, 43; //rgb(240, 119, 43)
+    --accent-clr_sec-dark-th: 102, 216, 238; //rgb(102, 216, 238)  
 
-// $borderR_value: 15px;
+    --my-msg-clr-light-th: #CBE3CD;
+    --my-msg-clr-dark-th: #49627b;
+
+    --my_msg-date-viewed-clr-light-th: #38A169;
+    --my_msg-date-viewed-clr-dark-th: #82C2F7;
+
+    --companion-msg-clr-light-th: #fff;
+    --companion-msg-clr-dark-th: #283645;
+
+    --small-scrollbar-clr-light-th: rgba(29, 30, 25, .3);
+    --small-scrollbar-clr-dark-th: rgba(239, 239, 239, .3);
+
+    --delete-msg-icon-clr-light-th: 197, 48, 48; //#C53030
+    --delete-msg-icon-clr-dark-th: 160, 160, 160; // #A0A0A0
+
+    --mask-for-restore-msg-bg-light-th: rgba(239, 239, 239, .9);
+    --mask-for-restore-msg-bg-dark-th: rgba(39, 40, 34, .9);
+
+    --err-clr-light-th: #C53030;
+    --err-clr-dark-th: #D65454;
+
+    --sign-out-btn-bg-light-th: 53, 23, 4; //#351704
+    --sign-out-btn-bg-dark-th: 220, 150, 150; //#DC9696
+
+    --restore-fr-mask-clr-light-th: 239, 239, 239; //rgba(239, 239, 239, 1)
+    --restore-fr-mask-clr-dark-th: 39, 40, 34; //rgba(39, 40, 34, 1)
+
+
+
+    //!
+    --sidebar-header-clr: var(--sidebar-header-clr-light-th);
+    --main-bg-clr: var(--main-bg-clr-light-th);
+    --body-bg: var(--body-bg-light-th);
+    --text-clr: var(--text-clr-light-th);
+    --accent-clr_main: var(--accent-clr_main-light-th);
+    --accent-clr_sec: var(--accent-clr_main-light-th);
+    --err-clr: var(--err-clr-light-th);
+    --small-scrollbar-clr: var(--small-scrollbar-clr-light-th);
+
+    --boxsh-val: var(--boxsh-val-light-th);
+    --boxsh-val-small: var(--boxsh-val-small-light-th);
+    --boxsh-for-message: var(--boxsh-for-message-light-th);
+
+    --my-msg-clr: var(--my-msg-clr-light-th);
+    --my_msg-date-viewed-clr: var(--my_msg-date-viewed-clr-light-th);
+    --companion-msg-clr: var(--companion-msg-clr-light-th);
+    --delete-msg-icon-clr: var(--delete-msg-icon-clr-light-th);
+    --mask-for-restore-msg-bg: var(--mask-for-restore-msg-bg-light-th);
+
+    --sign-out-btn-bg: var(--sign-out-btn-bg-light-th);
+
+    --restore-fr-mask-clr: var(--restore-fr-mask-clr-light-th);
+}
+
+
+//#797979 #d6d6d6 #e5b567 #b4d273 #e87d3e #9e86c8 #b05279 #6c99bb
+// #66D8EE; #AE81FF #A6E22E #F92672 #FD971F
+
+
+//!не будет меняться
+
+$transition_val:0.4s;
+
+//// $borderR_value: 15px;
 $borderR_value: 5px;
 $borderR_value_small: 5px;
 
 
-$transition_val:0.4s;
+// $accent_drk_clr: #351704;
+$modal_bg_clr: rgba($color: #1D1E19, $alpha: .7);
+$warn_clr: #CDB507;
 
-$boxshadow_val: 2px 2px 10px rgba(0, 0, 0, 0.5);
 
-$boxshadow_val_small: 2px 2px 5px rgba(0, 0, 0, 0.3);
-
-$boxshadow_for_message: 3px 0px 3px rgba(0, 0, 0, 0.05);
-// $border_r: 15px;
-// $bg_dark_grad: linear-gradient(to bottom, rgba(19, 57, 92, 0.8), rgba(0, 0, 0, 0.8) 80%);
-// $bg_light_grad: linear-gradient(to bottom, rgba(19, 57, 92, 0.7), rgba(0, 0, 0, 0.5) 80%);
-// $orange_clr: #FFA927;
 
 @mixin img-absolute {
     position: relative;
@@ -61,7 +125,7 @@ $boxshadow_for_message: 3px 0px 3px rgba(0, 0, 0, 0.05);
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: rgba($color: #000000, $alpha: .3);
+        background-color: var(--small-scrollbar-clr);
         border-radius: 3px;
     }
 }

@@ -5,8 +5,8 @@ button.buttFollUnfoll:disabled:hover {
     width: 160px;
     text-transform: uppercase;
     // padding: 15px 25px;
-    box-shadow: $boxshadow_val_small;
-    border: 2px solid $orange_clr;
+    box-shadow: var(--boxsh-val-small);
+    border: 2px solid rgba(var(--accent-clr_sec), 1);;
     transition: $transition_val;
     gap: 12px;
     // font-size: 14px;
@@ -21,32 +21,32 @@ button.buttFollUnfoll:disabled:hover {
 }
 
 button.unfollowBtn {
-    background-color: $orange_clr;
-    color: $lgrey_clr;
+    background-color: rgba(var(--accent-clr_sec), 1);;
+    color: var(--main-bg-clr);
 }
 
 button.followBtn {
     background-color: transparent;
-    color: $orange_clr;
+    color: rgba(var(--accent-clr_sec), 1);;
 }
 
 button.unfollowBtn:hover {
-    background-color: rgba($color: $orange_clr, $alpha: .8);
-    border-color:  rgba($color: $orange_clr, $alpha: .8);
+    background-color: rgba(var(--accent-clr_sec), .8);
+    border-color:  rgba(var(--accent-clr_sec), .8);
 }
 
 button.followBtn:hover {
-    background-color: rgba($color: $orange_clr, $alpha: .1);
-    color: $orange_clr;
+    background-color: rgba(var(--accent-clr_sec), .1);
+    color: rgba(var(--accent-clr_sec), 1);
     // color: $lgrey_clr;
 }
 
 button.unfollowBtn:disabled:hover {
-    background-color: $orange_clr;
-    color: $lgrey_clr;
+    background-color: rgba(var(--accent-clr_sec), 1);
+    color: var(--main-bg-clr);
 }
 
 button.followBtn:disabled:hover {
     background-color: transparent;
-    color: $orange_clr;
+    color: rgba(var(--accent-clr_sec), 1);
 }

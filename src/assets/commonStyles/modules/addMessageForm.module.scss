@@ -17,7 +17,7 @@ textarea.styledTextarea {
     text-align: right;
     margin-bottom: 0px;
     font-size: 12px;
-    color: rgba($color: $brown_clr, $alpha: .7);
+    color: rgba($color: var(--text-clr), $alpha: .7);
 }
 
 
@@ -30,7 +30,7 @@ button.sendBtn:disabled:hover {
 
     padding: 12px 7px 12px 12px !important;
     // border-radius: 0.375rem;
-    color: rgba($color: $brown_light_clr, $alpha: .6);
+    color: rgba(var(--accent-clr_main), .6);
 
     background-color: transparent;
     box-shadow: 0px 0px 0px transparent;
@@ -44,5 +44,5 @@ button.sendBtn:disabled:hover {
 
 button.sendBtn:hover {
     background-color: transparent;
-    color: rgba($color: $brown_light_clr, $alpha: 1);
+    color: rgba(var(--accent-clr_main), 1);
 }

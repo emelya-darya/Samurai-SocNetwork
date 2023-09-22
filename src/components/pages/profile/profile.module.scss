@@ -57,14 +57,14 @@
 }
 
 .serverErrMessage {
-    color: $err_clr;
+    color: var(--err-clr);
     text-align: center;
     font-weight: 700;
     margin: 40px 0px 30px 0px;
 }
 
 .err {
-    color: $err_clr;
+    color: var(--err-clr);
     font-weight: 600;
     font-size: 13px;
     margin: 0px;
@@ -79,10 +79,10 @@
     width: 160px;
     flex-direction: row-reverse;
     gap: 10px;
-   
+
     svg {
         font-size: 1.5rem;
-        
+
     }
 }
 
@@ -105,18 +105,18 @@
 
 button.logoutBtn {
     width: 160px;
-    background-color: $brown_clr;
+    background-color: rgba(var(--sign-out-btn-bg), 1);
 
     svg {
         font-size: 1.5rem;
     }
 
     &:hover {
-        background-color: rgba($color: $brown_clr, $alpha: .9);
+        background-color: rgba(var(--sign-out-btn-bg), .9);
     }
 
     &:disabled,
     &:disabled:hover {
-        background-color: $brown_clr;
+        background-color: rgba(var(--sign-out-btn-bg), 1);
     }
 }

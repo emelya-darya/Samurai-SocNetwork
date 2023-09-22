@@ -1,17 +1,20 @@
 @import '../../../assets//commonStyles//vars_mixins';
 
-a.subAvatarWPhoto,.subAvatarWPhoto,
-a.subAvatarWLett,.subAvatarWLett {
+a.subAvatarWPhoto,
+.subAvatarWPhoto,
+a.subAvatarWLett,
+.subAvatarWLett {
     display: flex;
     width: 53px;
     height: 53px;
-    border: 1px solid $lgrey_clr;
+    border: 1px solid var(--main-bg-clr);
     border-radius: 50%;
-    color: $lgrey_clr;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: #EFEFEF !important;
+    font-weight: 600;
+    box-shadow: var(--boxsh-val-small);
 
-    &:hover{
-        color: $lgrey_clr;
+    &:hover {
+        color: var(--main-bg-clr);
     }
 }
 
@@ -23,7 +26,7 @@ a.subAvatarWLett,.subAvatarWLett {
 
 .subAvatarWPhoto {
     @include img-absolute;
-    
+
 
     img {
         border-radius: 50%;
@@ -36,14 +39,14 @@ a.subAvatarWLett,.subAvatarWLett {
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    background-color: $orange_clr;
+    background-color: var(--accent-clr_sec);
     // font-weight: 700;
-    color: $lgrey_clr;
+    color: var(--main-bg-clr);
     font-size: 16px;
 
 }
 
 // div.subAvatarWLett {
-//     background-color: $lgrey_clr;
+//     background-color: var(--main-bg-clr);
 //     color: $brown_clr;
 // }

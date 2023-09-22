@@ -21,8 +21,8 @@
         justify-content: center;
         align-items: center;
         padding: 7px 12px;
-        border: 1px solid rgba($orange_clr, .7);
-        color: rgba($orange_clr, 1);
+        border: 1px solid rgba(var(--accent-clr_main), .7);
+        color: rgba(var(--accent-clr_main), 1);
         margin: 0px;
         transition: .4s;
         cursor: pointer;
@@ -41,7 +41,7 @@
     }
 
     li:not(:last-child) a {
-        
+
         @media(min-width: 576px) {
             border-right: 0px solid transparent;
         }
@@ -57,13 +57,13 @@
 
     li.active a,
     li.active a:hover {
-        background-color: rgba($orange_clr, .2);
-        color: rgba($orange_clr, 1);
+        background-color: rgba(var(--accent-clr_main), .2);
+        color: rgba(var(--accent-clr_main), 1);
     }
 
     li a:hover {
-        background-color: rgba($orange_clr, .1);
-        color: rgba($orange_clr, 1);
+        background-color: rgba(var(--accent-clr_main), .1);
+        color: rgba(var(--accent-clr_main), 1);
     }
 
 }

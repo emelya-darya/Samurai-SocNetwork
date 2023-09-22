@@ -7,7 +7,7 @@ input.styledInput {
     display: block;
     width: 100%;
     border: 2px solid;
-    border-color: rgba($color: $brown_light_clr, $alpha: .3);
+    border-color: rgba(var(--accent-clr_main), .3);
     transition: $transition_val;
     width: 100%;
     background-color: transparent;
@@ -29,14 +29,15 @@ textarea.styledTextarea {
 
 input.styledInput:hover,
 textarea.styledTextarea:hover {
-    border-color: rgba($color: $brown_light_clr, $alpha: .6);
+    border-color: rgba(var(--accent-clr_main), .6);
 }
 
 textarea.styledTextarea:focus-visible,
 textarea.styledTextarea:focus,
-input.styledInput:focus-visible, input.styledInput:focus {
-    border-color: rgba($color: $brown_light_clr, $alpha: .6);
-    box-shadow: $boxshadow_val_small;
+input.styledInput:focus-visible,
+input.styledInput:focus {
+    border-color: rgba(var(--accent-clr_main), .6);
+    box-shadow: var(--boxsh-val-small);
 }
 
 
@@ -65,7 +66,7 @@ input.styledInput:focus-visible, input.styledInput:focus {
 
         display: block;
         font-weight: 600;
-        color: $err_clr;
+        color: var(--err-clr);
         font-size: 11px;
         margin-top: 4px;
         margin-left: 1px;
@@ -83,7 +84,7 @@ input.styledInput:focus-visible, input.styledInput:focus {
     //     color: $err_clr;
     // }
     input.styledInput {
-        border-color: $err_clr;
+        border-color: var(--err-clr);
     }
 
     .spanErr {

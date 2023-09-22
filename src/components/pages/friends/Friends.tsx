@@ -1,15 +1,16 @@
-import c from './friends.module.scss'
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import shortid from 'shortid'
 import { BsSearch } from 'react-icons/bs'
 import { Paginator } from '../../reusableElements/paginator/Paginator'
-import { FriendCardPreview } from './friendCardPreview/FriendCardPreview'
 import { Preloader } from '../../reusableElements/preloaders/main/Preloader'
-import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../store/redux/storeTypes'
 import { FriendsAC } from '../../../store/redux/friends/friendsReducer'
 import { withAuthRedirectHOC } from '../../reusableElements/HOC_withAuthRedirect/withAuthRedirectHOC'
+import { accentMainClr } from '../../reusableElements/getCssVariableColor'
+import { FriendCardPreview } from './friendCardPreview/FriendCardPreview'
+import c from './friends.module.scss'
 
 const FriendsPage = withAuthRedirectHOC(() => {
    // получение из стора всего, что надо
@@ -110,7 +111,7 @@ const FriendsPage = withAuthRedirectHOC(() => {
                   />
                </div>
                {isLoading ? (
-                  <Preloader color='#A0450B' size={100} minHeight='75vh' />
+                  <Preloader color={accentMainClr} size={100} minHeight='75vh' />
                ) : (
                   <div className={c.usersContainer}>
                      {currentPage && totalPagesCount >= currentPage ? (

@@ -8,7 +8,7 @@
     padding: 4px 20px;
     // background-color: rgba($color: #000000, $alpha: .2);
     border-radius: $borderR_value;
-    box-shadow: $boxshadow_val;
+    box-shadow: var(--boxsh-val);
     transition: $transition_val;
 
     &:not(:last-child) {
@@ -22,7 +22,7 @@
 
 .dialogItem.withNewMessages,
 .dialogItem:hover {
-    background-color: rgba($color: $brown_light_clr, $alpha: .3);
+    background-color: rgba(var(--accent-clr_main), .3);
 }
 
 .avatarNick {
@@ -87,8 +87,8 @@
     height: 20px;
     font-size: 11px;
     font-weight: 700;
-    color: $lgrey_clr;
+    color: var(--main-bg-clr);
     line-height: 1;
 
-    background-color: $brown_light_clr;
+    background-color: rgba(var(--accent-clr_main), 1);
 }

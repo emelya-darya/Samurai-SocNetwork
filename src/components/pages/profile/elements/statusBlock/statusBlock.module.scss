@@ -17,7 +17,7 @@
         height: 22px;
         flex: 0 0 22px;
         transform: scale(-1, 1);
-        color: $brown_light_clr
+        color: rgba(var(--accent-clr_main), 1);
     }
 
     .iconContent {
@@ -32,13 +32,14 @@
 
     .statusUpdateBtn,
     .statusUpdateBtn:disabled:hover {
-        background-color: $lgrey_clr;
+        background-color: var(--main-bg-clr);
         border-radius: 50%;
         width: 35px;
         height: 35px;
         padding: 0px;
         margin-left: auto;
-        color: $brown_light_clr;
+        color: rgba(var(--accent-clr_main), 1);
+        border: 1px solid rgba($color: #EFEFEF, $alpha: .1);
 
         svg {
             font-size: 18px;
@@ -46,18 +47,19 @@
     }
 
     .statusUpdateBtn:hover {
-        background-color: rgba($color: $brown_light_clr, $alpha: 0.05);
+        background-color: rgba(var(--accent-clr_main), .05);
         // box-shadow: $boxshadow_val;
     }
 
-    .statusInputWr{
+    .statusInputWr {
         position: relative;
     }
 
     input.statusInput {
         margin-bottom: 7px;
         width: 100%;
-        border-bottom: 1px solid rgba($color: $brown_light_clr, $alpha: .6);
+        border: 0px solid transparent;
+        border-bottom: 1px solid rgba(var(--accent-clr_main), .6);
         padding-right: 35px;
         padding: 5px 35px 5px 0px;
         outline: 0px solid transparent;
@@ -65,8 +67,8 @@
     }
 
     input.statusInput:focus-visible {
-        border-color: rgba($color: $brown_light_clr, $alpha: 1);
-        box-shadow: 0px 1px 0px 0px $brown_light_clr;
+        border-color: rgba(var(--accent-clr_main), 1);
+        box-shadow: 0px 1px 0px 0px rgba(var(--accent-clr_main), 1);
     }
 
     .inputStatusSendBtn,
@@ -74,7 +76,7 @@
         position: absolute;
         bottom: 7px;
         right: 0px;
-        color: $brown_light_clr;
+        color: rgba(var(--accent-clr_main), 1);
         background-color: transparent;
         padding: 7px 3px;
         font-size: 20px;

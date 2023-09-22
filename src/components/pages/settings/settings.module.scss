@@ -1,0 +1,47 @@
+@import '../../../assets//commonStyles/vars_mixins';
+
+.title {
+    margin-top: 0px;
+    margin-bottom: 3.0rem;
+}
+
+
+.themesVariantsBtnGroup{
+    display: flex;
+}
+
+.buttonTh{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 9px 15px;
+    width: 110px;
+    cursor: pointer;
+    transition: $transition_val;
+    background-color: transparent;
+    border: 1px solid var(--text-clr);
+    outline: none;
+
+    svg{
+        font-size: 20px;
+    }
+}
+
+.buttonTh.light{
+    border-radius: $borderR_value_small 0px 0px $borderR_value_small;
+    border-right: 0px solid transparent;
+}
+
+.buttonTh.dark{
+    border-radius: 0px $borderR_value_small  $borderR_value_small 0px;
+    border-left: 0px solid transparent;
+}
+
+.buttonTh.active {
+    background-color: rgba(var(--accent-clr_main), 1);
+    color: #EFEFEF;
+    border: 1px solid rgba(var(--accent-clr_main), 1);
+}

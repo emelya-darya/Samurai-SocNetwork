@@ -6,7 +6,7 @@
 
 .warn {
     margin-bottom: 15px;
-    color: $err_clr;
+    color: var(--err-clr);
     font-weight: 600;
     font-size: 13px;
 
@@ -16,7 +16,7 @@
 }
 
 .serverErrMessage {
-    color: $err_clr;
+    color: var(--err-clr);
     text-align: center;
     font-weight: 700;
     margin: 40px 0px 30px 0px;
@@ -32,11 +32,11 @@
     }
 
     a {
-        color: $brown_light_clr;
+        color: rgba(var(--accent-clr_main), 1);
     }
 
     a:hover {
-        color: $orange_clr;
+        color: rgba(var(--accent-clr_sec), 1);
     }
 }
 
@@ -56,7 +56,7 @@
     // padding: 15px;
     padding-bottom: 20px;
     border-radius: $borderR_value;
-    box-shadow: $boxshadow_val;
+    box-shadow: var(--boxsh-val);
     padding: 0px 10px 12px 10px;
 }
 
