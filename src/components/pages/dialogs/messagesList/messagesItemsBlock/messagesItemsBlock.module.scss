@@ -17,15 +17,28 @@
 
 
 .messagesItems{
-    max-height: 420px;
+    // max-height: 420px;
+    max-height: calc(100vh - 80px - 100px - 60px - 70px - 120px);
+    min-height: 270px;
+    // header 80px
+    // paddind-y layout content 65px
+    // warn lett 35px
+    // calender 60px
+    // pb контейнера с комп и сообщ 12px
+    // companion 65px
+    // preload 20px
+    // send message form 120px
+    // calc(100vh - 80px)
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
     @include thin-grey-scrollbar;
+
+    // background-color: red;
     // margin: 0px 10px;
     // padding: 0px 7px;
 
-    @media(max-width: 768px) {
-        max-height: 300px;
-    }
+    // @media(max-width: 768px) {
+    //     max-height: 300px;
+    // }
 }

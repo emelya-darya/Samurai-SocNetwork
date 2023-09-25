@@ -34,6 +34,7 @@ const AvatarBlock: React.FC<AvatarBlockPropsType> = ({ isMyProfile }) => {
     }
 
     const handleCloseModal = function () {
+        if (fileInputRef.current) fileInputRef.current.value = ''
         setIsOpenModalCrop(false)
         onCloseModal()
     }
@@ -59,6 +60,7 @@ const AvatarBlock: React.FC<AvatarBlockPropsType> = ({ isMyProfile }) => {
         setIsOpenModalMessage(true)
     }
 
+    const fileInputRef = React.useRef<HTMLInputElement>(null)
     const closeModalMessageHandler = () => {
         onCloseModal()
         setIsOpenModalMessage(false)
@@ -78,7 +80,7 @@ const AvatarBlock: React.FC<AvatarBlockPropsType> = ({ isMyProfile }) => {
                             ) : (
                                 <label className={c.uploadPhotoBtn}>
                                     <TbCameraUp />
-                                    <input hidden accept='image/*' type='file' onChange={onUploadPhotoFile} />
+                                    <input hidden accept='image/*' type='file' onChange={onUploadPhotoFile} ref={fileInputRef} />
                                 </label>
                             )}
                         </div>

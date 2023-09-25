@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import shortid from 'shortid'
 import { DialogsAC } from '../../../../store/redux/dialogs/dialogsReducer'
 import { GlobalStateType } from '../../../../store/redux/reduxStore'
-import { Preloader } from '../../../reusableElements/preloaders/main/Preloader'
+import { PreloaderSmall } from '../../../reusableElements/preloaders/small/PreloaderSmall' 
 import { colorsAvatars, shuffleArray } from '../../../reusableElements/userAvatarWithLink/colorsAvatars'
 import { accentMainClr } from '../../../reusableElements/getCssVariableColor'
 import { DialogItem } from './dialogItem/DialogItem'
@@ -53,7 +53,7 @@ const DialogsList = () => {
             {errOnLoadingsDialogsList ? (
                 <p className={c.serverErrMessage}>{errOnLoadingsDialogsList}</p>
             ) : isInProgressLoadingDialogsList ? (
-                <Preloader color={accentMainClr} size={100} minHeight='75vh' />
+                <PreloaderSmall  color={accentMainClr} size={100} minHeight='75vh' />
             ) : (
                 <div className={c.dialogsItems}>
                     {showingItems.length ? (

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate, useLocation } from 'react-router-dom'
-import { Preloader } from '../../../reusableElements/preloaders/main/Preloader'
+import { PreloaderSmall } from '../../../reusableElements/preloaders/small/PreloaderSmall'
 import { GlobalStateType } from '../../../../store/redux/reduxStore'
 import { DialogsAC } from '../../../../store/redux/dialogs/dialogsReducer'
 import { accentMainClr } from '../../../reusableElements/getCssVariableColor'
@@ -44,7 +44,7 @@ const MessagesList: React.FC<MessagesListPropsType> = ({ userId }) => {
             {errOnLoadingFirstMessagesPortion ? (
                 <p className={c.serverErrMessage}>{errOnLoadingFirstMessagesPortion}</p>
             ) : isLoadingPrimaryData ? (
-                <Preloader color={accentMainClr} size={100} minHeight='75vh' />
+                <PreloaderSmall  color={accentMainClr} size={100} minHeight='75vh' />
             ) : !companionData ? (
                 <div className={c.noDialogBlock}>
                     <p className={c.emptyLett}>You do not have a dialogue with this user. Try starting from the</p>

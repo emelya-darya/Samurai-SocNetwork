@@ -31,6 +31,8 @@ const Header: React.FC<PropsType> = ({ sidebarHandler }) => {
 
     const location = useLocation()
 
+    const isLess576 = useMatchMedia().less576 
+
     return (
         <header className={`${c.header} header`}>
             {/* <div className={`header__container`}> */}
@@ -81,7 +83,7 @@ const Header: React.FC<PropsType> = ({ sidebarHandler }) => {
                             <Button
                                 tag='link'
                                 linkPath='/login'
-                                name='Login'
+                                name={isLess576 ? null : 'Login'}
                                 Icon={LuLogIn}
                                 extraClassName={`${c.loginBtn} ${location.pathname === '/login' ? c.disabled : ''}`}
                                 isLoading={false}

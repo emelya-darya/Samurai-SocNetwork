@@ -141,7 +141,7 @@ a.logoWr {
     .avatarHeader {
         background-color: rgba(var(--accent-clr_main), 1);
         color: var(--sidebar-header-clr);
-        border: 1px solid rgba(var(--accent-clr_main), 1);
+        border: 0px solid transparent;
         // box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         width: 43px;
         height: 43px;
@@ -218,7 +218,7 @@ a.logoWr {
     color: var(--main-bg-clr);
 
     @media(max-width: 576px) {
-        width: 100px;
+        width: 45px;
         gap: 7px;
     }
 

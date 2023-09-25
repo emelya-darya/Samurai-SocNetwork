@@ -5,7 +5,7 @@ import { LiaUserEditSolid } from 'react-icons/lia'
 import { LuLogOut } from 'react-icons/lu'
 import { GlobalStateType } from '../../../store/redux/storeTypes'
 import { ProfileAC } from '../../../store/redux/profile/profileReducer'
-import { Preloader } from '../../reusableElements/preloaders/main/Preloader'
+import { PreloaderSmall } from '../../reusableElements/preloaders/small/PreloaderSmall' 
 import { AuthAC } from '../../../store/redux/auth/authReducer'
 import { withAuthRedirectHOC } from '../../reusableElements/HOC_withAuthRedirect/withAuthRedirectHOC'
 import { onCloseModal, onOpenModal } from '../../reusableElements/forOpenModalOverflowHandler/forOpenModalOverflowHandler'
@@ -53,7 +53,7 @@ const ProfilePage = withAuthRedirectHOC<{}>(() => {
     return (
         <div className={c.profilePage}>
             {isLoadingProfile ? (
-                <Preloader color={accentMainClr} size={100} minHeight='75vh' />
+                <PreloaderSmall color={accentMainClr} size={100} minHeight='75vh' />
             ) : errOnGetProfile ? (
                 <p className={c.serverErrMessage}>{errOnGetProfile}</p>
             ) : (

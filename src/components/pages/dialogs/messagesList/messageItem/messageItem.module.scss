@@ -77,14 +77,19 @@
 }
 
 .actions {
-    opacity: 0;
-    visibility: hidden;
+    // opacity: 0;
+    // visibility: hidden;
 
     flex-grow: 1;
     display: flex;
     justify-content: flex-end;
     gap: 2px;
     font-size: 15px;
+
+    @media (hover: hover) {
+        opacity: 0;
+        visibility: hidden;
+    }
 
     .spam,
     .delete {

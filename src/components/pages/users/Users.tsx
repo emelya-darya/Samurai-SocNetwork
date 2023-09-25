@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import shortid from 'shortid'
 import { BsSearch } from 'react-icons/bs'
 import { Paginator } from '../../reusableElements/paginator/Paginator'
-import { Preloader } from '../../reusableElements/preloaders/main/Preloader'
+import { PreloaderSmall } from '../../reusableElements/preloaders/small/PreloaderSmall' 
 import { GlobalStateType } from '../../../store/redux/storeTypes'
 import { UsersAC } from '../../../store/redux/users/usersReducer'
 import { accentMainClr } from '../../reusableElements/getCssVariableColor'
@@ -123,7 +123,7 @@ const UsersPage = () => {
                         />
                     </div>
                     {isLoading ? (
-                        <Preloader color={accentMainClr} size={100} minHeight='75vh' />
+                        <PreloaderSmall color={accentMainClr} size={100} minHeight='60vh' />
                     ) : (
                         <div className={c.usersContainer}>
                             {currentPage && totalPagesCount >= currentPage ? (

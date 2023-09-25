@@ -71,7 +71,9 @@ const AvatarModal: React.FC<AvatarModalPropsType> = ({ isOpen, handleCloseModal,
     const handleCloseWrapper = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         //@ts-ignore
         const classListArr = Array.from(e?.target?.classList || [])
-        if (classListArr.includes('close') && e.button === 0) handleCloseModal()
+        if (classListArr.includes('close') && e.button === 0) {
+            handleCloseModal()
+        }
     }
 
     React.useEffect(() => {

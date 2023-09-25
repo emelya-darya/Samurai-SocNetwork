@@ -4,7 +4,8 @@ import { withAuthRedirectHOC } from '../../reusableElements/HOC_withAuthRedirect
 import { GlobalStateType } from '../../../store/redux/reduxStore'
 import { CommonWSchatAC } from '../../../store/redux/commonWSchat/commonWSchatReducer'
 import { WSChannel } from '../../../store/DAL/websocketCommonChatAPI'
-import { Preloader } from '../../reusableElements/preloaders/main/Preloader'
+// import { Preloader } from '../../reusableElements/preloaders/main/Preloader'
+import { PreloaderSmall } from '../../reusableElements/preloaders/small/PreloaderSmall'
 import { accentMainClr } from '../../reusableElements/getCssVariableColor'
 import { MessagesBlock } from './elements/messagesBlock/MessagesBlock'
 import { AddMessageForm } from './elements/addMessageForm/AddMessageForm'
@@ -94,7 +95,7 @@ const CommonChatPage = withAuthRedirectHOC(() => {
 
             {errorOnTryingToConnectWS && <p className={c.err}>{errorOnTryingToConnectWS}</p>}
             {isInProgeressOpenWSChannel ? (
-                <Preloader color={accentMainClr} size={100} minHeight='50vh' text='Trying to connect...' />
+                <PreloaderSmall color={accentMainClr} size={100} minHeight='50vh' text='Trying to connect...' />
             ) : (
                 <>
                     <div className={c.messagesContainer}>

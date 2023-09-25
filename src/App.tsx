@@ -13,11 +13,23 @@ import { FriendsPage } from './components/pages/friends/Friends'
 import { FriendsNavbarAC } from './store/redux/friendsNavbar/friendsNavbarReducer'
 import { FriendsAC } from './store/redux/friends/friendsReducer'
 import { AuthAC } from './store/redux/auth/authReducer'
-import { Preloader } from './components/reusableElements/preloaders/main/Preloader'
+import { PreloaderSmall } from './components/reusableElements/preloaders/small/PreloaderSmall'
 import { LoginPage } from './components/pages/login/Login'
 import { DialogsPage } from './components/pages/dialogs/Dialogs'
 import { Settings } from './components/pages/settings/Settings'
 // import { accentMainClr } from './components/reusableElements/getCssVariableColor'
+
+
+//! определение темы при первой загрузке
+// const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+// if (prefersDarkScheme.matches) {
+//   console.log('dark-theme');
+// } else {
+//   console.log('light-theme');
+// }
+
+//! определение темы при первой загрузке
 
 const App = function () {
     const { searchRequest: searchReqUsers, currentPage: usersActPage } = useSelector((state: GlobalStateType) => state.forUsersData)
@@ -68,7 +80,7 @@ const App = function () {
 
     const { isInProgressCheckAuth, isAuthChecking } = useSelector((state: GlobalStateType) => state.forAuthData)
 
-    if (isInProgressCheckAuth || !isAuthChecking) return <Preloader color='#EFEFEF' size={100} minHeight='100vh' />
+    if (isInProgressCheckAuth || !isAuthChecking) return <PreloaderSmall  color='#EFEFEF' size={100} minHeight='100vh' />
     // if (true) return <Preloader color={accentMainClr} size={100} minHeight='100vh' />
     else
         return (
