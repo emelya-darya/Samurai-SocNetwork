@@ -123,7 +123,7 @@ const UsersPage = () => {
                         />
                     </div>
                     {isLoading ? (
-                        <PreloaderSmall color={accentMainClr} size={100} minHeight='60vh' />
+                        <PreloaderSmall color={accentMainClr} size={150} minHeight='60vh' />
                     ) : (
                         <div className={c.usersContainer}>
                             {currentPage && totalPagesCount >= currentPage ? (

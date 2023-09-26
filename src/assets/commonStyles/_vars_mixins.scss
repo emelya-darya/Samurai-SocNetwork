@@ -1,6 +1,7 @@
 :root {
     // цвет сайдбара, хедера и скроллбара
-    --sidebar-header-clr-light-th: #FFDDAA;
+    // --sidebar-header-clr-light-th: #FFDDAA;
+    --sidebar-header-clr-light-th: #E1E1E1;
     --sidebar-header-clr-dark-th: #1D1E19;
 
     --boxsh-val-light-th: 2px 2px 10px rgba(0, 0, 0, .5);
@@ -62,7 +63,7 @@
     --body-bg: var(--body-bg-light-th);
     --text-clr: var(--text-clr-light-th);
     --accent-clr_main: var(--accent-clr_main-light-th);
-    --accent-clr_sec: var(--accent-clr_main-light-th);
+    --accent-clr_sec: var(--accent-clr_sec-light-th);
     --err-clr: var(--err-clr-light-th);
     --small-scrollbar-clr: var(--small-scrollbar-clr-light-th);
 

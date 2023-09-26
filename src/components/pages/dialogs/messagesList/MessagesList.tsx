@@ -44,7 +44,7 @@ const MessagesList: React.FC<MessagesListPropsType> = ({ userId }) => {
             {errOnLoadingFirstMessagesPortion ? (
                 <p className={c.serverErrMessage}>{errOnLoadingFirstMessagesPortion}</p>
             ) : isLoadingPrimaryData ? (
-                <PreloaderSmall  color={accentMainClr} size={100} minHeight='75vh' />
+                <PreloaderSmall  color={accentMainClr} size={150} minHeight='75vh' />
             ) : !companionData ? (
                 <div className={c.noDialogBlock}>
                     <p className={c.emptyLett}>You do not have a dialogue with this user. Try starting from the</p>

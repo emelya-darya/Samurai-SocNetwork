@@ -95,7 +95,7 @@ const CommonChatPage = withAuthRedirectHOC(() => {
 
             {errorOnTryingToConnectWS && <p className={c.err}>{errorOnTryingToConnectWS}</p>}
             {isInProgeressOpenWSChannel ? (
-                <PreloaderSmall color={accentMainClr} size={100} minHeight='50vh' text='Trying to connect...' />
+                <PreloaderSmall color={accentMainClr} size={150} minHeight='50vh' text='Trying to connect...' />
             ) : (
                 <>
                     <div className={c.messagesContainer}>

@@ -17,8 +17,9 @@ import { PreloaderSmall } from './components/reusableElements/preloaders/small/P
 import { LoginPage } from './components/pages/login/Login'
 import { DialogsPage } from './components/pages/dialogs/Dialogs'
 import { Settings } from './components/pages/settings/Settings'
+import { sidebarHeaderDarkClr } from './components/reusableElements/getCssVariableColor'
+import { AppearanceAC } from './store/redux/appAppearance/appearanceReducer'
 // import { accentMainClr } from './components/reusableElements/getCssVariableColor'
-
 
 //! определение темы при первой загрузке
 // const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
@@ -38,6 +39,8 @@ const App = function () {
     )
 
     const dispatch = useDispatch()
+
+    //* Работа сo страницами юзеров и друзей ------------------------------------------------------
 
     const setActiveUsersPageFromLC = (pageNum: number) => dispatch(UsersAC.setActivePageFromLC_AC(pageNum))
     const setUsersSearchRequestFromLC = (searchRequest: string) => dispatch(UsersAC.setSearchRequestFromLC_AC(searchRequest))
@@ -59,14 +62,9 @@ const App = function () {
         setFriendsSearchRequestFromLC(friendsSearchRequestFromLC || '')
     }, [])
 
-    window.onbeforeunload = function () {
-        localStorage.setItem('usersPage', String(usersActPage || 1))
-        localStorage.setItem('usersSearchRequest', searchReqUsers || '')
+    //* Работа сo страницами юзеров и друзей ------------------------------------------------------
 
-        localStorage.setItem('friendsPage', String(friendsActPage || 1))
-        localStorage.setItem('friendsSearchRequest', searchReqFriends || '')
-    }
-
+    //* Работа с авторизационными данными ------------------------------------------------------
     React.useEffect(() => {
         dispatch(AuthAC.chechAuth())
     }, [])
@@ -80,8 +78,39 @@ const App = function () {
 
     const { isInProgressCheckAuth, isAuthChecking } = useSelector((state: GlobalStateType) => state.forAuthData)
 
-    if (isInProgressCheckAuth || !isAuthChecking) return <PreloaderSmall  color='#EFEFEF' size={100} minHeight='100vh' />
-    // if (true) return <Preloader color={accentMainClr} size={100} minHeight='100vh' />
+    //* Работа с авторизационными данными ------------------------------------------------------
+
+    //* Работа с темой ------------------------------------------------------
+
+    const { systemTheme, currentTheme } = useSelector((state: GlobalStateType) => state.forAppearanceData)
+
+    React.useEffect(() => {
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)')
+        if (prefersDarkScheme.matches) dispatch(AppearanceAC.setSystemTheme('dark'))
+        else dispatch(AppearanceAC.setSystemTheme('light'))
+
+        const themeFromLC = localStorage.getItem('theme')?.trim()
+
+        if (themeFromLC === 'light' || themeFromLC === 'dark') dispatch(AppearanceAC.setCurrentTheme(themeFromLC))
+        else dispatch(AppearanceAC.setCurrentTheme('system'))
+    }, [])
+
+    //* Работа с темой ------------------------------------------------------
+
+    //! Перез закрытием приложения сохраняем в localStorage нужную инфу -----
+
+    window.onbeforeunload = function () {
+        localStorage.setItem('usersPage', String(usersActPage || 1))
+        localStorage.setItem('usersSearchRequest', searchReqUsers || '')
+
+        localStorage.setItem('friendsPage', String(friendsActPage || 1))
+        localStorage.setItem('friendsSearchRequest', searchReqFriends || '')
+
+        localStorage.setItem('theme', currentTheme || 'system')
+    }
+
+    if (isInProgressCheckAuth || !isAuthChecking || !systemTheme || !currentTheme)
+        return <PreloaderSmall color='#EFEFEF' size={150} minHeight='100vh' bgClr={sidebarHeaderDarkClr} />
     else
         return (
             <>

@@ -16,6 +16,7 @@ const getCssVariableColor = (varName: string) => {
 export const sidebarHeaderClr = getCssVariableColor('--sidebar-header-clr')
 export const mainBgClr = getCssVariableColor('--main-bg-clr')
 export const bodyBgClr = getCssVariableColor('--body-bg')
+export const sidebarHeaderDarkClr = getCssVariableColor('--sidebar-header-clr-dark-th')
 export const textClr = getCssVariableColor('--text-clr')
 export const accentMainClr = getCssVariableColor('--accent-clr_main')
 export const accentSecClr = getCssVariableColor('--accent-clr_sec')
@@ -33,4 +34,23 @@ export const signOutBtnClr = getCssVariableColor('--sign-out-btn-bg')
 
 export const restoreFrMaskClr = getCssVariableColor('--restore-fr-mask-bg')
 
-// console.log(first)
+export const cssVarsNamesToChange = [
+    'sidebar-header-clr',
+    'main-bg-clr',
+    'body-bg',
+    'text-clr',
+    'accent-clr_main',
+    'accent-clr_sec',
+    'err-clr',
+    'small-scrollbar-clr',
+    'boxsh-val',
+    'boxsh-val-small',
+    'boxsh-for-message',
+    'my-msg-clr',
+    'my_msg-date-viewed-clr',
+    'companion-msg-clr',
+    'delete-msg-icon-clr',
+    'mask-for-restore-msg-bg',
+    'sign-out-btn-bg',
+    'restore-fr-mask-clr',
+]

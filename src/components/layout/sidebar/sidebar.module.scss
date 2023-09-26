@@ -2,7 +2,7 @@
 
 .sidebar {
     position: fixed;
-    padding-bottom: 45px;
+    padding-bottom: 20px;
     top: 80px;
     left: 0px;
     z-index: 4;
@@ -10,7 +10,11 @@
     height: calc(100vh - 80px);
     background-color: var(--sidebar-header-clr);
     transition: $transition_val;
+    @include thin-grey-scrollbar;
     overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
 
     @media(max-width: 576px) {
         top: 60px;
@@ -22,24 +26,28 @@
     transform: translateX(-100%);
 }
 
-.linkToSettingsWr{
-    position: absolute;
-    bottom: 25px;
-    left: 0px;
-    padding: 0px 30px;
+.linkToSettingsWr {
+    // position: absolute;
+    // bottom: 25px;
+    // left: 0px;
+    padding: 0px 20px;
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
 
-    a{
+    a.settingsLink {
         display: inline-block;
         padding: 2px;
-        // display: flex;
-        // align-items: center;
-        // gap: 12px;
     }
 
-    svg{
-        font-size: 1.5rem;
+    a.settingsLink.act {
+        color: rgb(var(--accent-clr_main));
     }
-   
+
+    svg {
+        font-size: 1.6rem;
+    }
+
 }
 
 .linksContainer {
@@ -47,6 +55,7 @@
     padding: 40px 30px 40px 0px;
     gap: 3px;
     margin-bottom: 30px;
+    flex-grow: 0;
 
     @media(max-width:576px) {
         padding: 20px 15px 20px 0px;
@@ -63,13 +72,14 @@
         transition: $transition_val;
     }
 
-    a:not(:last-child){
+    a:not(:last-child) {
         margin-bottom: 4px;
     }
 
     a:hover,
     a.act {
-        border-left: 5px solid rgba(var(--accent-clr_main), 1);;
+        border-left: 5px solid rgba(var(--accent-clr_main), 1);
+        ;
         color: rgba(var(--accent-clr_main), 1);
     }
 }
@@ -78,6 +88,7 @@
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 40px;
+    flex-grow: 0;
 
     .lett {
         font-size: 17px;
@@ -143,6 +154,6 @@
     // margin: 40px 0px 30px 0px;
 }
 
-.linkToDialogs{
-    position: relative
+.linkToDialogs {
+    position: relative;
 }

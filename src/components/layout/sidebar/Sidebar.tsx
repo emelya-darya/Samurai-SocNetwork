@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import shortid from 'shortid'
 import { BsArrowRight } from 'react-icons/bs'
-// import { FiSettings } from 'react-icons/fi'
+import { FiSettings } from 'react-icons/fi'
 import { GlobalStateType } from '../../../store/redux/reduxStore'
 import { UserAvatarWithLink } from '../../reusableElements/userAvatarWithLink/UserAvatarWithLink'
 import { colorsAvatars, shuffleArray } from '../../reusableElements/userAvatarWithLink/colorsAvatars'
@@ -58,7 +58,6 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
     const isAuth = useSelector((state: GlobalStateType) => state.forAuthData.isAuth)
 
     if (totalFriendsCount > 5) {
-        // const totalFriendsCount = 878686666
         const str = String(totalFriendsCount - 4)
         const lett = str.length <= 3 ? str : str.slice(0, 2) + '...'
         subsBlockItems[4] = (
@@ -67,43 +66,6 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
             </div>
         )
     }
-
-    //*-----------------------------------------------------------------------------
-
-    const cssVarsNames = [
-        'sidebar-header-clr',
-        'main-bg-clr',
-        'body-bg',
-        'text-clr',
-        'accent-clr_main',
-        'accent-clr_sec',
-        'err-clr',
-        'small-scrollbar-clr',
-        'boxsh-val',
-        'boxsh-val-small',
-        'boxsh-for-message',
-        'my-msg-clr',
-        'my_msg-date-viewed-clr',
-        'companion-msg-clr',
-        'delete-msg-icon-clr',
-        'mask-for-restore-msg-bg',
-        'sign-out-btn-bg',
-        'restore-fr-mask-clr',
-    ]
-
-    const [theme, setTheme] = React.useState<'light-th' | 'dark-th'>('light-th')
-
-    const toggleThemeHandler = () => {
-        setTheme(theme === 'light-th' ? 'dark-th' : 'light-th')
-    }
-
-    React.useEffect(() => {
-        for (let i = 0; i < cssVarsNames.length; i++) {
-            document.body.style.setProperty(`--${cssVarsNames[i]}`, `var(--${cssVarsNames[i]}-${theme})`)
-        }
-    }, [theme])
-
-    //*-----------------------------------------------------------------------------
 
     return (
         <aside className={`${c.sidebar} ${isSidebarHidden ? c.hide : ''}`}>
@@ -156,13 +118,15 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
             </div>
 
             <div className={c.linkToSettingsWr}>
-                {/* <Link to='/settings'>
+                <NavLink
+                    to='/settings'
+                    onClick={sidebarHandler}
+                    className={`${currPathName.startsWith('/settings') ? c.act : ''} ${c.settingsLink}`}>
                     <FiSettings />
-                    
-                </Link> */}
-                <button type='button' onClick={toggleThemeHandler}>
+                </NavLink>
+                {/* <button type='button' onClick={toggleThemeHandler}>
                     Theme({theme})
-                </button>
+                </button> */}
             </div>
         </aside>
     )

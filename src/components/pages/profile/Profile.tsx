@@ -53,7 +53,7 @@ const ProfilePage = withAuthRedirectHOC<{}>(() => {
     return (
         <div className={c.profilePage}>
             {isLoadingProfile ? (
-                <PreloaderSmall color={accentMainClr} size={100} minHeight='75vh' />
+                <PreloaderSmall color={accentMainClr} size={150} minHeight='75vh' />
             ) : errOnGetProfile ? (
                 <p className={c.serverErrMessage}>{errOnGetProfile}</p>
             ) : (

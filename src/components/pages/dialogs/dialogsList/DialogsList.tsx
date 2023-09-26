@@ -53,7 +53,7 @@ const DialogsList = () => {
             {errOnLoadingsDialogsList ? (
                 <p className={c.serverErrMessage}>{errOnLoadingsDialogsList}</p>
             ) : isInProgressLoadingDialogsList ? (
-                <PreloaderSmall  color={accentMainClr} size={100} minHeight='75vh' />
+                <PreloaderSmall  color={accentMainClr} size={150} minHeight='75vh' />
             ) : (
                 <div className={c.dialogsItems}>
                     {showingItems.length ? (
