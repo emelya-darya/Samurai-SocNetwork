@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { AiOutlineClose, AiOutlineSend } from 'react-icons/ai'
 import { BsArrowRight } from 'react-icons/bs'
+import { useTranslation } from 'react-i18next'
 
 import { UserAvatarWithLink } from '../userAvatarWithLink/UserAvatarWithLink'
 import { DialogsAC } from '../../../store/redux/dialogs/dialogsReducer'
@@ -69,6 +70,9 @@ const ModalWindowWriteMessage: React.FC<ModalWindowWriteMessagePropsType> = ({ p
         }
     }, [isInProgressSendMessage])
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <>
             <div className={`${c.modalWind} ${isOpen ? c.visible : ''} close`} onMouseDown={handleCloseWrapper}>
@@ -77,13 +81,16 @@ const ModalWindowWriteMessage: React.FC<ModalWindowWriteMessagePropsType> = ({ p
                         <AiOutlineClose className='close' />
                         <div className={`${c.closeBtnMask} close`}></div>
                     </div>
-                    <p className={c.title}>New message</p>
+                    <p className={c.title}>{t('modalMsg.title')}</p>
                     <Link
                         className={c.jumpToDialogLink}
                         to={'/dialogs/' + userId}
                         state={{ colorAvatar: getRandomClr() }}
                         onClick={closeModalHandler}>
-                        <span>Jump to dialog with {userName}</span> <BsArrowRight />
+                        <span>
+                            {t('modalMsg.jumpTo')} {userName}
+                        </span>{' '}
+                        <BsArrowRight />
                     </Link>
                     <div className={c.userDataBlock}>
                         <div className={c.avatarWr}>
@@ -99,18 +106,20 @@ const ModalWindowWriteMessage: React.FC<ModalWindowWriteMessagePropsType> = ({ p
                             className={c.styledTextarea}
                             onInput={onChangeHandler}
                             value={textareaValue}
-                            placeholder='Message'
+                            placeholder={t('modalMsg.placehold')}
                             maxLength={MAX_LENGTH}
                         />
 
-                        <p className={c.charactersLeft}>{MAX_LENGTH - countCharacters} characters left</p>
+                        <p className={c.charactersLeft}>
+                            {MAX_LENGTH - countCharacters} {t('modalMsg.charLeft')}
+                        </p>
                         <Button
                             Icon={AiOutlineSend}
                             extraClassName={c.sendBtn}
                             type='submit'
                             isDisabled={!textareaValue}
                             isLoading={isInProgressSendMessage}
-                            name='Send'
+                            name={t('modalMsg.sendBtn')}
                         />
                     </form>
                 </div>
@@ -127,14 +136,14 @@ const ModalWindowWriteMessage: React.FC<ModalWindowWriteMessagePropsType> = ({ p
 
                 {errOnSend ? (
                     <>
-                        <p className={c.subtitle}>Some error</p>
+                        <p className={c.subtitle}>{t('modalMsg.errModalTitle')}</p>
                         <p className={c.text}>{errOnSend}</p>
                     </>
                 ) : (
                     <>
-                        <p className={c.subtitle}>Message sent</p>
+                        <p className={c.subtitle}>{t('modalMsg.succSentTitle')}</p>
                         <p className={c.text}>
-                            Your message has been sent to{' '}
+                            {t('modalMsg.succSentLett')}{' '}
                             <Link to={`/profile/${userId}`} onClick={closeModalHandler}>
                                 {userName}
                             </Link>

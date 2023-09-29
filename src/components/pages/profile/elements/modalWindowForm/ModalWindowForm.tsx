@@ -1,5 +1,6 @@
 import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
+import { useTranslation } from 'react-i18next'
 import { Form } from './form/Form'
 import c from './modalWindowForm.module.scss'
 
@@ -20,6 +21,9 @@ const ModalWindowForm: React.FC<ModalWindowFormPropsType> = ({ isOpen, handleClo
         }
     }
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <div className={`${c.modal} ${isOpen ? c.visible : ''} close`} onMouseDown={handleCloseWrapper}>
             <div className={c.modalContent}>
@@ -27,7 +31,7 @@ const ModalWindowForm: React.FC<ModalWindowFormPropsType> = ({ isOpen, handleClo
                     <AiOutlineClose className='close' />
                     <div className={`${c.closeBtnMask} close`}></div>
                 </div>
-                <p className={c.title}>Edit profile</p>
+                <p className={c.title}>{t('profile.modalTitle')}</p>
 
                 <Form
                     shouldShowSuccErrLettOnSubmit={shouldShowSuccErrLettOnSubmit}

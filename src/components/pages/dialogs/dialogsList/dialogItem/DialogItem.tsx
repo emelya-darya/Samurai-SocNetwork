@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { DialogsListItemType } from '../../../../../store/redux/storeTypes'
 import { parseDateStr } from '../../../../reusableElements/parseDate'
 import { UserAvatarWithLink } from '../../../../reusableElements/userAvatarWithLink/UserAvatarWithLink'
@@ -18,12 +19,15 @@ const DialogItem: React.FC<DialogItemPropsType> = ({
     photos,
     colorAvatar,
 }) => {
-    const parsedDateDialogActivity = parseDateStr(lastDialogActivityDate)
-    const parsedDateUserActivity = parseDateStr(lastUserActivityDate)
-
     const newMessagesCountStr = String(newMessagesCount).length > 2 ? String(newMessagesCount)[0] + '..' : String(newMessagesCount)
 
     const colorAva = colorAvatar || '#F0772B'
+
+    // перевод
+    const { t, i18n } = useTranslation()
+
+    const parsedDateDialogActivity = parseDateStr(lastDialogActivityDate, i18n.language)
+    const parsedDateUserActivity = parseDateStr(lastUserActivityDate, i18n.language)
 
     return (
         <Link
@@ -36,7 +40,9 @@ const DialogItem: React.FC<DialogItemPropsType> = ({
                 </div>
                 <div className={c.textPart}>
                     <div className={c.name}>{userName}</div>
-                    <div className={c.lastSeen}>Last seen: {parsedDateUserActivity}</div>
+                    <div className={c.lastSeen}>
+                        {t('dialogsList.ls')}: {parsedDateUserActivity}
+                    </div>
                 </div>
             </div>
 

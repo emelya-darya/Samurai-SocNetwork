@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 import { Layout } from './components/layout/Layout'
 import { ProfilePage } from './components/pages/profile/Profile'
@@ -19,28 +20,16 @@ import { DialogsPage } from './components/pages/dialogs/Dialogs'
 import { Settings } from './components/pages/settings/Settings'
 import { sidebarHeaderDarkClr } from './components/reusableElements/getCssVariableColor'
 import { AppearanceAC } from './store/redux/appAppearance/appearanceReducer'
-// import { accentMainClr } from './components/reusableElements/getCssVariableColor'
-
-//! определение темы при первой загрузке
-// const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-// if (prefersDarkScheme.matches) {
-//   console.log('dark-theme');
-// } else {
-//   console.log('light-theme');
-// }
-
-//! определение темы при первой загрузке
 
 const App = function () {
+    const dispatch = useDispatch()
+
+    //* Работа сo страницами юзеров и друзей ------------------------------------------------------
+
     const { searchRequest: searchReqUsers, currentPage: usersActPage } = useSelector((state: GlobalStateType) => state.forUsersData)
     const { searchRequest: searchReqFriends, currentPage: friendsActPage } = useSelector(
         (state: GlobalStateType) => state.forFriendsPageData,
     )
-
-    const dispatch = useDispatch()
-
-    //* Работа сo страницами юзеров и друзей ------------------------------------------------------
 
     const setActiveUsersPageFromLC = (pageNum: number) => dispatch(UsersAC.setActivePageFromLC_AC(pageNum))
     const setUsersSearchRequestFromLC = (searchRequest: string) => dispatch(UsersAC.setSearchRequestFromLC_AC(searchRequest))
@@ -109,6 +98,12 @@ const App = function () {
         localStorage.setItem('theme', currentTheme || 'system')
     }
 
+    //! перевод
+    const { i18n } = useTranslation()
+    const changeLanguage = (language: string) => {
+        i18n.changeLanguage(language)
+    }
+
     if (isInProgressCheckAuth || !isAuthChecking || !systemTheme || !currentTheme)
         return <PreloaderSmall color='#EFEFEF' size={150} minHeight='100vh' bgClr={sidebarHeaderDarkClr} />
     else
@@ -122,16 +117,18 @@ const App = function () {
                         <Route path='/subs' element={<FriendsPage />} />
                         <Route path='/common-chat' element={<CommonChatPage />} />
                         <Route path='/dialogs/:userId?' element={<DialogsPage />} />
-                        {/* <Route path='/dialogs/*' element={<Outlet />}>
-                     <Route index element={<DialogsPage />} />
-                     <Route path='common-chat' element={<CommonChatPage />} />
-                  </Route> */}
+
                         <Route path='/info' element={<InfoPage />} />
                         <Route path='/login' element={<LoginPage />} />
                         <Route path='/settings' element={<Settings />} />
                         <Route path='*' element={<Navigate to='/profile' replace={true} />} />
                     </Route>
                 </Routes>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'fixed', bottom:0, right: 0 }}>
+                    <button onClick={() => changeLanguage('en')}>EN</button>
+                    <button onClick={() => changeLanguage('ru')}>RU</button>
+                    {/* <h1 style={{ textAlign: 'center' }}>{t('main')}</h1> */}
+                </div>
             </>
         )
 }

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LuLogOut, LuLogIn } from 'react-icons/lu'
 import { BiMenuAltLeft } from 'react-icons/bi'
+import { useTranslation } from 'react-i18next'
 import { useMatchMedia } from '../../../customHooks/useMatchMedia'
 import { GlobalStateType } from '../../../store/redux/storeTypes'
 import { AuthAC } from '../../../store/redux/auth/authReducer'
@@ -31,7 +32,10 @@ const Header: React.FC<PropsType> = ({ sidebarHandler }) => {
 
     const location = useLocation()
 
-    const isLess576 = useMatchMedia().less576 
+    const isLess576 = useMatchMedia().less576
+
+    // перевод
+    const { t } = useTranslation()
 
     return (
         <header className={`${c.header} header`}>
@@ -67,7 +71,7 @@ const Header: React.FC<PropsType> = ({ sidebarHandler }) => {
                             <Button
                                 type='button'
                                 Icon={LuLogOut}
-                                name='Sign out'
+                                name={t('header.logout')}
                                 isDisabled={false}
                                 isLoading={isInProgressLogOut}
                                 extraClassName={c.logoutBtn}
@@ -83,7 +87,7 @@ const Header: React.FC<PropsType> = ({ sidebarHandler }) => {
                             <Button
                                 tag='link'
                                 linkPath='/login'
-                                name={isLess576 ? null : 'Login'}
+                                name={isLess576 ? null : t('header.login')}
                                 Icon={LuLogIn}
                                 extraClassName={`${c.loginBtn} ${location.pathname === '/login' ? c.disabled : ''}`}
                                 isLoading={false}

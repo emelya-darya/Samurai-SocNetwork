@@ -1,5 +1,6 @@
 import React from 'react'
 import { AiOutlineSend } from 'react-icons/ai'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { DialogsAC } from '../../../../../store/redux/dialogs/dialogsReducer'
 import { GlobalStateType } from '../../../../../store/redux/reduxStore'
@@ -41,17 +42,22 @@ const AddMessageForm: React.FC<AddMessageFormPropsType> = ({ userId, anchorRefFo
         }
     }, [isInProgressSendMessage])
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <form className={c.form} onSubmit={onSubmitHandler}>
             <textarea
                 onInput={onChangeHandler}
                 value={textareaValue}
-                placeholder='Message'
+                placeholder={t('messagesList.formPlaceholder')}
                 className={c.styledTextarea}
                 maxLength={MAX_LENGTH}
                 // onKeyUp={onKeyupHandler}
             />
-            <p className={c.charactersLeft}>{MAX_LENGTH - countCharacters} characters left</p>
+            <p className={c.charactersLeft}>
+                {MAX_LENGTH - countCharacters} {t('messagesList.charLeft')}
+            </p>
 
             <Button
                 name={null}

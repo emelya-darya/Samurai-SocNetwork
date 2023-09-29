@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { TfiThought } from 'react-icons/tfi'
 import { BiPlus, BiMinus } from 'react-icons/bi'
+import { useTranslation } from 'react-i18next'
 import { GlobalStateType, UserFriendItemType } from '../../../../store/redux/storeTypes'
 import { UsersAC } from '../../../../store/redux/users/usersReducer'
 import { ModalWindowWriteMessage } from '../../../reusableElements/modalWindowWriteMessage/ModalWindowWriteMessage'
-import { onCloseModal, onOpenModal } from '../../../reusableElements/forOpenModalOverflowHandler/forOpenModalOverflowHandler'
+import { onCloseModal, onOpenModal } from '../../../reusableElements/forOpenModalOverflowHandler'
 import { nophoto } from '../../../reusableElements/nophoto'
 import { Button } from '../../../reusableElements/button/Button'
 import { accentSecClr, mainBgClr } from '../../../reusableElements/getCssVariableColor'
@@ -39,6 +40,9 @@ const UserCardPreview: React.FC<UserCardPreviewPropsType> = ({ userData, isAuth 
         setIsOpenModal(false)
     }
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <div className={c.userItemWr}>
             <div className={c.userItem}>
@@ -64,7 +68,7 @@ const UserCardPreview: React.FC<UserCardPreviewPropsType> = ({ userData, isAuth 
                             isLoading={!!userData.fetchingFollowingProgress}
                             extraClassName={`${c.buttFollUnfoll} ${userData.followed ? c.unfollowBtn : c.followBtn}`}
                             Icon={userData.followed ? BiMinus : BiPlus}
-                            name={userData.followed ? 'Unfollow' : 'Follow'}
+                            name={userData.followed ? t('users.unfollowBtn') : t('users.followBtn')}
                             onClickHandler={handleFollowUnfollowUser}
                             type='button'
                             isDisabled={false}
@@ -80,7 +84,7 @@ const UserCardPreview: React.FC<UserCardPreviewPropsType> = ({ userData, isAuth 
                 <>
                     <div className={c.writeAMessageBlock}>
                         <div className={c.writeAMessage} onClick={openModalHandler}>
-                            Write a message
+                            {t('users.writeMsg')}
                         </div>
                     </div>
                     <ModalWindowWriteMessage

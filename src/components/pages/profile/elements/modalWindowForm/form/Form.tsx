@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AiOutlineCheck, AiOutlineSend } from 'react-icons/ai'
 import { BiError } from 'react-icons/bi'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { GlobalStateType } from '../../../../../../store/redux/storeTypes'
 import { ProfileAC } from '../../../../../../store/redux/profile/profileReducer'
 import { Button } from '../../../../../reusableElements/button/Button'
@@ -30,7 +31,6 @@ const checkURL = (inpVal: string) => {
     const url = new RegExp(regexQuery, 'i')
     return url.test(inpVal)
 }
-const errUrlMessage = 'Enter a valid url'
 
 type FormPropsType = {
     shouldShowSuccErrLettOnSubmit: boolean
@@ -115,15 +115,20 @@ const Form: React.FC<FormPropsType> = ({ shouldShowSuccErrLettOnSubmit, setShoul
         reset(data) // обновление defaultValues и сброс isDirty
     }
 
+    // перевод
+    const { t } = useTranslation()
+
+    const errUrlMessage = t('profile.errUrlMessage')
+
     return (
         <form className={c.form} onSubmit={handleSubmit(submitHandler)}>
             <div className={c.row1}>
                 <div className={`${c.inputGroup} ${errors.fullName ? c.withError : ''}`}>
                     <input
                         type='text'
-                        placeholder='Full name*'
+                        placeholder={t('profile.fullNamePlaceholder') + '*'}
                         className={c.styledInput}
-                        {...register('fullName', { required: 'This field is required' })}
+                        {...register('fullName', { required: t('profile.reqFieldErr') })}
                     />
                     <span className={c.spanErr}>{errors.fullName && errors?.fullName.message}</span>
                 </div>
@@ -142,41 +147,47 @@ const Form: React.FC<FormPropsType> = ({ shouldShowSuccErrLettOnSubmit, setShoul
                     <label htmlFor='lookingForAJob' className={c.lookingForAJobLabel}>
                         <Switch isSelected={isLookingForAJobLocal} />
 
-                        <span className={c.lett}>Looking for a job</span>
+                        <span className={c.lett}>{t('profile.lookingFJobLett')}</span>
                     </label>
                 </div>
 
-                <input
-                    type='text'
-                    placeholder='What job are you looking for?'
-                    className={c.styledInput}
-                    {...register('lookingForAJobDescription')}
-                />
+                <div className={`${c.inputGroup} ${errors.lookingForAJobDescription ? c.withError : ''}`}>
+                    <input
+                        type='text'
+                        placeholder={t('profile.lookingForAJobDescPlacehold')}
+                        className={c.styledInput}
+                        {...register('lookingForAJobDescription', { required: t('profile.reqFieldErr') })}
+                    />
+                    <span className={c.spanErr}>{errors.lookingForAJobDescription && errors?.lookingForAJobDescription.message}</span>
+                </div>
             </div>
 
             <div className={c.row3}>
-                <div className={`${c.inputGroup}`}>
+                <div className={`${c.inputGroup} ${errors.aboutMe ? c.withError : ''}`}>
                     <label htmlFor='aboutMe' className={c.aboutMeTitle}>
-                        About me:
+                        {t('profile.aboutMeModalSubt')}:
                     </label>
 
                     <textarea
                         id='aboutMe'
-                        placeholder='Tell about yourself'
+                        placeholder={t('profile.aboutMePlacehold')}
                         className={c.styledTextarea}
                         // defaultValue={aboutMe || ''}
-                        {...register('aboutMe')}
+
+                        {...register('aboutMe', { required: t('profile.reqFieldErr') })}
                     />
+
+                    <span className={c.spanErr}>{errors.aboutMe && errors?.aboutMe.message}</span>
                 </div>
             </div>
 
-            <p className={c.contactsTitle}>How to contact me:</p>
+            <p className={c.contactsTitle}>{t('profile.contactModalSubt')}:</p>
             <div className={c.contactsFields}>
                 <div className={c.contactFieldsRow}>
                     <div className={`${c.inputGroup} ${errors.mainLink ? c.withError : ''}`}>
                         <input
                             type='text'
-                            placeholder='Main link'
+                            placeholder={t('profile.mainLinkPlacehold')}
                             className={c.styledInput}
                             {...register('mainLink', { required: false, validate: checkURL })}
                         />
@@ -198,7 +209,7 @@ const Form: React.FC<FormPropsType> = ({ shouldShowSuccErrLettOnSubmit, setShoul
                     <div className={`${c.inputGroup} ${errors.website ? c.withError : ''}`}>
                         <input
                             type='text'
-                            placeholder='Website'
+                            placeholder={t('profile.websitePlacehold')}
                             className={c.styledInput}
                             {...register('website', { required: false, validate: checkURL })}
                         />
@@ -267,7 +278,7 @@ const Form: React.FC<FormPropsType> = ({ shouldShowSuccErrLettOnSubmit, setShoul
                 type='submit'
                 isDisabled={isDisabledBtnUpdate}
                 isLoading={isUpdateNewMainInfoInProgress}
-                name='Update'
+                name={t('profile.updateBtn')}
             />
 
             <div className={`${submitCount && shouldShowSuccErrLettOnSubmit ? c.visible : ''} ${c.onSubmitErrOrSuccWr}`}>
@@ -279,7 +290,7 @@ const Form: React.FC<FormPropsType> = ({ shouldShowSuccErrLettOnSubmit, setShoul
                 ) : (
                     <div className={`${c.succ} ${c.onSubmitErrOrSucc}`}>
                         <AiOutlineCheck />
-                        <span>Successfully updated</span>
+                        <span>{t('profile.succUpd')}</span>
                     </div>
                 )}
             </div>

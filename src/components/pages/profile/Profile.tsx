@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { LiaUserEditSolid } from 'react-icons/lia'
 import { LuLogOut } from 'react-icons/lu'
+import { useTranslation } from 'react-i18next'
 import { GlobalStateType } from '../../../store/redux/storeTypes'
 import { ProfileAC } from '../../../store/redux/profile/profileReducer'
-import { PreloaderSmall } from '../../reusableElements/preloaders/small/PreloaderSmall' 
+import { PreloaderSmall } from '../../reusableElements/preloaders/small/PreloaderSmall'
 import { AuthAC } from '../../../store/redux/auth/authReducer'
 import { withAuthRedirectHOC } from '../../reusableElements/HOC_withAuthRedirect/withAuthRedirectHOC'
-import { onCloseModal, onOpenModal } from '../../reusableElements/forOpenModalOverflowHandler/forOpenModalOverflowHandler'
+import { onCloseModal, onOpenModal } from '../../reusableElements/forOpenModalOverflowHandler'
 import { Button } from '../../reusableElements/button/Button'
 import { accentMainClr } from '../../reusableElements/getCssVariableColor'
 import { StatusBlock } from './elements/statusBlock/StatusBlock'
@@ -50,6 +51,9 @@ const ProfilePage = withAuthRedirectHOC<{}>(() => {
 
     const logOutHandler = () => dispatch(AuthAC.signOut())
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <div className={c.profilePage}>
             {isLoadingProfile ? (
@@ -65,7 +69,7 @@ const ProfilePage = withAuthRedirectHOC<{}>(() => {
                             <FollowUnfollowBtn />
                         ) : (
                             <Button
-                                name='Edit profile'
+                                name={t('profile.editProfBtn')}
                                 Icon={LiaUserEditSolid}
                                 extraClassName={c.editProfileBtn}
                                 onClickHandler={handleOpenModal}
@@ -85,8 +89,8 @@ const ProfilePage = withAuthRedirectHOC<{}>(() => {
                     </div>
 
                     <div className={c.aboutMeBlock}>
-                        <h2>About me</h2>
-                        <p>{aboutMe?.trim() ? aboutMe?.trim() : 'User did not provide information'}</p>
+                        <h2>{t('profile.aboutMeTitle')}</h2>
+                        <p>{aboutMe?.trim() ? aboutMe?.trim() : t('profile.aboutMeEmpty')}</p>
                     </div>
 
                     <ContactsBlock />
@@ -96,7 +100,7 @@ const ProfilePage = withAuthRedirectHOC<{}>(() => {
                         <div className={c.logOutBtnWr}>
                             <Button
                                 Icon={LuLogOut}
-                                name='Sign out'
+                                name={t('profile.signOutBtn')}
                                 extraClassName={c.logoutBtn}
                                 onClickHandler={logOutHandler}
                                 isLoading={isInProgressLogOut}

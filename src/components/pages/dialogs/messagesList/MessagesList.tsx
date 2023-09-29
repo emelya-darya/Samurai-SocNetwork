@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { PreloaderSmall } from '../../../reusableElements/preloaders/small/PreloaderSmall'
 import { GlobalStateType } from '../../../../store/redux/reduxStore'
 import { DialogsAC } from '../../../../store/redux/dialogs/dialogsReducer'
@@ -35,21 +36,24 @@ const MessagesList: React.FC<MessagesListPropsType> = ({ userId }) => {
 
     const [anchorRefForAutoscroll, setAnchorRefForAutoscroll] = React.useState<React.RefObject<HTMLDivElement> | undefined>(undefined)
 
+    // перевод
+    const { t } = useTranslation()
+
     if (myID == userId) return <Navigate to='/dialogs' />
     return (
         <>
             {/* <h1 className={c.title}>Dialog</h1> */}
-            <p className={c.warn}>*working with REST API, not real time</p>
+            <p className={c.warn}>*{t('messagesList.warn')}</p>
 
             {errOnLoadingFirstMessagesPortion ? (
                 <p className={c.serverErrMessage}>{errOnLoadingFirstMessagesPortion}</p>
             ) : isLoadingPrimaryData ? (
-                <PreloaderSmall  color={accentMainClr} size={150} minHeight='75vh' />
+                <PreloaderSmall color={accentMainClr} size={150} minHeight='75vh' />
             ) : !companionData ? (
                 <div className={c.noDialogBlock}>
-                    <p className={c.emptyLett}>You do not have a dialogue with this user. Try starting from the</p>
+                    <p className={c.emptyLett}>{t('messagesList.noDialogLett')}</p>
                     <p>
-                        <Link to='/dialogs'>Dialogue list page</Link>.
+                        <Link to='/dialogs'>{t('messagesList.noDialogLink')}</Link>
                     </p>
                 </div>
             ) : (

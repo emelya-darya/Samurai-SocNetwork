@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import shortid from 'shortid'
+import { useTranslation } from 'react-i18next'
 import { DialogsAC } from '../../../../store/redux/dialogs/dialogsReducer'
 import { GlobalStateType } from '../../../../store/redux/reduxStore'
 import { PreloaderSmall } from '../../../reusableElements/preloaders/small/PreloaderSmall' 
@@ -45,10 +46,13 @@ const DialogsList = () => {
         }
     })
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <>
-            <h1 className={c.title}>Dialogue list</h1>
-            <p className={c.warn}>*working with REST API, not real time (only the last 200 dialogues are available)</p>
+            <h1 className={c.title}>{t('dialogsList.title')}</h1>
+            <p className={c.warn}>*{t('dialogsList.warn')}</p>
 
             {errOnLoadingsDialogsList ? (
                 <p className={c.serverErrMessage}>{errOnLoadingsDialogsList}</p>
@@ -64,7 +68,7 @@ const DialogsList = () => {
                             })}
                         </>
                     ) : (
-                        <p className={c.emptyLett}>Dialog list is empty</p>
+                        <p className={c.emptyLett}>{t('dialogsList.emptyLett')}</p>
                     )}
                 </div>
             )}

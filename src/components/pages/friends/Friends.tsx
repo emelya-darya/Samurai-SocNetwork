@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import shortid from 'shortid'
 import { BsSearch } from 'react-icons/bs'
+import { useTranslation } from 'react-i18next'
 import { Paginator } from '../../reusableElements/paginator/Paginator'
 import { PreloaderSmall } from '../../reusableElements/preloaders/small/PreloaderSmall'
 import { GlobalStateType } from '../../../store/redux/storeTypes'
@@ -80,18 +81,26 @@ const FriendsPage = withAuthRedirectHOC(() => {
     const totalPagesCount = Math.ceil(totalFriendsCount / pageSize)
 
     React.useEffect(() => {
-        if (currentPage && totalPagesCount < currentPage) setCurrentPage(totalPagesCount)
+        if (currentPage && totalPagesCount < currentPage) setCurrentPage(totalPagesCount || 1)
     }, [totalFriendsCount])
+
+    // перевод
+    const { t } = useTranslation()
 
     return (
         <div>
             <div className={c.topPartPage}>
-                <h1>Subs</h1>
+                <h1>{t('subs.title')}</h1>
                 {!errOnLoadFriends && <p>({totalFriendsCount})</p>}
             </div>
 
             <div className={c.searchInputGroup}>
-                <input value={searchRequest || ''} placeholder='Search...' className={c.searchInput} onInput={onTypeSearchRequestHandler} />
+                <input
+                    value={searchRequest || ''}
+                    placeholder={t('subs.searchPlaceholder')}
+                    className={c.searchInput}
+                    onInput={onTypeSearchRequestHandler}
+                />
                 <div className={c.searchIconWr}>
                     <BsSearch />
                 </div>
@@ -118,7 +127,7 @@ const FriendsPage = withAuthRedirectHOC(() => {
                                 friendsData.map(friendData => <FriendCardPreview friendData={friendData} key={shortid.generate()} />)
                             ) : (
                                 <div className={c.errorBlock}>
-                                    <p>No results found for your query</p>
+                                    <p>{t('subs.noResults')} </p>
                                 </div>
                             )}
                         </div>

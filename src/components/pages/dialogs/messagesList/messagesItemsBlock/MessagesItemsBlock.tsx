@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import shortid from 'shortid'
+import { useTranslation } from 'react-i18next'
 import { GlobalStateType } from '../../../../../store/redux/reduxStore'
 import { DialogsAC } from '../../../../../store/redux/dialogs/dialogsReducer'
 import { MessageItem } from '../messageItem/MessageItem'
@@ -73,12 +74,15 @@ const MessagesItemsBlock: React.FC<MessagesItemsBlockPropsType> = ({ companionAv
         }
     }, [anchorRefForAutoscroll?.current, isLoadingPrimaryData])
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <>
             <div className={c.smallPreloaderWr}>
                 {/* {visibleMessages.length}/{totalMessagesCount} */}
                 {isAllMessagesLoaded ? (
-                    <span>All messages loaded</span>
+                    <span>{t('messagesList.allLoaded')}</span>
                 ) : errOnLoadingExtraMessagesPortion ? (
                     <span className={c.scrollErr}>{errOnLoadingExtraMessagesPortion}</span>
                 ) : isLoadingMessagesPortion ? (

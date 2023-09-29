@@ -5,6 +5,7 @@ import { SiCodewars } from 'react-icons/si'
 import { AiFillFacebook, AiFillGithub, AiFillYoutube, AiFillLinkedin } from 'react-icons/ai'
 import { FaWhatsapp } from 'react-icons/fa'
 import { SlSocialVkontakte } from 'react-icons/sl'
+import { useTranslation } from 'react-i18next'
 import { BiLogoTelegram } from 'react-icons/bi'
 // import itIncLogo from '../../../assets/images/infoPage/itincubator.svg'
 import hhLogo from '../../../assets/images/infoPage/hh.svg'
@@ -123,25 +124,29 @@ const createdWith: Array<CreatedWithItemType> = [
 ]
 
 const InfoPage = () => {
+    // перевод
+    const { t } = useTranslation()
+
+
     return (
         <>
-            <h1 className={c.title}>App info</h1>
+            <h1 className={c.title}>{t('info.title')}</h1>
 
-            <h2 className={c.subtitle}>Frontend developer contacts:</h2>
+            <h2 className={c.subtitle}>{t('info.frontSubt')}:</h2>
             <div className={c.authorLinks}>
                 {frontendAuthorLinks.map(el => (
                     <ContactItem key={shortid.generate()} {...el} />
                 ))}
             </div>
 
-            <h2 className={c.subtitle}>Backend developer contacts:</h2>
+            <h2 className={c.subtitle}>{t('info.backSubt')}:</h2>
             <div className={c.authorLinks}>
                 {backendAuthorLinks.map(el => (
                     <ContactItem key={shortid.generate()} {...el} extraClassName={el.Icon === itIncLogo ? c.itIncubator : ''} />
                 ))}
             </div>
 
-            <h2 className={c.subtitle}>Created with:</h2>
+            <h2 className={c.subtitle}>{t('info.createdWith')}:</h2>
             <div className={c.creactedWithItems}>
                 {createdWith.map(el => (
                     <div key={shortid.generate()} className={c.createdWithItem}>

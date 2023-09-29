@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { BsCheck2, BsCheck2All } from 'react-icons/bs'
 import { RiDeleteBin6Line, RiSpam2Fill } from 'react-icons/ri'
+import { useTranslation } from 'react-i18next'
 import { FaTrashRestore } from 'react-icons/fa'
 import { UserAvatarWithLink } from '../../../../reusableElements/userAvatarWithLink/UserAvatarWithLink'
 import { GlobalStateType } from '../../../../../store/redux/reduxStore'
@@ -73,6 +74,9 @@ const MessageItem: React.FC<MessageItemPropsType> = ({
     const markAsSpamHandler = () => dispatch(DialogsAC.markSpamMessage(messageId))
     const restoreHandler = () => dispatch(DialogsAC.restoreMessage(messageId))
 
+    // перевод
+    const { t, i18n } = useTranslation()
+
     return (
         <div className={`${c.messageItem} ${isMyMessage ? c.myMessageItem : ''}`}>
             <div className={c.avatarWr}>
@@ -85,7 +89,9 @@ const MessageItem: React.FC<MessageItemPropsType> = ({
             </div>
             <div className={`${c.messageContent} ${isMessageDeleted || isMessageMarkedSpam ? c.markedAsTrash : ''}`}>
                 <div className={c.maskForRestore}>
-                    <span className={c.maskNotify}>{isMessageDeleted ? 'Deleted (only for you)' : 'Marked as spam'}</span>
+                    <span className={c.maskNotify}>
+                        {isMessageDeleted ? t('messagesList.deletedMsgLett') : t('messagesList.spamMsgLett')}
+                    </span>
 
                     {pseudoElem}
 
@@ -94,7 +100,7 @@ const MessageItem: React.FC<MessageItemPropsType> = ({
                             <PreloaderSmall color={myMsgDateViewedClr} size={14} minHeight='14px' />
                         ) : (
                             <>
-                                <span>Restore</span>
+                                <span>{t('messagesList.restoreBtn')}</span>
                                 <FaTrashRestore className={c.restoreIcon} />
                             </>
                         )}
@@ -114,12 +120,12 @@ const MessageItem: React.FC<MessageItemPropsType> = ({
                 <div className={c.actionsDateViewed}>
                     <div className={c.actions}>
                         {!isMyMessage && (
-                            <div className={c.spam} title='mark as spam' onClick={markAsSpamHandler}>
+                            <div className={c.spam} title={t('messagesList.spamBtnTitle')} onClick={markAsSpamHandler}>
                                 {isInProgressMarkSpam ? <PreloaderSmall color='#CDB507' size={14} minHeight='14px' /> : <RiSpam2Fill />}
                             </div>
                         )}
 
-                        <div className={c.delete} title='delete (only for you)' onClick={deleteHandler}>
+                        <div className={c.delete} title={t('messagesList.deleteBtnTitle')} onClick={deleteHandler}>
                             {isInProgressDeleting ? (
                                 <PreloaderSmall color={deleteMsgIconClr} size={14} minHeight='14px' />
                             ) : (
@@ -128,7 +134,7 @@ const MessageItem: React.FC<MessageItemPropsType> = ({
                         </div>
                     </div>
                     <div className={c.dateAndIsVieved}>
-                        <span className={c.date}>{parseDateStr(createDate)}</span>
+                        <span className={c.date}>{parseDateStr(createDate, i18n.language)}</span>
                         {/* <div className={c.isViewed}> */}
                         {isViewed ? <BsCheck2All className={c.isViewed} /> : <BsCheck2 className={c.isViewed} />}
 

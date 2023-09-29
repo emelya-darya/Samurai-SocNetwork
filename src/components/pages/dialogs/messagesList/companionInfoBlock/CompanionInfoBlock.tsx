@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { BsChevronLeft } from 'react-icons/bs'
+import { useTranslation } from 'react-i18next'
 import { parseDateStr } from '../../../../reusableElements/parseDate'
 import { UserAvatarWithLink } from '../../../../reusableElements/userAvatarWithLink/UserAvatarWithLink'
 import { accentSecClr } from '../../../../reusableElements/getCssVariableColor'
@@ -12,13 +13,17 @@ type CompanionInfoBlockPropsType = {
     photo: string | null
     colorAvatar: string | undefined
 }
+
 const CompanionInfoBlock: React.FC<CompanionInfoBlockPropsType> = ({ userName, userId, lastUserActivityDate, photo, colorAvatar }) => {
+    // перевод
+    const { t, i18n } = useTranslation()
+
     return (
         <div className={c.companionInfo}>
             <div className={c.backBtnWr}>
                 <Link to='/dialogs' className={c.backBtn}>
                     <BsChevronLeft />
-                    <span>Back</span>
+                    <span>{t('messagesList.backBtn')}</span>
                 </Link>
             </div>
 
@@ -26,7 +31,9 @@ const CompanionInfoBlock: React.FC<CompanionInfoBlockPropsType> = ({ userName, u
                 <Link to={`/profile/${userId}`} className={c.name}>
                     {userName}
                 </Link>
-                <p className={c.lastSeen}>Last seen: {parseDateStr(lastUserActivityDate)}</p>
+                <p className={c.lastSeen}>
+                    {t('messagesList.ls')}: {parseDateStr(lastUserActivityDate, i18n.language)}
+                </p>
             </div>
             <div className={c.companionAvatarWr}>
                 <UserAvatarWithLink id={userId} photo={photo} name={userName} bgColor={colorAvatar || accentSecClr} />

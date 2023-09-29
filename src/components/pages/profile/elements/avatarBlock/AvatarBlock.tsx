@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux'
 import { TbCameraUp } from 'react-icons/tb'
 import { TbMessageCirclePlus } from 'react-icons/tb'
 import { Crop } from 'react-image-crop'
-import { onCloseModal, onOpenModal } from '../../../../reusableElements/forOpenModalOverflowHandler/forOpenModalOverflowHandler'
+import { useTranslation } from 'react-i18next'
+import { onCloseModal, onOpenModal } from '../../../../reusableElements/forOpenModalOverflowHandler'
 import { GlobalStateType } from '../../../../../store/redux/storeTypes'
 import { nophoto } from '../../../../reusableElements/nophoto'
 import { ModalWindowWriteMessage } from '../../../../reusableElements/modalWindowWriteMessage/ModalWindowWriteMessage'
@@ -68,6 +69,9 @@ const AvatarBlock: React.FC<AvatarBlockPropsType> = ({ isMyProfile }) => {
 
     const canSendMessage = !isMyProfile && isFollowed
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <div className={c.avatarBlock}>
             <div className={c.avatarWr} style={{ marginBottom: !isMyProfile ? '15px' : '0px' }}>
@@ -102,7 +106,7 @@ const AvatarBlock: React.FC<AvatarBlockPropsType> = ({ isMyProfile }) => {
                 <>
                     <div className={c.writeAMessageBlock}>
                         <Button
-                            name='Send message'
+                            name={t('profile.sendMsgBtn')}
                             type='button'
                             Icon={TbMessageCirclePlus}
                             extraClassName={c.sendMessageBtn}

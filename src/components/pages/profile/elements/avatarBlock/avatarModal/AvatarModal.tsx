@@ -5,6 +5,7 @@ import ReactCrop, { Crop, PixelCrop } from 'react-image-crop'
 import { AiOutlineClose, AiOutlineSend } from 'react-icons/ai'
 import 'react-image-crop/src/ReactCrop.scss'
 
+import { useTranslation } from 'react-i18next'
 import { Button } from '../../../../../reusableElements/button/Button'
 import { ProfileAC } from '../../../../../../store/redux/profile/profileReducer'
 import { GlobalStateType } from '../../../../../../store/redux/storeTypes'
@@ -79,6 +80,11 @@ const AvatarModal: React.FC<AvatarModalPropsType> = ({ isOpen, handleCloseModal,
     React.useEffect(() => {
         if (!isUploadNewPhotoInProgress) handleCloseModal()
     }, [isUploadNewPhotoInProgress])
+
+    // перевод
+    const { t } = useTranslation()
+
+
     return (
         <div className={`${c.avatarModal} ${isOpen ? c.visible : ''} close`} onMouseDown={handleCloseWrapper}>
             <div className={c.content}>
@@ -87,7 +93,7 @@ const AvatarModal: React.FC<AvatarModalPropsType> = ({ isOpen, handleCloseModal,
                     <div className={`${c.closeBtnMask} close`}></div>
                 </div>
 
-                <p className={c.title}>Thumbnail selection</p>
+                <p className={c.title}>{t('profile.avatarModalTitle')}</p>
 
                 {!!imgSrc && (
                     <div className={c.cropWr}>
@@ -105,7 +111,7 @@ const AvatarModal: React.FC<AvatarModalPropsType> = ({ isOpen, handleCloseModal,
 
                 {!!completedCrop && (
                     <>
-                        <p className={c.lett}>Previews:</p>
+                        <p className={c.lett}>{t('profile.avatarPreviewsTitle')}:</p>
                         <div className={c.thumbs}>
                             <canvas className={c.canvasBig} ref={previewCanvasRefBig} />
                             <canvas className={c.canvasSmall} ref={previewCanvasRefSmall} />
@@ -118,7 +124,7 @@ const AvatarModal: React.FC<AvatarModalPropsType> = ({ isOpen, handleCloseModal,
                                 onClickHandler={onSendPhoto}
                                 isLoading={isUploadNewPhotoInProgress}
                                 isDisabled={false}
-                                name='Apply'
+                                name={t('profile.applyBtn')}
                             />
                         </div>
                     </>

@@ -1,0 +1,128 @@
+{
+    "header": {
+        "logout": "Sign out",
+        "login": "Login"
+    },
+    "sidebar": {
+        "profileLink": "Profile",
+        "dialogsLink": "Dialogs",
+        "chatLink": "Common chat",
+        "usersLink": "Users",
+        "infoLink": "App info",
+        "subsLett": "Your subs",
+        "watchAll": "Watch all",
+        "loginToSee": "Login to see subs list"
+    },
+    "chat": {
+        "title": "Common websocket users chat",
+        "warn": "api gives access to messages only for the last few hours",
+        "preloaderText": "Trying to connect...",
+        "noMessages": "There have been no messages in the chat lately. Fix it, write first.",
+        "formPlaceholder": "Message",
+        "charLeft": "characters left"
+    },
+    "dialogsList": {
+        "title": "Dialogue list",
+        "warn": "working with REST API, not real time + only the last 200 dialogues are available",
+        "emptyLett": "Dialog list is empty",
+        "ls": "Last seen"
+    },
+    "messagesList": {
+        "warn": "working with REST API, not real time",
+        "noDialogLett": "You do not have a dialogue with this user. Try starting from the",
+        "noDialogLink": "Dialogue list page",
+
+        "receiveAfter": "Receive all messages after",
+        "noFilter": "Without filter",
+        "getBtn": "Get",
+        "backBtn": "Back",
+        "ls": "Last seen",
+
+        "formPlaceholder": "Message",
+        "charLeft": "characters left",
+
+        "deletedMsgLett": "Deleted (only for you)",
+        "spamMsgLett": "Marked as spam",
+        "restoreBtn": "Restore",
+        "deleteBtnTitle": "delete (only for you)",
+        "spamBtnTitle": "mark as spam",
+
+        "allLoaded": "All messages loaded"
+    },
+    "subs": {
+        "title": "Subs",
+        "searchPlaceholder": "Search...",
+        "noResults": "No results found for your query",
+        "followBtn": "Follow",
+        "unfollowBtn": "Unfollow",
+        "writeMsg": "Write a message",
+        "cancelDel": "Cancel delete"
+    },
+    "users": {
+        "title": "Users",
+        "searchPlaceholder": "Search...",
+        "noResults": "No results found for your query",
+        "followBtn": "Follow",
+        "unfollowBtn": "Unfollow",
+        "writeMsg": "Write a message"
+    },
+    "profile": {
+        "editProfBtn": "Edit profile",
+        "aboutMeTitle": "About me",
+        "aboutMeEmpty": "User did not provide information",
+        "signOutBtn": "Sign out",
+        "lookingForAJob": "Looking for a job",
+        "alreadyHaveJob": "Already have a job",
+        "jobDesc": "Details",
+        "sendMsgBtn": "Send message",
+        "avatarModalTitle": "Thumbnail selection",
+        "avatarPreviewsTitle": "Previews",
+        "applyBtn": "Apply",
+        "contactsTitle": "Contacts",
+        "emptyContacts": "The user did not enter contact information",
+        "followBtn": "Follow",
+        "unfollowBtn": "Unfollow",
+        "statusPlacehold": "Status...",
+        "statusBtnTitle": "Update status",
+        "modalTitle": "Edit profile",
+        "errUrlMessage": "Enter a valid url",
+        "fullNamePlaceholder": "Full name",
+        "lookingFJobLett": "Looking for a job",
+        "lookingForAJobDescPlacehold": "What job are you looking for?",
+        "aboutMeModalSubt": "About me",
+        "aboutMePlacehold": "Tell about yourself",
+        "contactModalSubt": "How to contact me",
+        "mainLinkPlacehold": "Main link",
+        "websitePlacehold": "Website",
+        "updateBtn": "Update",
+        "succUpd": "Successfully updated"
+    },
+    "login": {
+        "title": "Sign in to",
+        "emailLabel": "Email address",
+        "reqFieldErr": "Required field",
+        "invalidEmailErr": "Invalid email address",
+        "passwordLabel": "Password",
+        "passwordPlacehold": "Enter password",
+        "passwordErr": "Minimum length 4",
+        "remembLabel": "Remember me",
+        "captchaLabel": "Enter text from image",
+        "signInBtn": "Sign in"
+    },
+    "info": {
+        "title": "App info",
+        "frontSubt": "Frontend developer contacts",
+        "backSubt": "Backend developer contacts",
+        "createdWith": "Created with"
+    },
+    "modalMsg": {
+        "title": "New message",
+        "jumpTo": "Jump to dialog with",
+        "placehold": "Message",
+        "charLeft": "characters left",
+        "sendBtn": "Send",
+        "errModalTitle": "Some error",
+        "succSentTitle": "Message sent",
+        "succSentLett": "Your message has been sent to"
+    }
+}

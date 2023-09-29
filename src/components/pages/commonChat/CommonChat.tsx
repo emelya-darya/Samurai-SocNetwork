@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import { withAuthRedirectHOC } from '../../reusableElements/HOC_withAuthRedirect/withAuthRedirectHOC'
 import { GlobalStateType } from '../../../store/redux/reduxStore'
 import { CommonWSchatAC } from '../../../store/redux/commonWSchat/commonWSchatReducer'
@@ -88,14 +89,17 @@ const CommonChatPage = withAuthRedirectHOC(() => {
         }
     }, [messages])
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <div className={c.dialogsPage}>
-            <h1 className={c.title}>Common websocket users chat</h1>
-            <p className={c.desc}>*api gives access to messages only for the last few hours</p>
+            <h1 className={c.title}>{t('chat.title')}</h1>
+            <p className={c.desc}>*{t('chat.warn')}</p>
 
             {errorOnTryingToConnectWS && <p className={c.err}>{errorOnTryingToConnectWS}</p>}
             {isInProgeressOpenWSChannel ? (
-                <PreloaderSmall color={accentMainClr} size={150} minHeight='50vh' text='Trying to connect...' />
+                <PreloaderSmall color={accentMainClr} size={150} minHeight='50vh' text={t('chat.preloaderText')} />
             ) : (
                 <>
                     <div className={c.messagesContainer}>

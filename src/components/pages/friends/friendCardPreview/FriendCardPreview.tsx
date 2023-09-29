@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import { TfiThought } from 'react-icons/tfi'
 import { BiPlus, BiMinus } from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import { GlobalStateType, UserFriendItemType } from '../../../../store/redux/storeTypes'
 import { FriendsAC } from '../../../../store/redux/friends/friendsReducer'
-import { onCloseModal, onOpenModal } from '../../../reusableElements/forOpenModalOverflowHandler/forOpenModalOverflowHandler'
+import { onCloseModal, onOpenModal } from '../../../reusableElements/forOpenModalOverflowHandler'
 import { ModalWindowWriteMessage } from '../../../reusableElements/modalWindowWriteMessage/ModalWindowWriteMessage'
 import { nophoto } from '../../../reusableElements/nophoto'
 import { Button } from '../../../reusableElements/button/Button'
@@ -38,6 +39,9 @@ const FriendCardPreview: React.FC<FriendCardPreviewPropsType> = ({ friendData })
         setIsOpenModal(false)
     }
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <div className={c.userItemWr}>
             <div className={c.userItem}>
@@ -61,7 +65,7 @@ const FriendCardPreview: React.FC<FriendCardPreviewPropsType> = ({ friendData })
                         isLoading={!!friendData.fetchingFollowingProgress}
                         extraClassName={`${c.buttFollUnfoll} ${friendData.followed ? c.unfollowBtn : c.followBtn}`}
                         Icon={friendData.followed ? BiMinus : BiPlus}
-                        name={friendData.followed ? 'Unfollow' : 'Follow'}
+                        name={friendData.followed ? t('subs.unfollowBtn') : t('subs.followBtn')}
                         onClickHandler={handleFollowUnfollowFriend}
                         type='button'
                         isDisabled={false}
@@ -76,7 +80,7 @@ const FriendCardPreview: React.FC<FriendCardPreviewPropsType> = ({ friendData })
 
             <div className={c.writeAMessageBlock}>
                 <div className={c.writeAMessage} onClick={openModalHandler}>
-                    Write a message
+                    {t('subs.writeMsg')}
                 </div>
             </div>
             {!friendData.followed && (
@@ -87,7 +91,7 @@ const FriendCardPreview: React.FC<FriendCardPreviewPropsType> = ({ friendData })
                         isLoading={!!friendData.fetchingFollowingProgress}
                         onClickHandler={handleFollowUnfollowFriend}
                         extraClassName={c.cancelBtn}
-                        name='Cancel delete'
+                        name={t('subs.cancelDel')}
                         Icon={null}
                         type='button'
                         isDisabled={false}

@@ -6,6 +6,7 @@ import { BsCheckLg } from 'react-icons/bs'
 import { RxUpdate } from 'react-icons/rx'
 import { useForm } from 'react-hook-form'
 import { LuLogIn } from 'react-icons/lu'
+import { useTranslation } from 'react-i18next'
 import { GlobalStateType, LogInDataToSend } from '../../../../store/redux/storeTypes'
 import { AuthAC } from '../../../../store/redux/auth/authReducer'
 import { Button } from '../../../reusableElements/button/Button'
@@ -58,10 +59,15 @@ const LoginForm = () => {
 
     const refreshCaptchaHandler = () => dispatch(AuthAC.getCaptchaUrl())
 
+    // перевод
+    const { t } = useTranslation()
+
+    const reqFieldErr = t('login.reqFieldErr')
+
     return (
         <form className={c.form} onSubmit={handleSubmit(submitHandler)}>
             <div className={`${c.inputGroup} ${errors.email ? c.withError : ''}`}>
-                <label htmlFor='email'>Email address</label>
+                <label htmlFor='email'>{t('login.emailLabel')}</label>
 
                 <input
                     type='text'
@@ -69,26 +75,26 @@ const LoginForm = () => {
                     placeholder='Email*'
                     className={c.styledInput}
                     {...register('email', {
-                        required: 'Required field',
+                        required: reqFieldErr,
                         validate: v => regEmail.test(String(v).toLowerCase()),
                     })}
                 />
-                <span className={c.spanErr}>{errors.email && (errors?.email.message || 'Invalid email address')}</span>
+                <span className={c.spanErr}>{errors.email && (errors?.email.message || t('login.invalidEmailErr'))}</span>
             </div>
             <div className={`${c.inputGroup} ${errors.password ? c.withError : ''} ${c.passwordInputGroup}`}>
-                <label htmlFor='password'>Password</label>
+                <label htmlFor='password'>{t('login.passwordLabel')}</label>
 
                 <input
                     type={showPassword ? 'text' : 'password'}
                     id='password'
-                    placeholder='Enter password'
+                    placeholder={t('login.passwordPlacehold')}
                     className={c.styledInput}
                     {...register('password', {
-                        required: 'Required field',
+                        required: reqFieldErr,
                         minLength: 4,
                     })}
                 />
-                <span className={c.spanErr}>{errors.password && (errors?.password.message || 'Minimum length 4')}</span>
+                <span className={c.spanErr}>{errors.password && (errors?.password.message || t('login.passwordErr'))}</span>
 
                 <div className={c.eyeBtn} onClick={handleShowHidePassword}>
                     {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
@@ -101,7 +107,7 @@ const LoginForm = () => {
                     <span className={c.checkElem}>
                         <BsCheckLg />
                     </span>
-                    <span className={c.checkBoxLett}>Remember me</span>
+                    <span className={c.checkBoxLett}>{t('login.remembLabel')}</span>
                 </label>
             </div>
 
@@ -126,7 +132,7 @@ const LoginForm = () => {
                     </div>
 
                     <div className={`${c.inputGroup} ${errors.captcha ? c.withError : ''}`}>
-                        <label htmlFor='captcha'>Enter text from image</label>
+                        <label htmlFor='captcha'>{t('login.captchaLabel')}</label>
 
                         <input
                             type='text'
@@ -134,10 +140,10 @@ const LoginForm = () => {
                             placeholder='Captcha*'
                             className={c.styledInput}
                             {...register('captcha', {
-                                required: 'Required field',
+                                required: reqFieldErr,
                             })}
                         />
-                        <span className={c.spanErr}>{errors.captcha && (errors?.captcha.message || 'Required field')}</span>
+                        <span className={c.spanErr}>{errors.captcha && (errors?.captcha.message || reqFieldErr)}</span>
                     </div>
                 </div>
             )}
@@ -145,7 +151,7 @@ const LoginForm = () => {
             <p className={c.errOnLogin}>{errOnLogIn}</p>
 
             <Button
-                name='Sign in'
+                name={t('login.signInBtn')}
                 Icon={LuLogIn}
                 extraClassName={c.signInBtn}
                 type='submit'

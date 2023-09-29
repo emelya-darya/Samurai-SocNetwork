@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import shortid from 'shortid'
 import { BsArrowRight } from 'react-icons/bs'
+import { useTranslation } from 'react-i18next'
 import { FiSettings } from 'react-icons/fi'
 import { GlobalStateType } from '../../../store/redux/reduxStore'
 import { UserAvatarWithLink } from '../../reusableElements/userAvatarWithLink/UserAvatarWithLink'
@@ -67,6 +68,9 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
         )
     }
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <aside className={`${c.sidebar} ${isSidebarHidden ? c.hide : ''}`}>
             <div className={c.linksContainer}>
@@ -74,46 +78,48 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
                     to='/profile'
                     onClick={sidebarHandler}
                     className={currPathName === '/' || currPathName.match(/\/profile\/?/) ? c.act : c.navbar__link}>
-                    <span>Profile</span>
+                    <span>{t('sidebar.profileLink')}</span>
                 </NavLink>
                 <NavLink
                     to='/dialogs'
                     onClick={sidebarHandler}
                     className={`${currPathName.startsWith('/dialogs') ? c.act : c.navbar__link} ${c.linkToDialogs}`}>
-                    <span>Dialogs</span>
+                    <span>{t('sidebar.dialogsLink')}</span>
                     <NewMessagesNotify />
                 </NavLink>
                 <NavLink to='/common-chat' onClick={sidebarHandler} className={currPathName === '/common-chat' ? c.act : c.navbar__link}>
-                    <span>Common chat</span>
+                    <span>{t('sidebar.chatLink')}</span>
                 </NavLink>
 
                 <NavLink
                     to={pathToUsersWithQueryParams}
                     onClick={sidebarHandler}
                     className={currPathName === '/users' ? c.act : c.navbar__link}>
-                    <span>Users</span>
+                    <span>{t('sidebar.usersLink')}</span>
                 </NavLink>
                 <NavLink to='/info' onClick={sidebarHandler} className={currPathName === '/info' ? c.act : c.navbar__link}>
-                    <span>App info</span>
+                    <span>{t('sidebar.infoLink')}</span>
                 </NavLink>
             </div>
             <div className={c.subsBlock}>
                 {isAuth ? (
                     <>
-                        <p className={c.lett}>Your subs ({totalFriendsCount})</p>
+                        <p className={c.lett}>
+                            {t('sidebar.subsLett')} ({totalFriendsCount})
+                        </p>
                         <div className={c.subsAvatars}>
                             {navbarFriendsErr ? <p className={c.serverErrMessage}>{navbarFriendsErr}</p> : subsBlockItems}
                         </div>
                         {totalFriendsCount ? (
                             <Link to={pathToFriendsWithQueryParams} className={c.watchAll} onClick={sidebarHandler}>
-                                <span>Watch all</span> <BsArrowRight />
+                                <span>{t('sidebar.watchAll')}</span> <BsArrowRight />
                             </Link>
                         ) : (
                             <></>
                         )}
                     </>
                 ) : (
-                    <p className={c.lett}>Login to see subs list</p>
+                    <p className={c.lett}>{t('sidebar.loginToSee')}</p>
                 )}
             </div>
 
@@ -124,9 +130,6 @@ const Sidebar: React.FC<PropsForViewType> = ({ isSidebarHidden, sidebarHandler }
                     className={`${currPathName.startsWith('/settings') ? c.act : ''} ${c.settingsLink}`}>
                     <FiSettings />
                 </NavLink>
-                {/* <button type='button' onClick={toggleThemeHandler}>
-                    Theme({theme})
-                </button> */}
             </div>
         </aside>
     )

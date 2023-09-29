@@ -14,23 +14,22 @@
 }
 
 
-.row1,
-.row2 {
+.row1 {
     margin-bottom: 10px;
 }
 
 .row2 {
-    margin-bottom: 28px;
+    margin-bottom: 12px;
 }
 
 .row3 {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 
 .row2 {
     display: flex;
-    align-items: center;
+    // align-items: center;
     gap: 30px;
 
     @media(max-width: 576px) {
@@ -46,31 +45,39 @@
 
 
 
-.switchWr {
-    flex-shrink: 1;
-}
-
-.lookingForAJobLabel{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-    font-weight: 600;
-}
 
 
-.row2 input {
-    flex: 1 1 auto;
+.row2 {
+    .switchWr {
+        flex-shrink: 1;
+        margin-top: 7px;
+    }
 
-    @media(max-width: 576px) {
-        flex: 0 1 100%
+    .lookingForAJobLabel {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        white-space: nowrap;
+        font-weight: 600;
+    }
+
+    .inputGroup {
+        flex-grow: 1;
+    }
+
+    input {
+        flex: 1 1 auto;
+
+        @media(max-width: 576px) {
+            flex: 0 1 100%
+        }
     }
 }
+
 
 .row3 textarea {
     height: 90px;
 }
-
 
 
 label.aboutMeTitle,

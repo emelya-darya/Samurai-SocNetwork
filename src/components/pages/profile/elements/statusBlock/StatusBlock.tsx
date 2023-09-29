@@ -1,13 +1,13 @@
 import React from 'react'
 import { TfiThought } from 'react-icons/tfi'
 import { AiOutlineEdit, AiOutlineSend } from 'react-icons/ai'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { GlobalStateType } from '../../../../../store/redux/storeTypes'
 import { ProfileAC } from '../../../../../store/redux/profile/profileReducer'
 import { Button } from '../../../../reusableElements/button/Button'
 import { accentMainClr } from '../../../../reusableElements/getCssVariableColor'
 import c from './statusBlock.module.scss'
-
 
 type StatusBlockPropsType = {
     isMyProfile: boolean
@@ -37,6 +37,9 @@ const StatusBlock: React.FC<StatusBlockPropsType> = ({ isMyProfile }) => {
         if (!isUpdateStatusInProgress) setEditMode(false)
     }, [isUpdateStatusInProgress])
 
+    // перевод
+    const { t } = useTranslation()
+
     if (!errOnGetStatus)
         return (
             <div className={c.status}>
@@ -45,7 +48,7 @@ const StatusBlock: React.FC<StatusBlockPropsType> = ({ isMyProfile }) => {
                     {editMode ? (
                         <div className={c.statusInputWr}>
                             <input
-                                placeholder='Status...'
+                                placeholder={t('profile.statusPlacehold')}
                                 className={c.statusInput}
                                 autoFocus={true}
                                 onBlur={onUpdateStatusHandler}
@@ -72,7 +75,7 @@ const StatusBlock: React.FC<StatusBlockPropsType> = ({ isMyProfile }) => {
                             name={null}
                             Icon={AiOutlineEdit}
                             extraClassName={c.statusUpdateBtn}
-                            title='Update status'
+                            title={t('profile.statusBtnTitle')}
                             type='button'
                             onClickHandler={installEditMode}
                             isLoading={isUpdateStatusInProgress}

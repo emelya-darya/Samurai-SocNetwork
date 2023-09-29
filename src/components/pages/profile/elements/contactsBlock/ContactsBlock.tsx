@@ -9,6 +9,7 @@ import {
     AiFillYoutube,
 } from 'react-icons/ai'
 import { SlSocialVkontakte } from 'react-icons/sl'
+import { useTranslation } from 'react-i18next'
 import { GlobalStateType } from '../../../../../store/redux/storeTypes'
 import { ContactItem } from '../../../../reusableElements/contactItem/ContactItem'
 import c from './contactsBlock.module.scss'
@@ -26,9 +27,12 @@ const ContactsBlock = () => {
         contacts.website?.trim() ||
         contacts.youtube?.trim()
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <div className={c.contactsBlock}>
-            <h2>Contacts</h2>
+            <h2>{t('profile.contactsTitle')}</h2>
             <div className={c.contactsItems}>
                 {isContactFieldsExist ? (
                     <>
@@ -42,7 +46,7 @@ const ContactsBlock = () => {
                         <ContactItem linkHref={contacts.instagram} Icon={AiFillInstagram} name='Instagram' />
                     </>
                 ) : (
-                    <p>The user did not enter contact information</p>
+                    <p>{t('profile.emptyContacts')}</p>
                 )}
             </div>
         </div>

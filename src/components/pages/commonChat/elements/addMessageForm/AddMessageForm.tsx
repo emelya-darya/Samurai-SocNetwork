@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { AiOutlineSend } from 'react-icons/ai'
 import { Button } from '../../../../reusableElements/button/Button'
 import c from './addMessageForm.module.scss'
@@ -34,17 +35,22 @@ const AddMessageForm: React.FC<AddMessagePropsType> = ({ WSChannel, isOpenWSChan
         }
     }
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <form className={c.form} onSubmit={onSubmitHandler} action=''>
             <textarea
                 onInput={onChangeHandler}
                 value={textareaValue}
-                placeholder='Message'
+                placeholder={t('chat.formPlaceholder')}
                 className={c.styledTextarea}
                 maxLength={MAX_LENGTH}
                 onKeyUp={onKeyupHandler}
             />
-            <p className={c.charactersLeft}>{MAX_LENGTH - countCharacters} characters left</p>
+            <p className={c.charactersLeft}>
+                {MAX_LENGTH - countCharacters} {t('chat.charLeft')}
+            </p>
 
             <Button
                 name={null}

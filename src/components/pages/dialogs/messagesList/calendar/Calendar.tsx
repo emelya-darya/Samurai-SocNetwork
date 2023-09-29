@@ -1,7 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import DatePicker from 'react-datepicker'
-// import ru from 'date-fns/locale/ru'
+import { useTranslation } from 'react-i18next'
+import ru from 'date-fns/locale/ru'
+import en from 'date-fns/locale/en-US'
 import { GlobalStateType } from '../../../../../store/redux/reduxStore'
 import { PreloaderSmall } from '../../../../reusableElements/preloaders/small/PreloaderSmall'
 import { DialogsAC } from '../../../../../store/redux/dialogs/dialogsReducer'
@@ -34,9 +36,12 @@ const Calendar: React.FC<CalendarPropsType> = ({ anchorRefForAutoscroll }) => {
         anchorRefForAutoscroll?.current?.scrollIntoView({ block: 'nearest', inline: 'start' })
     }, [dateToGetMessagesNewerThan])
 
+    // перевод
+    const { t, i18n } = useTranslation()
+
     return (
         <div className={c.calendarWr}>
-            <p className={c.subtitle}>Receive all messages after:</p>
+            <p className={c.subtitle}>{t('messagesList.receiveAfter')}:</p>
             <div className={c.selectBtn}>
                 <DatePicker
                     selected={calendarDate}
@@ -47,15 +52,19 @@ const Calendar: React.FC<CalendarPropsType> = ({ anchorRefForAutoscroll }) => {
                     isClearable={true}
                     // showTimeSelect
                     excludeDateIntervals={[{ start: new Date(Date.now()), end: new Date(Date.now() * 10) }]}
-                    // dateFormat='yyyy/MM/dd'
-                    // locale={ru}
+                    dateFormat={i18n.language === 'ru' ? 'dd.MM.yyyy' : 'yyyy/MM/dd'}
+                    locale={i18n.language === 'ru' ? ru : en}
                     // closeOnScroll={true}
                     className='custom-calendar-input'
                     calendarClassName='custom-calendar-dropdown'
-                    placeholderText='Without filter'
+                    placeholderText={t('messagesList.noFilter')}
                 />
                 <button className={c.getBtn} disabled={isDisabledBtn || isInProgress} onClick={onClickHandler}>
-                    {isInProgress ? <PreloaderSmall color={mainBgClr} size={17} minHeight='17px' /> : <span>Get</span>}
+                    {isInProgress ? (
+                        <PreloaderSmall color={mainBgClr} size={17} minHeight='17px' />
+                    ) : (
+                        <span>{t('messagesList.getBtn')}</span>
+                    )}
                 </button>
                 <p className={c.err}>{error}</p>
             </div>

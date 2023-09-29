@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import { BiMinus, BiPlus } from 'react-icons/bi'
 import { GlobalStateType } from '../../../../store/redux/storeTypes'
 import { ProfileAC } from '../../../../store/redux/profile/profileReducer'
@@ -15,6 +16,9 @@ const FollowUnfollowBtn = () => {
         dispatch(ProfileAC.changeFollowStatus(userId || 1, isFollowed || false))
     }
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <div className={c.topBtnWr}>
             {!errOnGetFollowStat ? (
@@ -24,7 +28,7 @@ const FollowUnfollowBtn = () => {
                         extraClassName={`${c.buttFollUnfoll} ${isFollowed ? c.unfollowBtn : c.followBtn}`}
                         Icon={isFollowed ? BiMinus : BiPlus}
                         onClickHandler={handleFollowUnfollow}
-                        name={isFollowed ? 'Unfollow' : 'Follow'}
+                        name={isFollowed ? t('profile.followBtn') : t('profile.unfollowBtn')}
                         isDisabled={false}
                         type='button'
                         preloaderClr={isFollowed ? mainBgClr : accentSecClr}

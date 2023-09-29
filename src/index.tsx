@@ -3,6 +3,9 @@ import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
+// Мультиязычность
+import './i18n'
+
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { store } from './store/redux/reduxStore'

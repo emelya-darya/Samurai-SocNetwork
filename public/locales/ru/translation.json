@@ -1,0 +1,129 @@
+{
+    "header": {
+        "logout": "Выйти",
+        "login": "Войти"
+    },
+    "sidebar": {
+        "profileLink": "Профиль",
+        "dialogsLink": "Диалоги",
+        "chatLink": "Общий чат",
+        "usersLink": "Пользователи",
+        "infoLink": "О приложении",
+        "subsLett": "Подписки",
+        "watchAll": "Все",
+        "loginToSee": "Войдите, чтобы увидеть список подписок"
+    },
+    "chat": {
+        "title": "Общий пользовательский чат на вебсокетах",
+        "warn": "api дает доступ к сообщениям только за последние несколько часов",
+        "preloaderText": "Соединение...",
+        "noMessages": "За последнее время сообщей в чате не было. Исправьте это и напишите первым(ой).",
+        "formPlaceholder": "Сообщение",
+        "charLeft": "символов осталось"
+    },
+    "dialogsList": {
+        "title": "Список диалогов",
+        "warn": "работа с REST API, не в режиме реального времени + доступны только последние 200 диалогов",
+        "emptyLett": "Список диалогов пуст",
+        "ls": "Был(а) в сети"
+    },
+    "messagesList": {
+        "warn": "работа с REST API, не в режиме реального времени",
+        "noDialogLett": "У вас нет переписки с этим пользователем, попробуйте начать с",
+        "noDialogLink": "Списка диалогов",
+
+        "receiveAfter": "Загрузить все сообщения после",
+        "noFilter": "Без фильтра",
+        "getBtn": "ОК",
+        "backBtn": "Назад",
+        "ls": "Был(а) в сети",
+
+        "formPlaceholder": "Сообщение",
+        "charLeft": "символов осталось",
+
+        "deletedMsgLett": "Удалено (только у вас)",
+        "spamMsgLett": "Помечено как спам",
+        "restoreBtn": "Восстан.",
+        "deleteBtnTitle": "удалить (только у меня)",
+        "spamBtnTitle": "пометить как спам",
+
+        "allLoaded": "Все сообщения загружены"
+    },
+    "subs": {
+        "title": "Подписки",
+        "searchPlaceholder": "Поиск...",
+        "noResults": "По ващему запросу не найдено результатов",
+        "followBtn": "Подписаться",
+        "unfollowBtn": "Отписаться",
+        "writeMsg": "Сообщение",
+        "cancelDel": "Отменить удаление"
+    },
+    "users": {
+        "title": "Пользователи",
+        "searchPlaceholder": "Поиск...",
+        "noResults": "По ващему запросу не найдено результатов",
+        "followBtn": "Подписаться",
+        "unfollowBtn": "Отписаться",
+        "writeMsg": "Сообщение"
+    },
+    "profile": {
+        "editProfBtn": "Обновить",
+        "aboutMeTitle": "Обо мне",
+        "aboutMeEmpty": "Пользователь не предоставил информацию",
+        "signOutBtn": "Выйти",
+        "lookingForAJob": "Ищу работу",
+        "alreadyHaveJob": "Уже работаю",
+        "jobDesc": "Подробнее",
+        "sendMsgBtn": "Сообщение",
+        "avatarModalTitle": "Обрезка изображения",
+        "avatarPreviewsTitle": "Предпросмотр",
+        "applyBtn": "Применить",
+        "contactsTitle": "Контакты",
+        "emptyContacts": "Пользователь не предоставил контактную информацию",
+        "followBtn": "Подписаться",
+        "unfollowBtn": "Отписаться",
+        "statusPlacehold": "Статус...",
+        "statusBtnTitle": "Обновить статус",
+        "modalTitle": "Редактировать профиль",
+        "errUrlMessage": "Введите корректный url",
+        "fullNamePlaceholder": "Ваше имя",
+        "reqFieldErr": "Поле обязательно для заполнения",
+        "lookingFJobLett": "Ищу работу",
+        "lookingForAJobDescPlacehold": "Какую работу вы ищете?",
+        "aboutMeModalSubt": "Обо мне",
+        "aboutMePlacehold": "Расскажите о себе",
+        "contactModalSubt": "Как со мной связаться",
+        "mainLinkPlacehold": "Основная ссылка",
+        "websitePlacehold": "Вебсайт",
+        "updateBtn": "Обновить",
+        "succUpd": "Успешно обновлено"
+    },
+    "login": {
+        "title": "Войдите в ",
+        "emailLabel": "Email адрес",
+        "reqFieldErr": "Поле обязательно для заполнения",
+        "invalidEmailErr": "Некорректный email адрес",
+        "passwordLabel": "Пароль",
+        "passwordPlacehold": "Введите пароль",
+        "passwordErr": "Минимальная длина 4 символа",
+        "remembLabel": "Запомнить меня",
+        "captchaLabel": "Введите текст с картинки",
+        "signInBtn": "Войти"
+    },
+    "info": {
+        "title": "О приложении",
+        "frontSubt": "Контакты frontend-разработчицы",
+        "backSubt": "Контакты backend-разработчика",
+        "createdWith": "Frontend-стек приложения"
+    },
+    "modalMsg": {
+        "title": "Новое сообщение",
+        "jumpTo": "Перейти к диалогу с",
+        "placehold": "Сообщение",
+        "charLeft": "символов осталось",
+        "sendBtn": "Отправить",
+        "errModalTitle": "Ошибка",
+        "succSentTitle": "Сообщение отправлено",
+        "succSentLett": "Ваше сообщение было отправлено"
+    }
+}

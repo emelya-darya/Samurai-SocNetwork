@@ -14,10 +14,10 @@ export const todayDateObj = {
     currentYear: todayDate.getFullYear(),
     currentMonth: todayDate.getMonth(),
     currentDay: todayDate.getDate(),
-   //  currentHour: todayDate.getHours(),
-   //  currentMinutes: todayDate.getMinutes(),
-   //  currentSeconds: todayDate.getSeconds(),
-   //  currentMilliseconds: todayDate.getMilliseconds(),
+    //  currentHour: todayDate.getHours(),
+    //  currentMinutes: todayDate.getMinutes(),
+    //  currentSeconds: todayDate.getSeconds(),
+    //  currentMilliseconds: todayDate.getMilliseconds(),
 }
 const yesterdayDay = new Date(+todayDate - ms_in_day)
 
@@ -31,11 +31,16 @@ export const yesterdayDateObj = {
     // currentMilliseconds: todayDate.getMilliseconds(),
 }
 
-export const parseDateStr = (dateStr: string) => {
+export const parseDateStr = (dateStr: string, lang: string = 'en') => {
+    const monthsEngAbbrs = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    const monthsRuAbbrs = ['Янв', 'Фев', 'Мар', 'Апр', 'Мая', 'Июня', 'Июля', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек']
+
+    const monthsArr = lang === 'ru' ? monthsRuAbbrs : monthsEngAbbrs
+    const yesterdayLett = lang === 'ru' ? 'вчера' : 'yday'
+    const nowLett = lang === 'ru' ? 'только что' : 'now'
+
     const { currentYear, currentMonth, currentDay } = todayDateObj
     const { yesterdayYear, yesterdayMonth, yesterdayDay } = yesterdayDateObj
-
-    const monthsEngAbbrs = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
 
     // смещение по часовому пользователю юзера (в минутах)
     const timezoneOffset = new Date().getTimezoneOffset()
@@ -56,15 +61,15 @@ export const parseDateStr = (dateStr: string) => {
     const isYesterday = year == yesterdayYear && month == yesterdayMonth && day == yesterdayDay
 
     if (datesDiff < 60 * 1000 * 3) {
-        return 'now'
+        return nowLett
     } else if (isToday) {
         return `${hour}:${minute}`
     } else if (isYesterday) {
-        return `yday ${hour}:${minute}`
+        return `${yesterdayLett} ${hour}:${minute}`
     } else if (year != currentYear) {
-        return `${day} ${monthsEngAbbrs[month]} ${year}`
+        return `${day} ${monthsArr[month]} ${year}`
     } else {
-        return `${day} ${monthsEngAbbrs[month]}`
+        return `${day} ${monthsArr[month]}`
     }
 }
 

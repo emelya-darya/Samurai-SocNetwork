@@ -83,7 +83,8 @@ input.styledInput:focus {
     // label{
     //     color: $err_clr;
     // }
-    input.styledInput {
+    input.styledInput,
+    textarea.styledTextarea {
         border-color: var(--err-clr);
     }
 

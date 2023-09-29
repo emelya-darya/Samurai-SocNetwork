@@ -2,17 +2,18 @@
 
 button.buttFollUnfoll,
 button.buttFollUnfoll:disabled:hover {
-    width: 160px;
+    width: 170px;
     text-transform: uppercase;
     // padding: 15px 25px;
     box-shadow: var(--boxsh-val-small);
-    border: 2px solid rgba(var(--accent-clr_sec), 1);;
+    border: 2px solid rgba(var(--accent-clr_sec), 1);
+    ;
     transition: $transition_val;
-    gap: 12px;
+    gap: 7px;
     // font-size: 14px;
     height: 35px;
     // line-height: 1;
-    
+
 
     svg {
         width: 1.3rem;
@@ -21,18 +22,20 @@ button.buttFollUnfoll:disabled:hover {
 }
 
 button.unfollowBtn {
-    background-color: rgba(var(--accent-clr_sec), 1);;
+    background-color: rgba(var(--accent-clr_sec), 1);
+    ;
     color: var(--main-bg-clr);
 }
 
 button.followBtn {
     background-color: transparent;
-    color: rgba(var(--accent-clr_sec), 1);;
+    color: rgba(var(--accent-clr_sec), 1);
+    ;
 }
 
 button.unfollowBtn:hover {
     background-color: rgba(var(--accent-clr_sec), .8);
-    border-color:  rgba(var(--accent-clr_sec), .8);
+    border-color: rgba(var(--accent-clr_sec), .8);
 }
 
 button.followBtn:hover {

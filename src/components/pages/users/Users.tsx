@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import shortid from 'shortid'
 import { BsSearch } from 'react-icons/bs'
+import { useTranslation } from 'react-i18next'
 import { Paginator } from '../../reusableElements/paginator/Paginator'
-import { PreloaderSmall } from '../../reusableElements/preloaders/small/PreloaderSmall' 
+import { PreloaderSmall } from '../../reusableElements/preloaders/small/PreloaderSmall'
 import { GlobalStateType } from '../../../store/redux/storeTypes'
 import { UsersAC } from '../../../store/redux/users/usersReducer'
 import { accentMainClr } from '../../reusableElements/getCssVariableColor'
@@ -84,26 +85,28 @@ const UsersPage = () => {
     const totalPagesCount = Math.ceil(totalUsersCount / pageSize)
 
     React.useEffect(() => {
-        if (currentPage && totalPagesCount < currentPage) setCurrentPage(totalPagesCount)
+        if (currentPage && totalPagesCount < currentPage) setCurrentPage(totalPagesCount || 1)
     }, [totalUsersCount])
 
     const isAuth = useSelector((state: GlobalStateType) => state.forAuthData.isAuth)
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <div>
             <div className={c.topPartPage}>
-                <h1>Users</h1>
+                <h1>{t('users.title')}</h1>
                 {!errOnLoadUsers && <p>({totalUsersCount})</p>}
             </div>
 
-            {/* <InputGroup className={c.searchInputGroup}>
-            <InputLeftElement pointerEvents='none' className={c.searchInputLeftEl}>
-               <Icon as={BsSearch} />
-            </InputLeftElement>
-            <Input value={searchRequest || ''} placeholder='Search...' variant='flushed' className={c.searchInput} onInput={onTypeSearchRequestHandler} />
-         </InputGroup> */}
             <div className={c.searchInputGroup}>
-                <input value={searchRequest || ''} placeholder='Search...' className={c.searchInput} onInput={onTypeSearchRequestHandler} />
+                <input
+                    value={searchRequest || ''}
+                    placeholder={t('users.searchPlaceholder')}
+                    className={c.searchInput}
+                    onInput={onTypeSearchRequestHandler}
+                />
                 <div className={c.searchIconWr}>
                     <BsSearch />
                 </div>
@@ -130,7 +133,7 @@ const UsersPage = () => {
                                 usersData.map(userData => <UserCardPreview userData={userData} key={shortid.generate()} isAuth={isAuth} />)
                             ) : (
                                 <div className={c.errorBlock}>
-                                    <p>No results found for your query</p>
+                                    <p>{t('users.noResults')}</p>
                                 </div>
                             )}
                         </div>
