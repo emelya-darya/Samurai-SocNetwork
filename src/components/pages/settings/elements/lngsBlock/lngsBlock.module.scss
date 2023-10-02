@@ -1,0 +1,72 @@
+@import '../../../../../assets//commonStyles//vars_mixins';
+
+.lngToggleBlock {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    flex-wrap: wrap;
+}
+
+.subt {
+    // font-weight: 600;
+    width: 120px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    white-space: nowrap;
+    // line-height: 1;
+    margin: 0px;
+    // margin-bottom: 20px;
+
+    // @media(max-width:576px) {
+    //     width: auto;
+    // }
+}
+
+.languagesVars {
+    display: flex;
+    // gap: 12px;
+    box-shadow: var(--boxsh-val-small);
+    border-radius: $borderR_value_small;
+    border: 1px solid var(--text-clr);
+}
+
+.lngBtn {
+    height: 40px;
+    // width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0px 12px;
+    background-color: rgba($color: #C5C5C5, $alpha: .2);
+    transition: $transition_val;
+
+    img {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid rgba($color: #1D1E19, $alpha: .5);
+    }
+}
+
+.lngBtn:hover {
+    background-color: rgba($color: #C5C5C5, $alpha: .4);
+    // background-color: red;
+}
+
+.btnFirst {
+    border-radius: $borderR_value_small 0px 0px $borderR_value_small;
+}
+
+.btnSec {
+    border-radius: 0px $borderR_value_small $borderR_value_small 0px;
+    // border-left: 1px solid transparent;
+}
+
+.lngBtn.active {
+    background-color: var(--text-clr);
+}
+
+.lngBtn.active:hover {
+    background-color: var(--text-clr);
+}

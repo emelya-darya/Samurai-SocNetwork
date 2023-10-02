@@ -8,11 +8,12 @@ export default i18next
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
-        debug: true,
-        fallbackLng: 'ru',
+        // debug: true,
+        fallbackLng: 'en',
+        lng: localStorage.getItem('lng') || 'en', // язык по умолчанию
         supportedLngs: ['en', 'ru'],
         detection: {
-            order: ['localstorage', 'cookie', 'htmlTag', 'path', 'subdomain'],
+            order: ['cookie', 'localstorage', 'htmlTag', 'path', 'subdomain'],
             caches: ['localstorage'],
         },
         // backend: {

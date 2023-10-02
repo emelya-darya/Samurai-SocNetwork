@@ -5,16 +5,22 @@
     align-items: center;
     gap: 17px;
     flex-wrap: wrap;
+    margin-bottom: 35px;
 }
 
 .subt {
-    // font-weight: 600;
+
+    width: 120px;
     font-size: 1.1rem;
     font-weight: 700;
     white-space: nowrap;
-    // line-height: 1;
+
     margin: 0px;
-    // margin-bottom: 20px;
+
+    // @media(max-width:576px) {
+    //     width: auto;
+    // }
+
 }
 
 .themesVariantsBtnGroup {
@@ -24,6 +30,7 @@
 }
 
 .buttonTh {
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,18 +38,20 @@
     font-weight: 600;
     line-height: 1;
     padding: 10px 12px;
-    width: 110px;
+    width: 120px;
     cursor: pointer;
     transition: $transition_val;
-    background-color: transparent;
+    // background-color: transparent;
+    background-color: rgba($color: #C5C5C5, $alpha: .2);
     border: 1px solid var(--text-clr);
     outline: none;
     font-size: .9rem;
     color: var(--text-clr);
 
-    @media(max-width: 450px){
+    @media(max-width: 450px) {
         width: 95px;
         gap: 7px;
+        font-size: .8rem;
     }
 
     span {
@@ -53,6 +62,11 @@
     svg {
         font-size: 1.3rem;
         flex: 0 0 1.3rem;
+
+        @media(max-width: 450px) {
+            font-size: 1.1rem;
+            flex: 0 0 1.1rem;
+        }
     }
 }
 
@@ -67,26 +81,31 @@
 }
 
 .buttonTh:hover {
-    background-color: rgba(var(--accent-clr_main), .2);
+    // background-color: rgba(var(--accent-clr_main), .2);
+    background-color: rgba($color: #C5C5C5, $alpha: .4);
 }
 
 .buttonTh.active {
-    background-color: rgba(var(--accent-clr_main), 1);
+    // background-color: rgba(var(--accent-clr_main), 1);
+    background-color: var(--text-clr);
     color: var(--main-bg-clr);
-    // border: 1px solid rgba(var(--accent-clr_main), 1);
+
 
     &:hover {
-        background-color: rgba(var(--accent-clr_main), 1);
-        // border: 1px solid rgba(var(--accent-clr_main), 1);
+        // background-color: rgba(var(--accent-clr_main), 1);
+        background-color: var(--text-clr);
+
     }
 }
 
 
 //!
 .activeLight .buttonTh.system {
-    border-left: 1px solid rgba(var(--accent-clr_main), 1);
+    // border-left: 1px solid rgba(var(--accent-clr_main), 1);
+    border-left: 1px solid var(--text-clr);
 }
 
 .activeDark .buttonTh.system {
-    border-right: 1px solid rgba(var(--accent-clr_main), 1);
+    // border-right: 1px solid rgba(var(--accent-clr_main), 1);
+    border-right: 1px solid var(--text-clr);
 }

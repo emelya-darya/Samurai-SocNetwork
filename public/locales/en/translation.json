@@ -124,5 +124,13 @@
         "errModalTitle": "Some error",
         "succSentTitle": "Message sent",
         "succSentLett": "Your message has been sent to"
+    },
+    "settings": {
+        "title": "Settings",
+        "clrTh": "Color theme",
+        "lng": "Language",
+        "d": "Dark",
+        "l": "Light",
+        "s": "System"
     }
 }

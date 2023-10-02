@@ -86,6 +86,9 @@ const App = function () {
 
     //* Работа с темой ------------------------------------------------------
 
+    //* Язык
+    const { i18n } = useTranslation()
+
     //! Перез закрытием приложения сохраняем в localStorage нужную инфу -----
 
     window.onbeforeunload = function () {
@@ -96,12 +99,8 @@ const App = function () {
         localStorage.setItem('friendsSearchRequest', searchReqFriends || '')
 
         localStorage.setItem('theme', currentTheme || 'system')
-    }
 
-    //! перевод
-    const { i18n } = useTranslation()
-    const changeLanguage = (language: string) => {
-        i18n.changeLanguage(language)
+        localStorage.setItem('lng', i18n.language)
     }
 
     if (isInProgressCheckAuth || !isAuthChecking || !systemTheme || !currentTheme)
@@ -124,11 +123,6 @@ const App = function () {
                         <Route path='*' element={<Navigate to='/profile' replace={true} />} />
                     </Route>
                 </Routes>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'fixed', bottom:0, right: 0 }}>
-                    <button onClick={() => changeLanguage('en')}>EN</button>
-                    <button onClick={() => changeLanguage('ru')}>RU</button>
-                    {/* <h1 style={{ textAlign: 'center' }}>{t('main')}</h1> */}
-                </div>
             </>
         )
 }

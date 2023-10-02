@@ -1,5 +1,5 @@
-import React from 'react'
 import { MdOutlineDarkMode, MdOutlineSettingsBrightness, MdOutlineWbSunny } from 'react-icons/md'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppearanceAC } from '../../../../../store/redux/appAppearance/appearanceReducer'
 import { GlobalStateType } from '../../../../../store/redux/reduxStore'
@@ -16,9 +16,12 @@ const ColorThemeBlock = () => {
         dispatch(AppearanceAC.setCurrentTheme(theme))
     }
 
+    // перевод
+    const { t } = useTranslation()
+
     return (
         <div className={c.themeToggleBlock}>
-            <p className={c.subt}>Color theme:</p>
+            <p className={c.subt}>{t('settings.clrTh')}:</p>
             <div
                 className={`${c.themesVariantsBtnGroup} ${
                     currentTheme === 'light' ? c.activeLight : currentTheme === 'dark' ? c.activeDark : c.activeSystem
@@ -30,7 +33,7 @@ const ColorThemeBlock = () => {
                         handleThemeSwitching('light')
                     }}>
                     <MdOutlineWbSunny />
-                    <span>Light</span>
+                    <span>{t('settings.l')}</span>
                 </button>
                 <button
                     type='button'
@@ -39,7 +42,7 @@ const ColorThemeBlock = () => {
                         handleThemeSwitching('system')
                     }}>
                     <MdOutlineSettingsBrightness />
-                    <span>System</span>
+                    <span>{t('settings.s')}</span>
                 </button>
                 <button
                     type='button'
@@ -48,7 +51,7 @@ const ColorThemeBlock = () => {
                         handleThemeSwitching('dark')
                     }}>
                     <MdOutlineDarkMode />
-                    <span>Dark</span>
+                    <span>{t('settings.d')}</span>
                 </button>
             </div>
         </div>
