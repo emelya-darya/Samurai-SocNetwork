@@ -27,7 +27,7 @@
     // gap: 12px;
     box-shadow: var(--boxsh-val-small);
     border-radius: $borderR_value_small;
-    border: 1px solid var(--text-clr);
+    
 }
 
 .lngBtn {
@@ -40,6 +40,7 @@
     padding: 0px 12px;
     background-color: rgba($color: #C5C5C5, $alpha: .2);
     transition: $transition_val;
+    border: 1px solid var(--text-clr);
 
     img {
         width: 28px;

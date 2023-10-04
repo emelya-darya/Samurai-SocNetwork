@@ -24,7 +24,7 @@ const LoginPage = () => {
         <div className={c.loginPage}>
             <div className={c.logoWr}>{logoIcon}</div>
 
-            <h1 className={c.title}>{t('login.title')} «Frontend dev social network»</h1>
+            <h1 className={c.title}>{t('login.title')}</h1>
             <LoginForm />
         </div>
     )

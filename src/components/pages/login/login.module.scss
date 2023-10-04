@@ -1,34 +1,36 @@
 @import '../../../assets//commonStyles//vars_mixins';
+
 // @import '../../../assets//commonStyles//modules//styledInputs.module.scss';
-.loginPage{
+.loginPage {
     padding-top: 40px;
-    @media(max-width: 992px){
+
+    @media(max-width: 992px) {
         padding-top: 15px;
     }
 }
 
-.logoWr{
+.logoWr {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 50px;
 
-    @media(max-width: 992px){
-        svg{
+    @media(max-width: 992px) {
+        svg {
             display: none;
         }
     }
 }
 
-.title{
+.title {
     text-align: center;
-    font-size: 23px;
-    margin-bottom: 25px;
-    margin-top: 10px;
-    font-weight: 500;
+    font-size: 1.6rem;
+    margin: 10px auto 20px auto;
 
-    @media(max-width: 450px){
+    font-weight: 600;
+    max-width: 380px;
+
+    @media(max-width: 450px) {
         font-size: 19px;
     }
 }
-

@@ -98,7 +98,7 @@
         "succUpd": "Successfully updated"
     },
     "login": {
-        "title": "Sign in to",
+        "title": "Sign in to social network for front-end developers",
         "emailLabel": "Email address",
         "reqFieldErr": "Required field",
         "invalidEmailErr": "Invalid email address",

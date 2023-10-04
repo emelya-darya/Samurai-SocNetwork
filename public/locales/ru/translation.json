@@ -99,7 +99,7 @@
         "succUpd": "Успешно обновлено"
     },
     "login": {
-        "title": "Войдите в ",
+        "title": "Войдите в социальную сеть для frontend-разработчиков",
         "emailLabel": "Email адрес",
         "reqFieldErr": "Поле обязательно для заполнения",
         "invalidEmailErr": "Некорректный email адрес",
