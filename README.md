@@ -5,3 +5,11 @@
 -   Created with: React, Redux, Redux-saga;
 -   Interaction protocols: REST, Websocket;
 -   On the client you can switch the language and color theme of the application.
+
+<br/>
+    
+#### Public account access data: 
+*email*: __free@samuraijs.com__  
+*password*: __free__ 
+
+
